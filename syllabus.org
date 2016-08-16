@@ -222,3 +222,13 @@ The tentative course schedule is here. It may change.
   :END:
 
   [[elisp:tq-agenda][Upcoming assignments]]
+
+** TODO assignment:intro					 :assignment:
+   DEADLINE: <2016-09-01 Thu>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: intro
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
