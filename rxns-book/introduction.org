@@ -15,11 +15,10 @@ This course is run by Techela (Technology Enhanced Learning and Assessment), dev
 You will install the course like this:
 
 - Open Emacs
-- Type Alt-x techela-register
+- Type Alt-x techela
+- You will be prompted for a course, choose f16-06625
 - You will be prompted for some information including your name, and andrew email address.
 - You will be prompted for your andrew email password, which will send me some information I need to give you access to the course.
-- Then, type M-x techela
-- you will be prompted for the course to open. Press Enter.
 - Emacs will then download the course for you. After I register your ssh key, you will have access to assignments.
 - Emacs will keep the course notes up to date, and tell you when assignments are due, etc...
 
