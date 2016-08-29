@@ -3,7 +3,7 @@
 * Course software setup
 
 - Your laptops have already been setup with the software you need for this course
-  + Emacs + jmax
+  + Emacs + scimax
   + Python
   + git
   + ssh
@@ -30,9 +30,7 @@ You will install the course like this:
 
 ** Python setup
 
-- Enthought Canopy is already installed
-   - It has most of what we will need this semester
-- You should request an academic license at https://www.enthought.com/products/canopy/ as it will give you access to a lot of additional packages you may find helpful.
+- Anaconda Python 3.5 should already be installed
 
 - We will install new packages as needed
 
