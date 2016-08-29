@@ -16,42 +16,6 @@ After those are installed, you need to install scimax. Go to http://github.com/j
 
 I recommend you do this on your Desktop.
 
-** Windows
-You should be ready to go now. Open the jmax folder and double click the jmax.bat file. This should open emacs (it is included in scimax). After emacs has loaded, you will type:
-
-Alt-x techela
-
-and follow the directions. After I register your pub key, you will have access to the course assignments.
-
-** Mac
-I installed Emacs 24.3 from http://emacsformacosx.com.
-
-I installed git from http://git-scm.com/download/mac
-
-Enthought Canopy has a Mac version.
-
-and MacTeX from http://www.tug.org/mactex.
-
-After that, I was able to clone jmax as described above, and I used the jmax-mac.sh script to open emacs configured to use jmax.
-
-Later, I used brew to build a more modern version 24.4 like this:
-
-#+BEGIN_SRC sh
-brew install emacs --with-gnutls --with-imagemagick --with-librsvg --with-x --use-git-head --HEAD --cocoa
-#+END_SRC
-
-Then run the jmax-mac.sh script in jmax to open emacs. After that, run
-
-Alt-x techela
-
-and follow the directions. After I register your pub key, you will have access to the course assignments.
-
-** Linux
-Use your package manager to install a modern git, ssh and emacs. Install Enthought for Linux, and clone jmax.  You should be able to run jmax.sh in jmax to launch emacs. After it loads, run
-
-Alt-x techela
-
-and follow the directions. After I register your pub key, you will have access to the course assignments.
 * I do not want to use Emacs, can I use something else?
 Everything we will do is built into Emacs. There is nothing else that will do what we need. If you like Vim, you should look into configuring Emacs to act like Vim (http://www.emacswiki.org/emacs/ViperMode).
 
