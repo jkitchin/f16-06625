@@ -40,19 +40,9 @@ Put your cursor in this code block and run it (C-c C-c). This will install some 
 #+BEGIN_SRC python :results output org drawer
 import pip
 
-for package in ['pycse', 'uncertainties', 'quantities', 'jedi', 'rope']:
-    pip.main(['install', package])
+for package in ['pycse==1.6.3', 'uncertainties', 'quantities', 'jedi', 'rope']:
+    pip.main(['install', '-U', package])
 #+END_SRC
-
-#+RESULTS:
-:RESULTS:
-Requirement already satisfied (use --upgrade to upgrade): pycse in /Users/jkitchin/Dropbox/books/pycse
-Requirement already satisfied (use --upgrade to upgrade): quantities==0.10.1 in /Users/jkitchin/anaconda3/lib/python3.5/site-packages (from pycse)
-Requirement already satisfied (use --upgrade to upgrade): uncertainties in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
-Requirement already satisfied (use --upgrade to upgrade): quantities in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
-Requirement already satisfied (use --upgrade to upgrade): jedi in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
-Requirement already satisfied (use --upgrade to upgrade): rope in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
-:END:
 
 
 After you install those, this code block will tell you about the installed versions of the most important libraries we will use in Python.
@@ -72,14 +62,18 @@ print('quantities version {}'.format(quantities.__version__))
 
 import uncertainties
 print('uncertainties version {}'.format(uncertainties.__version__))
+
+import pycse
+print('pycse version {}'.format(pycse.__version__))
 #+END_SRC
 
 #+RESULTS:
 : numpy version 1.10.4
 : scipy version 0.17.0
 : matplotlib version 1.5.1
-: quantities version 0.10.1
-: uncertainties version 2.4.8.1
+: quantities version 0+unknown
+: uncertainties version 3.0.1
+: pycse version 1.6.3
 
 ** Assignments and exercises
    :PROPERTIES:
