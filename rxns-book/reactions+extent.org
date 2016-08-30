@@ -3,7 +3,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 * Explore techela a bit
 Look at the techela menu
-  elisp:tq-index generates an indes buffer with clickable links
+  elisp:tq-index generates an index buffer with clickable links
 
   elisp:tq-search search the course notes for a word
 
