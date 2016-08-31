@@ -271,27 +271,20 @@ You may find these resources helpful:
   + http://interactivepython.org/courselib/static/thinkcspy/index.html
 
 - Python documentation
-  + Builtin modules - http://docs.python.org/2/library/index.html
+  + Builtin modules - http://docs.python.org/3/library/index.html
 
 - Python and scientific computing
   + http://kitchingroup.cheme.cmu.edu/pycse/ (there is also a pdf version)
   + Numerical python - http://docs.scipy.org/doc/numpy/reference/
   + Scientific python - http://docs.scipy.org/doc/scipy/reference/
 
-- Training from Enthought - free if you get a free academic account
-https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/courses (Note Enthought is still using Python2, and we are using Python3).
-
-  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/INTRO_TO_PYTHON][Python Essentials]]
-  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/NUMPY][Numpy]]
-  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/SCIPY][Scipy]]
-  - [[https://training.enthought.com/?utm_source=academic&utm_medium=email&utm_campaign=EToD-Launch#/course/ADVANCED_PYTHON][Advanced Python]]
 
 - Writing equations in LaTeX: http://www.codecogs.com/latex/eqneditor.php
 
 * Final points
 
-1. Make sure you run M-x techela on /your/ computer ASAP
-2. You can only use techela from your computer
-3. Do not delete ~/techela or the emacs shortcut on your desktop
 
+1. You can only use techela from your computer.
+2. Do not delete ~/techela or the emacs shortcut on your desktop
+3. Avoid installing a new Python
 
