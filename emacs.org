@@ -29,7 +29,7 @@ If you want the window you are in to be the only window visible, type C-x 1. If 
 org-mode is the markup language the course notes are written in, and the markup language you will create your assignments in. The syntax is simple, and plain text based. You will see the syntax over and over in class, and you will pick up as the course progresses. org-mode provides the functionality in the syllabus (e.g. the course agenda) and the clickable links we use. If you want to learn more about org-mode you can spend some time in the manual [fn:2]. That is not required. You should watch this vidwo: https://www.youtube.com/watch?v=fgizHHd7nOo to see some things that are possible with org-mode. In the next sections I highlight the key features of org-mode we will use in this course.
 
 ** Structured documents
-A key feature of org-mode is that it treats documents as outlines. A "section" starts with a line that starts with a single *, followed by the title. Subsections start with **, subsubsections start with ***, etc... You should use this to provide logical structure to your documents when it makes sense.
+A key feature of org-mode is that it treats documents as outlines. A "section" starts with a line that starts with a single *, followed by the title. Subsections start with **, subsubsections start with ***, etc... You should use this to provide logical structure to your documents when it makes sense. With your cursor in a headline, you can press TAB to cycle its visibility, e.g. to open or collapse it.
 
 ** Links
 A very powerful feature of org-mode is links. Org-mode turns simple text into clickable links that can open a file:syllabus.org, a url http://orgmode.org/org.html#Hyperlinks, run code elisp:beginning-of-line, and many more things. You will recognize links because they are colored and underlined, like a link in a webpage.
@@ -66,7 +66,7 @@ Let us see a code block that makes a figure. Note that you have to manually type
 
 #+BEGIN_SRC python
 import matplotlib.pyplot as plt
-plt.plot([1,2,4,8])
+plt.plot([1, 2, 4, c8])
 plt.savefig('simple-plot.png')
 #+END_SRC
 
