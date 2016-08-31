@@ -109,6 +109,9 @@ print('3. ', total)
 import operator
 print('4. ', sum(map(operator.mul, alpha, MW)))
 # This is called functional programming
+
+# This is the new syntax in Python 3 for matrix multiplication
+print('5. ', alpha @ MW)
 #+END_SRC
 
 #+RESULTS:
@@ -116,6 +119,7 @@ print('4. ', sum(map(operator.mul, alpha, MW)))
 : 2.  0
 : 3.  0
 : 4.  0
+: 5.  0
 
 Stoichiometry also determines if the total number of moles in a reaction change. Even though the total mass is constant, the total number of moles may change. Here are three examples showing how this is possible.
 
@@ -251,4 +255,4 @@ which leads upon substitution to:
 
 * Recommended exercises
 Repeat ref:extent-composition in fractional extent and conversion.
-#+TURNED-IN-BY-EMAIL:: Wed Aug 31 14:15:50 2016
+
