@@ -244,7 +244,7 @@ The tentative course schedule is here. It may change.
 
   [[elisp:tq-agenda][Upcoming assignments]]
 
-** TODO assignment:intro					 :assignment:
+** COLLECTED assignment:intro					 :assignment:
    DEADLINE: <2016-09-01 Thu>
    :PROPERTIES:
    :CATEGORY: participation
