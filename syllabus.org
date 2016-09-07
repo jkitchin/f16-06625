@@ -179,11 +179,14 @@ If you have questions about this or your coursework, please let me know.
   :CUSTOM_ID: schedule
   :END:
 The tentative course schedule is here. It may change.
-** [2016-08-29 Mon] Review syllabus, software
+** DONE [2016-08-29 Mon] Review syllabus, software
+   CLOSED: [2016-09-07 Wed 09:17]
 
-** [2016-08-31 Wed] [[./rxns-book/introduction.org]]
+** DONE [2016-08-31 Wed] [[./rxns-book/introduction.org]]
+   CLOSED: [2016-09-07 Wed 09:17]
 
-** [2016-09-05 Mon] Labor day *NO CLASS*  Review this file:emacs.org
+** DONE [2016-09-05 Mon] Labor day *NO CLASS*  Review this file:emacs.org
+   CLOSED: [2016-09-07 Wed 09:17]
 
 ** [2016-09-07 Wed] [[./rxns-book/reactions+extent.org]]
 
@@ -209,9 +212,10 @@ The tentative course schedule is here. It may change.
 
 ** [2016-10-17 Mon] [[./rxns-book/parameter-estimation-2.org]]
 
-** [2016-10-19 Wed] [[./rxns-book/mechanism-determination.org]]
+** [2016-10-19 Mon] Jake Boes guest lecture
 
-** [2016-10-24 Mon] *TBD*
+** [2016-10-24 Wed] [[./rxns-book/mechanism-determination.org]]
+
 ** [2016-10-26 Wed] [[./rxns-book/engineering-applications.org]]
 
 ** [2016-10-31 Mon] [[./rxns-book/mass-transfer-1.org]]
