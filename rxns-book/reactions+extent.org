@@ -110,6 +110,9 @@ print('4. ', sum(map(operator.mul, alpha, MW)))
 
 # This is the new syntax in Python 3 for matrix multiplication
 print('5. ', alpha @ MW)
+
+# Note * is an element-wise multiplication for arrays. Arrays are not the same as lists.
+print('6. ', sum(alpha * MW))
 #+END_SRC
 
 #+RESULTS:
@@ -118,6 +121,7 @@ print('5. ', alpha @ MW)
 : 3.  0
 : 4.  0
 : 5.  0
+: 6.  0
 
 Stoichiometry also determines if the total number of moles in a reaction change. Even though the total mass is constant, the total number of moles may change. Here are three examples showing how this is possible.
 
@@ -153,13 +157,13 @@ Changing the total number of moles in a reaction will have a big effect in gas p
 
 - We now consider formalizing the change in moles of each species when reactions occur. Consider:
 
-2 H_2 + O_2 $\rightarrow$ 2 H_{2}O
+\(2 \ce{H2} + \ce{O2} \rightarrow 2 \ce{H2O}\)
 
-which we remember is:
+which we write as:
 
 \(0 = 2 A_3 - 2 A_1 - A_2 \)
 
-- If we start with N_{A_1,0} moles at some time, and later have N_{A_1} moles later, then stoichiometry dictates that:
+- If we start with $N_{A_1,0}$ moles at some time, and later have $N_{A_1}$ moles later, then stoichiometry dictates that:
 
 \(\frac{N_{A_1} - N_{A_1,0}}{-2} = \frac{N_{A_2} - N_{A_2,0}}{-1} = \frac{N_{A_3} - N_{A_3,0}}{2} = X  \)
 
@@ -179,21 +183,21 @@ or for a flow system:
 
 \(C_J = C_{J,0} + \alpha_J \xi \).
 
-\xi is now an intensive reaction extent \(X/V\), with units of mol / vol.
+$\xi$ is now an intensive reaction extent \(X/V\), with units of mol / vol.
 
-or \xi' is now an intensive reaction extent \(X/\nu\), with units of mol / vol / time.
+or $\xi'$ is now an intensive reaction extent \(X/\nu\), with units of mol / vol / time.
 
-- Note that there are limits on the maximum value of \xi because we cannot have negative concentrations. If we set $C_J$ to zero, we derive
+- Note that there are limits on the maximum value of $\xi$ because we cannot have negative concentrations. If we set $C_J$ to zero, we derive
 
 \(\xi_{max} = -\frac{C_{J,0}}{\alpha_J}\)
 
-- If there are multiple reactants present, then you must pick the smallest positive (non-zero) \xi_{max} to avoid getting negative concentrations of one species.
+- If there are multiple reactants present, then you must pick the smallest positive (non-zero) $\xi_{max}$ to avoid getting negative concentrations of one species.
 
 - Consider this reaction:
 
-H_2 + 0.5 O_2 \rightarrow H_{2}O
+\(\ce{H2} + 0.5 \ce{O2} \rightarrow \ce{H2O}\)
 
-If you start with 0.55 mole of H_2, and 0.2 mol of O_2. What is \xi_{max}?
+If you start with 0.55 mole of $\ce{H_2}, and 0.2 mol of $\ce{O_2}$. What is $\xi_{max}$?
 
 #+BEGIN_SRC python
 import numpy as np
@@ -254,4 +258,4 @@ which leads upon substitution to:
 * Recommended exercises
 Repeat ref:extent-composition in fractional extent and conversion.
 
-#+TURNED-IN-BY-EMAIL:: Wed Sep  7 09:20:08 2016
+
