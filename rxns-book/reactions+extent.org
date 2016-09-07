@@ -11,8 +11,6 @@ Look at the techela menu
 
   elisp:tq-email send me an email about anything else
 
-  elisp:tq-submit-by-email as a last resort to submit assignments late.
-
 Each of those commands can be run from those links, from the menu, or by typing M-x command name.
 
 
