@@ -267,3 +267,13 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+
+** TODO assignment:parabola					 :assignment:
+   DEADLINE: <2016-09-08 Thu>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: parabola
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
