@@ -1,8 +1,8 @@
-Created on: Wed Aug 31 14:15:50 2016
+Created on: Wed Sep  7 09:20:08 2016
 Name: John Kitchin
 Userid = jkitchin@andrew.cmu.edu
 Email: jkitchin@andrew.cmu.edu
-System name: johns-air.wv.cc.cmu.edu
+System name: Johns-MacBook-Air.local
 darwinlo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 16384
 	options=3<RXCSUM,TXCSUM>
 	inet6 ::1 prefixlen 128 
@@ -14,7 +14,7 @@ stf0: flags=0<> mtu 1280
 en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
 	ether 48:d7:05:e2:01:bd 
 	inet6 fe80::4ad7:5ff:fee2:1bd%en0 prefixlen 64 scopeid 0x4 
-	inet 128.237.193.25 netmask 0xfffff000 broadcast 128.237.207.255
+	inet 10.0.1.2 netmask 0xffffff00 broadcast 10.0.1.255
 	nd6 options=1<PERFORMNUD>
 	media: autoselect
 	status: active

@@ -44,6 +44,31 @@ for package in ['pycse==1.6.3', 'uncertainties', 'quantities', 'jedi', 'rope']:
     pip.main(['install', '-U', package])
 #+END_SRC
 
+#+RESULTS:
+:RESULTS:
+Collecting pycse==1.6.3
+Collecting quantities==0.10.1 (from pycse==1.6.3)
+Installing collected packages: quantities, pycse
+  Found existing installation: quantities 0+unknown
+    Uninstalling quantities-0+unknown:
+      Successfully uninstalled quantities-0+unknown
+  Found existing installation: pycse 0.6.2
+    Can't uninstall 'pycse'. No files were found to uninstall.
+Successfully installed pycse-0.6.2 quantities-0.10.1
+Requirement already up-to-date: uncertainties in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
+Collecting quantities
+Installing collected packages: quantities
+  Found existing installation: quantities 0+unknown
+    Can't uninstall 'quantities'. No files were found to uninstall.
+Successfully installed quantities-0+unknown
+Requirement already up-to-date: jedi in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
+Requirement already up-to-date: rope in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
+:END:
+
+The ways to undo:
+
+C-x u  opens an "undo tree"
+C-/  undoes the last thing you did.
 
 After you install those, this code block will tell you about the installed versions of the most important libraries we will use in Python.
 
@@ -75,6 +100,28 @@ print('pycse version {}'.format(pycse.__version__))
 : uncertainties version 3.0.1
 : pycse version 1.6.3
 
+
+<p  then press TAB
+
+
+#+BEGIN_SRC python :results output org drawer
+a=5
+b = 50
+print(a)
+print('a = {}, b = {}'.format(a, b))
+print('a = ' + str(a))
+# print('a = ' + a) gives an error
+print('the ' + 'quick brown fox')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+5
+a = 5, b = 50
+a = 5
+the quick brown fox
+:END:
+
 ** Assignments and exercises
    :PROPERTIES:
    :ID:       597954a3-958b-4e4d-bbcd-ac2c33a527dd
@@ -98,6 +145,22 @@ print('pycse version {}'.format(pycse.__version__))
   + Some information about your computer will be collected and turned in with your work.
 
 - Sometimes there will be "Exercises" that we do in class. These will not always be graded, but they will be used as part of a participation grade. Make sure you bring your computer to class.
+
+#+BEGIN_SRC python :results output org drawer
+for i in range(5):
+# C-c '
+    print(i)
+    # do something else
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0
+1
+2
+3
+4
+:END:
 
 * Introduction to the course
 
@@ -169,18 +232,22 @@ R = 8.314   # A float
 T = 300     # an integer
 
 # an array of values linearly spaced
-deltaG = np.linspace(-8000, -12000)
+deltaG = np.linspace(-8000, -12000, num=50)
+
+print(len(deltaG))
 
 # plotting commands
-plt.plot(deltaG, np.exp(-deltaG / R / T))
-plt.xlabel('$\Delta G$')
+plt.plot(deltaG, np.exp(-deltaG / R / T), 'bs-')
+plt.xlabel('$\Delta G$')  # Note the $ $
 plt.ylabel('K')
 plt.savefig('images/K.png')
 #+END_SRC
 
 #+RESULTS:
+: 50
 
 [[./images/K.png]]
+
 
 Note: to get the image to show inline, you must manually put a figure link in the place you want it, and then run the code block.
 
@@ -209,14 +276,16 @@ def objective(deltaG):
     return 100 - np.exp(-deltaG / R / T)
 
 guess = -11000   # guess based on the graph we saw before
-ans, = fsolve(objective, guess)
+ans, = fsolve(objective, guess)  # the , is an unpacking operator
 
 print(ans)
+print(type(ans))
 print(-np.log(100) * R * T)  # analytical solution
 #+END_SRC
 
 #+RESULTS:
 : -11486.2154779
+: <class 'numpy.float64'>
 : -11486.2154779
 
 
@@ -242,12 +311,15 @@ def f(t):
     z = 0.2 - Ca(t)
     return z
 
-ans, = fsolve(f, 2.0)
-print('Ca = {0} at t = {1} s'.format(Ca(ans), ans))
+ans, d, flag, msg = fsolve(f, 2.0, full_output=1)
+print(ans)
+
+print('Ca = {1} at t = {0:1.2f} s ({1})'.format(ans[0], Ca(ans)))
 #+END_SRC
 
 #+RESULTS:
-: Ca = 0.2 at t = 6.997556141017827 s
+: [ 6.99755614]
+: Ca = [ 0.2] at t = 7.00 s ([ 0.2])
 
 
 You should practice with these examples. Review these links:
@@ -281,6 +353,9 @@ You may find these resources helpful:
 
 - Writing equations in LaTeX: http://www.codecogs.com/latex/eqneditor.php
 
+I occasionally blog about Python at http://kitchingroup.cheme.cmu.edu
+Follow me on Twitter to be notified of these posts: @johnkitchin
+
 * Final points
 
 
@@ -288,3 +363,36 @@ You may find these resources helpful:
 2. Do not delete ~/techela or the emacs shortcut on your desktop
 3. Avoid installing a new Python
 
+#+BEGIN_SRC python :results output org drawer
+def f(a, b):
+    return 2*a, 3*b
+
+g = f(1, 2)
+print(g)
+
+a, b = f(1, 2)
+print(a)
+print(b)
+
+h, j, k = [3, 4, 5]
+print(h)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+(2, 6)
+2
+6
+3
+:END:
+
+#+BEGIN_SRC python :results output org drawer
+print(1 / 3.0)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0.3333333333333333
+:END:
+
+C-g to quit what is happening. or Esc Esc Esc
