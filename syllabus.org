@@ -257,3 +257,13 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+
+** TODO assignment:survey					 :assignment:
+   DEADLINE: <2016-09-07 Wed>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: survey
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
