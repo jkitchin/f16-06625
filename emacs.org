@@ -27,6 +27,12 @@ Occasionally it is useful to split the window to have two things open. Sometimes
 
 If you want the window you are in to be the only window visible, type C-x 1. If you want the window you are in to disappear, type C-x 0.
 
+** Buffer navigation
+
+You can switch to another buffer by typing C-x b. You will get a list of buffers to choose from, and you press enter to select one.
+
+You can also press C-x <left> or C-x <right> to switch to the previous or next buffers.
+
 
 * Org-mode
 
