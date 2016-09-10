@@ -258,8 +258,8 @@ The tentative course schedule is here. It may change.
    :END:
 
 
-** COLLECTED assignment:survey					 :assignment:
-   DEADLINE: <2016-09-07 Wed>
+** GRADED assignment:survey					 :assignment:
+   CLOSED: [2016-09-10 Sat 12:51] DEADLINE: <2016-09-07 Wed>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   1
