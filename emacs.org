@@ -21,6 +21,11 @@ For Keyboard shortcuts, you will often use a sequence of commands that start by 
 | Paste          | C-y      | counsel-yank-pop |
 | Cut            | C-w      | kill-region      |
 
+To "kill" or cut the text from the cursor to the end of the line, type C-k.
+
+You can then paste that somewhere with C-y.
+
+
 ** Split windows
 
 Occasionally it is useful to split the window to have two things open. Sometimes that will happen for some reason and you want to undo it. Here are some ways to do that, and then get back to what you want. If you want two windows side by side, type C-x 3, or select the File menu and split the window. If you want over-under split windows, type C-x 2.
