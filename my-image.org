@@ -1,0 +1,35 @@
+
+
+#+BEGIN_SRC python :results output org drawer
+import matplotlib.pyplot as plt
+import numpy as np
+
+# plot f(x) = exp(x) from x = 0 to 5
+x = np.linspace(0, 50)
+y = np.exp(x)
+
+plt.plot(x, y)
+plt.savefig('e-to-the-x.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+:END:
+
+#+attr_org: :width 300
+[[./e-to-the-x.png]]
+
+#+BEGIN_EXAMPLE
+[[./e-to-the-x.png]]
+#+END_EXAMPLE
+
+
+C-c C-x C-v to toggle the image on and off.
+
+C-x C-s to save the file.
+
+C-x left-arrow to get back to the previous buffer
+
+C-x d enter  M-x explorer
+
+M-x dired
