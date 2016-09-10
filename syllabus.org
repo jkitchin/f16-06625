@@ -270,7 +270,7 @@ The tentative course schedule is here. It may change.
 
 solution:survey
 
-** TODO assignment:parabola					 :assignment:
+** COLLECTED assignment:parabola				 :assignment:
    DEADLINE: <2016-09-08 Thu>
    :PROPERTIES:
    :CATEGORY: homework
