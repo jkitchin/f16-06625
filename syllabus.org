@@ -267,6 +267,7 @@ The tentative course schedule is here. It may change.
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+solution:survey
 
 ** TODO assignment:parabola					 :assignment:
    DEADLINE: <2016-09-08 Thu>
