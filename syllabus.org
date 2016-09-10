@@ -258,7 +258,7 @@ The tentative course schedule is here. It may change.
    :END:
 
 
-** TODO assignment:survey					 :assignment:
+** COLLECTED assignment:survey					 :assignment:
    DEADLINE: <2016-09-07 Wed>
    :PROPERTIES:
    :CATEGORY: participation
