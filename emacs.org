@@ -11,11 +11,15 @@ In Emacs, you do everything by running commands. When you press keys, they are s
 
 For Keyboard shortcuts, you will often use a sequence of commands that start by pressing Ctrl and some key, followed by some keys. For example, if you see C-x C-s, that means hold down Ctrl, then x, release both, and then hold down Ctrl then s, and release both. That will save the file you have open.
 
-| Action         | shortcut | Emacs command |
-|----------------+----------+---------------|
-| Open a file    | C-x C-f  | find-file     |
-| Save a file    | C-x C-s  | save-buffer   |
-| Close a window | C-x k    | kill-buffer   |
+| Action         | shortcut | Emacs command    |
+|----------------+----------+------------------|
+| Open a file    | C-x C-f  | find-file        |
+| Save a file    | C-x C-s  | save-buffer      |
+| Close a window | C-x k    | kill-buffer      |
+| Undo           | C-/      | undo-tree-undo   |
+| Copy           | M-w      | kill-ring-save   |
+| Paste          | C-y      | counsel-yank-pop |
+| Cut            | C-w      | kill-region      |
 
 ** Split windows
 
