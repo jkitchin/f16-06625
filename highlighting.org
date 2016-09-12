@@ -1,0 +1,74 @@
+#+TITLE: Highlighting text in org-mode
+
+Techela is setup now for an experimental highlighting capability.
+
+Here are some important notes:
+1. It is experimental, and may not work as expected all the time. You may lose your highlights, so do not rely on them too heavily yet.
+2. It will add a section called "org-highlighter data" to the end of your document. Do not modify this section. It is where the data on your highlights is stored. It should be the last headline in your document. 
+3. It uses file variables and local save hooks to make sure your highlights get saved in the buffer, and to reload them when the file is opened.
+4. The highlights will not export to pdf, or html, or any other format. I do not know if this will ever be a feature since these highlights are not really part of org-mode, they are just colors on the text.
+5. Highlights may not work everywhere, e.g. You cannot see them in Tables, equations or in code blocks, and probably in other places with colors.
+6. They do not cut and paste.
+
+*Yea, yea, yea... How do I use it!*
+
+Highlight some text, and type Alt-h b to highlight it in blue. Choose g for green, y for yellow or p for pink If you are feeling colorful, press c and choose a color like light salmon. Careful, or your buffer may look like rainbow soup.
+
+You can select n to add a note to text. The note should appear as a tooltip over the text when you hover on it. To edit the note on the highlight, put your cursor on it, and type Alt-h e. If you want a color other than Thistle for the notes, select the text, and type Alt-h N. You will be prompted for a color and a note. If you do not select any text, a note looks like this:  note
+
+If you prefer to select text with the mouse and highlight it, type Alt-h m to turn on mouse-highlighting mode. Highlights will be green. Alt-h m will toggle it off. You can change the color of the highlighting by typing C-u M-h m, but 
+
+You may want to delete a highlight. Just put your cursor on it, and type Alt-h d. To delete them all, type Alt-h D.
+
+To list all the highlights in the buffer  with links to navigate to them, type Alt-h l. Press q in that window to close it.
+
+You can also access the highlight functions via the Org menu: Org -> Highlighter.
+
+You may see me using this in homeworks to highlight mispelings, and to provide feedback. 
+
+*bold* /italics/ _underlined text_  \(e^x = 4 (no color but has a note)\)
+
+
+To summarize:
+
+| key shortcut | action                     |
+|--------------+----------------------------|
+| M-h b        | highlight text blue        |
+| M-h g        | highlight text green       |
+| M-h y        | highlight text yellow      |
+| M-h p        | highlight text pink        |
+| M-h m        | toggle mouse highlighting  |
+| M-h n        | highlight text with a note |
+| M-h e        | add/edit the note at point |
+| M-h d        | delete highlight at point  |
+| M-h D        | delete all highlights      |
+| M-h l        | list the highlights        |
+
+* org-highlighter data :noexport:
+  :PROPERTIES:
+  :VISIBILITY: folded
+  :ID: org-highlighter-data
+  :END:
+Do not delete this section. It stores information about the highlights in this document. Any information in this section may be deleted if you remove the highlights in this document.
+#+name: org-highlighter-data
+#+BEGIN_SRC emacs-lisp :results code value replace
+(org-highlight-get-highlights)
+#+END_SRC
+
+#+RESULTS: org-highlighter-data
+#+BEGIN_SRC emacs-lisp
+((1111 1115 "LightBlue" nil)
+ (1130 1135 "Darkolivegreen1" nil)
+ (1143 1149 "Yellow" nil)
+ (1159 1163 "Pink" nil)
+ (1225 1237 "light salmon" nil)
+ (1318 1330 "Thistle" "If you see this, you are hovering on it.")
+ (1670 1674 "Thistle" "Note from no selected text.")
+ (1693 1736 "Darkolivegreen1" nil)
+ (2544 2555 "LightBlue" "doesn't show in a table.")
+ (2682 2693 "Pink" "doesn't show in a table"))
+#+END_SRC
+
+# Local Variables:
+# eval: (progn (require (quote org-highlighter)) (org-highlight-load))
+# End:

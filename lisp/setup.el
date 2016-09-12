@@ -47,3 +47,23 @@ Check *techela log* for error messages."
 		    "Sweet, you turned it in!"
 		    "Booya, you turned it in!")))
      (nth (cl-random (length choices)) choices))))
+
+
+;; * Ipython notebook
+
+(org-add-link-type
+ "ipynb"
+ (lambda (path)
+   (when (not (file-exists-p path))
+     (with-temp-file path
+       (insert "{
+ \"cells\": [],
+ \"metadata\": {},
+ \"nbformat\": 4,
+ \"nbformat_minor\": 0
+}")))
+   (start-process-shell-command "jupyter" nil (format "jupyter notebook %s" path))))
+
+
+(load-file "org-highlighter.el")
+(define-key org-mode-map (kbd "M-h") 'org-highlighter/body)
