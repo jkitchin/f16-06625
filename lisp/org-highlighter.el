@@ -81,7 +81,7 @@
 (defcustom org-highlight-mouse-color "Darkolivegreen1"
   "Color to use for mouse highlighting."
   :type 'string
-  :group 'org-highlighter)
+  :group org-highlighter)
 
 
 ;; * Highlight text and functions
