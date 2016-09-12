@@ -286,16 +286,6 @@ solution:survey
    :END:
 
 
-** TODO assignment:ode-2					 :assignment:
-   DEADLINE: <2016-09-13 Tue>
-   :PROPERTIES:
-   :CATEGORY: homework
-   :POINTS:   2
-   :CUSTOM_ID: ode-2
-   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
-   :END:
-
-
 ** TODO assignment:ode-3					 :assignment:
    DEADLINE: <2016-09-13 Tue>
    :PROPERTIES:
