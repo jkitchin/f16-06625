@@ -15,7 +15,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 - The second point is a result of how we defined $X$.
 
-- For the reaction 2 H_2 + O_2 \rightarrow 2 H_{2}O we defined:
+- For the reaction \(2 \ce{H_2} + \ce{O_2} \rightarrow 2 \ce{H_{2}O}\) we defined:
 
 \(\frac{N_{A_1} - N_{A_1,0}}{-2} = \frac{N_{A_2} - N_{A_2,0}}{-1} = \frac{N_{A_3} - N_{A_3,0}}{2} = X \)
 
@@ -30,9 +30,9 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 Exercise: Suppose we start with 2 moles of oxygen at t=0 in a reactor. Later,  there is 1.4 moles of oxygen remaining. Calculate the extent of reaction for these two reactions. Use the extent to determine how much hydrogen is remaining.
 
-1. 2 H_2 + O_2 \rightarrow 2 H_{2}O
+1. \(2 \ce{H_2} + \ce{O_2} \rightarrow 2 \ce{H_{2}O}\)
 
-2. H_2 + 1/2 O_2 \rightarrow H_{2}O
+2. \(\ce{H_2} + 1/2 \ce{O_2} \rightarrow \ce{H_{2}O}\)
 
 ** The rate of disappearance of a reactant
 
@@ -87,7 +87,7 @@ C2H4 + 1/2 O2  -> C2H4O
 
 If we have a reactor with one mole of ethylene and one mole of oxygen, which reactant is stoichiometrically limiting?
 
-    [[elisp:(message-box "Correct")][ethylene]]     [[elisp:(message-box "Incorrect. How many moles of ethylene are needed to consuce one mole of oxygen?")][oxygen]]
+    [[elisp:(message-box "Correct")][ethylene]]     [[elisp:(message-box "Incorrect. How many moles of ethylene are needed to consume one mole of oxygen?")][oxygen]]
 
 If oxygen is consumed at 1 mol/min, what is the rate of ethylene consumption?
 
