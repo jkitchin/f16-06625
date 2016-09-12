@@ -65,5 +65,5 @@ Check *techela log* for error messages."
    (start-process-shell-command "jupyter" nil (format "jupyter notebook %s" path))))
 
 
-(load-file "org-highlighter.el")
+(load-file (expand-file-name "lisp/org-highlighter.el" tq-course-directory))
 (define-key org-mode-map (kbd "M-h") 'org-highlighter/body)
