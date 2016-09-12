@@ -378,6 +378,14 @@ Data is saved in an org-section in the document."
     (org-save-outline-visibility nil
       (org-babel-goto-named-src-block "org-highlighter-data")
       (org-babel-execute-src-block)
+
+      ;; delete section if there are no highlights
+      (when (null (org-highlight-get-highlights))
+	(outline-previous-heading)
+	(let ((hl (org-element-context)))
+	  (setf (buffer-substring (org-element-property :begin hl)
+				  (org-element-property :end hl))
+		"")))
       (let ((after-save-hook '()))
 	(save-buffer)))))
 
