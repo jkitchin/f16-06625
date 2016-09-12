@@ -108,7 +108,7 @@
 (defun org-highlight (beg end &optional color)
   "Highlight region from BEG to END with COLOR.
 COLOR is selected from `org-highlight-color-chooser' when run interactively."
-  (interactive "r") x
+  (interactive "r")
   (unless color
     (setq color (org-highlight-color-chooser)))
   (if (get-text-property (point) 'org-highlighter)
