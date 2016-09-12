@@ -19,7 +19,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 \(\frac{N_{A_1} - N_{A_1,0}}{-2} = \frac{N_{A_2} - N_{A_2,0}}{-1} = \frac{N_{A_3} - N_{A_3,0}}{2} = X \)
 
-- For the reaction H_2 + 1/2 O_2 \rightarrow H_{2}O we can define:
+- For the reaction \(\ce{H_2} + 1/2 \ce{O_2} \rightarrow \ce{H_{2}O}\) we can define:
 
 \(\frac{N_{A_1} - N_{A_1,0}}{-1} = \frac{N_{A_2} - N_{A_2,0}}{-0.5} = \frac{N_{A_3} - N_{A_3,0}}{1} = X' \)
 
