@@ -67,3 +67,25 @@ Check *techela log* for error messages."
 
 (load-file (expand-file-name "lisp/org-highlighter.el" tq-course-directory))
 (define-key org-mode-map (kbd "M-h") 'org-highlighter/body)
+
+;; * solution link
+
+(org-add-link-type
+ "solution"
+ (lambda (label)
+   (tq-check-internet)
+   (with-current-directory
+    tq-root-directory
+    (unless (file-exists-p "solutions")
+      (make-directory "solutions"))
+    (with-current-directory
+     "solutions"
+     (if (file-exists-p label)
+	 ;; we have the solution
+	 (progn
+	   (find-file (concat label "/" label ".org")))
+       ;; no file
+       (mygit (format "git clone %s:solutions/%s"
+		      (techela-course-git-server tq-current-course)
+		      label))
+       (find-file (concat label "/" label ".org")))))))
