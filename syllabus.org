@@ -174,6 +174,26 @@ If the situation is life threatening, call the police:
 If you have questions about this or your coursework, please let me know.
 
 * Announcements
+** Jupyter notebooks alternative to code blocks
+Some people wanted an alternative way to run Python code than in Emacs. A Jupyter notebook is a way to run Python in your web browser and save the results. We can try an experiment using the Jupyter notebook for the Python part of the course, and Emacs for everything else.
+
+First, run this code block.
+
+#+BEGIN_SRC sh
+conda remove _nb_ext_conf
+#+END_SRC
+
+#+RESULTS:
+
+You can open a notebook by creating and clicking on a link like this:  ipynb:example.ipynb The notebook should launch in a browser; it may take a little time to open the first time. The file will be created in the directory of the file that the link is in.
+
+You still need to use Emacs to read the notes and turn in assignments. I will still show you all examples from Emacs. You can try the notebook for code blocks if you want, but you must put the link to the notebook in your assignment in place of the code block so we know it is there.
+
+** Highlighting your notes
+
+See [[./highlighting.org]]. I have created some highlighting capability for Techela notes. You should regard this as experimental, and not rely on it too heavily until you know it does what you want.
+
+
 * Class schedule
   :PROPERTIES:
   :CUSTOM_ID: schedule

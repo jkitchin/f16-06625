@@ -28,8 +28,10 @@ You may see me using this in homeworks to highlight mispelings, and to provide f
 
 *bold* /italics/ _underlined text_  \(e^x = 4 (no color but has a note)\)
 
+| a table | this text has a note, but no color |
 
-To summarize:
+
+To summarize, Type M-h to get the hydra menu. Here are the main options.
 
 | key shortcut | action                     |
 |--------------+----------------------------|
@@ -65,8 +67,15 @@ Do not delete this section. It stores information about the highlights in this d
  (1318 1330 "Thistle" "If you see this, you are hovering on it.")
  (1670 1674 "Thistle" "Note from no selected text.")
  (1693 1736 "Darkolivegreen1" nil)
- (2544 2555 "LightBlue" "doesn't show in a table.")
- (2682 2693 "Pink" "doesn't show in a table"))
+ (2290 2300 "PaleVioletRed1" "typo")
+ (2317 2325 "LightBlue1" "You will see the feedback if you hover on the color.")
+ (2329 2335 "LightBlue" nil)
+ (2336 2345 "Yellow" nil)
+ (2346 2363 "Pink" nil)
+ (2365 2402 "Thistle" "The color gets replaced by org-mode.")
+ (2416 2450 "Thistle" "Tables also cover up the color.")
+ (2653 2664 "LightBlue" "doesn't show in a table.")
+ (2791 2802 "Pink" "doesn't show in a table"))
 #+END_SRC
 
 # Local Variables:
