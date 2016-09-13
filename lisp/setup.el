@@ -86,6 +86,6 @@ Check *techela log* for error messages."
 	   (find-file (concat label "/" label ".org")))
        ;; no file
        (mygit (format "git clone %s:solutions/%s"
-		      (techela-course-git-server tq-current-course)
+		      (techela-course-techela-server tq-current-course)
 		      label))
        (find-file (concat label "/" label ".org")))))))
