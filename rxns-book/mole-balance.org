@@ -65,7 +65,7 @@ Fa0 = 1.0 # mol /hr
 v0 = 2.5  # L /hr
 V = 10    # L
 
-Ca_exit = (Fa0 / (v0 + V * k))
+Ca_exit = Fa0 / (v0 + V * k)
 print('Ca_exit = {0:1.3f} mol / L'.format(Ca_exit))
 #+END_SRC
 
