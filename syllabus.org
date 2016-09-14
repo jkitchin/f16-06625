@@ -276,8 +276,8 @@ The tentative course schedule is here. It may change.
 
 solution:survey
 
-** COLLECTED assignment:parabola				 :assignment:
-   DEADLINE: <2016-09-08 Thu>
+** GRADED assignment:parabola					 :assignment:
+   CLOSED: [2016-09-14 Wed 13:52] DEADLINE: <2016-09-08 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
