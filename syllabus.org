@@ -285,6 +285,7 @@ solution:survey
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:parabola
 
 ** TODO assignment:ode-3					 :assignment:
    DEADLINE: <2016-09-13 Tue>
