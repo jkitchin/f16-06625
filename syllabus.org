@@ -197,7 +197,7 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-09-07 Wed] [[./rxns-book/reactions+extent.org]]
    CLOSED: [2016-09-10 Sat 12:52]
 
-** [2016-09-12 Mon] [[./rxns-book/rates+rate-laws.org]]
+** DONE [2016-09-12 Mon] [[./rxns-book/rates+rate-laws.org]]
 
 ** [2016-09-14 Wed] [[./rxns-book/mole-balance.org]]
 
