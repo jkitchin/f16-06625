@@ -48,6 +48,11 @@ Check *techela log* for error messages."
 		    "Booya, you turned it in!")))
      (nth (cl-random (length choices)) choices))))
 
+(with-current-directory
+ tq-course-directory
+ (mygit "git add *")
+ (mygit "git commit -am \"my course changes.\""))
+
 
 ;; * Ipython notebook
 
