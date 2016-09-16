@@ -297,6 +297,7 @@ solution:parabola
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:ode-3
 
 ** TODO assignment:batch-1					 :assignment:
    DEADLINE: <2016-09-16 Fri>
