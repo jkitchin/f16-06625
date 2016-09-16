@@ -48,10 +48,13 @@ Check *techela log* for error messages."
 		    "Booya, you turned it in!")))
      (nth (cl-random (length choices)) choices))))
 
-(with-current-directory
- tq-course-directory
- (mygit "git add *")
- (mygit "git commit -am \"my course changes.\""))
+;; * have students course under vc
+;; except for me. I don't want to commit my changes automatically
+(unless (string= "jkitchin@andrew.cmu.edu" (or user-mail-address ""))
+  (with-current-directory
+   tq-course-directory
+   (mygit "git add *")
+   (mygit "git commit -am \"my course changes.\"")))
 
 
 ;; * Ipython notebook
