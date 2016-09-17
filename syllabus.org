@@ -299,8 +299,8 @@ solution:parabola
 
 solution:ode-3
 
-** COLLECTED assignment:batch-1					 :assignment:
-   DEADLINE: <2016-09-16 Fri>
+** GRADED assignment:batch-1					 :assignment:
+   CLOSED: [2016-09-17 Sat 16:50] DEADLINE: <2016-09-16 Fri>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
