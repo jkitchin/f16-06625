@@ -299,7 +299,7 @@ solution:parabola
 
 solution:ode-3
 
-** TODO assignment:batch-1					 :assignment:
+** COLLECTED assignment:batch-1					 :assignment:
    DEADLINE: <2016-09-16 Fri>
    :PROPERTIES:
    :CATEGORY: homework
