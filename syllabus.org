@@ -288,8 +288,8 @@ solution:survey
 
 solution:parabola
 
-** COLLECTED assignment:ode-3					 :assignment:
-   DEADLINE: <2016-09-13 Tue>
+** GRADED assignment:ode-3					 :assignment:
+   CLOSED: [2016-09-18 Sun 19:41] DEADLINE: <2016-09-13 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
