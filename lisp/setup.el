@@ -48,10 +48,58 @@ Check *techela log* for error messages."
 		    "Booya, you turned it in!")))
      (nth (cl-random (length choices)) choices))))
 
-(with-current-directory
- tq-course-directory
- (mygit "git add *")
- (mygit "git commit -am \"my course changes.\""))
+(defun tq-get-assignment (label)
+  "Clone the repo corresponding to LABEL and open the directory."
+  (interactive
+   (list (completing-read "Label: " (tq-get-assigned-assignments))))
+  (let ((student-repo-dir (file-name-as-directory
+			   (expand-file-name
+			    label
+			    tq-assignment-directory))))
+
+    ;; Get the assignment by cloning if needed, and rest the remotes.
+    (unless (file-directory-p student-repo-dir)
+      (make-directory tq-assignment-directory t)
+      (let ((default-directory (file-name-as-directory tq-assignment-directory))
+	    (repo (format "assignments/%s" label)))
+	;; clone and open label.org
+	(tq-clone-repo repo)
+	;; we need to reset the remotes now
+	(with-current-directory
+	 student-repo-dir
+	 (mygit "git remote rename origin src")
+	 (mygit
+	  (mustache-render
+	   "git remote add origin {{host}}:student-work/{{label}}/{{userid}}-{{label}}"
+	   (ht ("host" (techela-course-techela-server tq-current-course))
+	       ("label" label)
+	       ("userid" (gethash "user-mail-address" (tq-read-user-data)))))))))
+
+    (with-current-directory
+     student-repo-dir
+     (if (not (string= "" (shell-command-to-string
+			   "git status --porcelain")))
+	 ;; There are some local changes. We commit them, pull,
+	 ;; and commit merges if there are any
+	 (progn 
+	   (mygit "git add *")
+	   (mygit "git commit -am \"my changes\"") 
+	   (mygit "git pull origin master")
+	   (mygit "git commit -am \"commit post pull\""))
+       (mygit "git pull origin master"))
+
+     ;; now, open the file
+     (find-file (expand-file-name
+		 (concat label ".org")
+		 student-repo-dir)))))
+
+;; * have students course under vc
+;; except for me. I don't want to commit my changes automatically
+(unless (string= "jkitchin@andrew.cmu.edu" (or user-mail-address ""))
+  (with-current-directory
+   tq-course-directory
+   (mygit "git add *")
+   (mygit "git commit -am \"my course changes.\"")))
 
 
 ;; * Ipython notebook
