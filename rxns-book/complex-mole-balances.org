@@ -36,7 +36,7 @@ $P \nu = F_T R T Z$
 
 - Consider this reaction, e.g. ethane cracking to ethylene and hydrogen.
 
-$\ce{A -> B + C}
+$\ce{A -> B + C}$
 
 - As the reaction proceeds, we convert one mole of reactants to two moles of products.
 
@@ -46,7 +46,7 @@ $\ce{A -> B + C}
 
 - first we use the quantities package to do some unit conversions to get consistent SI units
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :results output org drawer
 import quantities as u
 
 PA0 = 6 * u.atm
@@ -66,13 +66,15 @@ v0 = FA0 / CA0
 # note the double \\. That is because \n is a carriage return
 # we have to use a \ to escape the \, so that we see \ in the
 # printed output. We want that so it is in LaTeX format.
-print('\\nu_{{0}} = {0}'.format(v0.simplified))
+print('$\\nu_{{0}} = {0}$'.format(v0.simplified))
 #+END_SRC
 
 #+RESULTS:
-: C_{A0} = 0.0007216742843396681 mol*atm/J
-: C_{A0} (simplified) = 73.12364686071687 mol/m**3
-: \nu_{0} = 0.005812073361296159 m**3/s
+:RESULTS:
+C_{A0} = 0.0007216742843396681 mol*atm/J
+C_{A0} (simplified) = 73.12364686071687 mol/m**3
+$\nu_{0} = 0.005812073361296159 m**3/s$
+:END:
 
 - If we assume there is no pressure drop, and that 80% of A has reacted at the exit, with pure A at the entrance, then we know from stoichiometry that there will be this total molar flow at the exit:
 
