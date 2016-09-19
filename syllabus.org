@@ -308,6 +308,7 @@ solution:ode-3
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:batch-1
 
 ** TODO assignment:cstr-1					 :assignment:
    DEADLINE: <2016-09-19 Mon>
