@@ -310,8 +310,8 @@ solution:ode-3
 
 solution:batch-1
 
-** COLLECTED assignment:cstr-1					 :assignment:
-   DEADLINE: <2016-09-19 Mon>
+** GRADED assignment:cstr-1					 :assignment:
+   CLOSED: [2016-09-20 Tue 19:03] DEADLINE: <2016-09-19 Mon>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
