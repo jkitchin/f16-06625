@@ -310,7 +310,7 @@ solution:ode-3
 
 solution:batch-1
 
-** COLLECTED assignment:cstr-1					 :assignment:
+** TODO assignment:cstr-1					 :assignment:
    DEADLINE: <2016-09-19 Mon>
    :PROPERTIES:
    :CATEGORY: homework
