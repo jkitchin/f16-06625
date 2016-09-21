@@ -21,17 +21,19 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 import numpy as np
 from scipy.integrate import odeint
 
-CAin = 0.5 # mol/L
+CAin = 0.5  # mol/L
 v0 = 1.5   # L/min
 V = 2.0    # reactor volume (L)
 
 FA0 = CAin * v0
 
 k = 0.11   # rate constant (1/min)
+
+
 def dCadt(Ca, t):
     rA = -k * Ca
     Fa = v0 * Ca
-    return FA0 / V  - Fa / V  +  rA
+    return FA0 / V - Fa / V + rA
 
 tspan = np.linspace(0.0, 20.0)
 Ca0 = 0.0  # initial condition in the tank
@@ -61,12 +63,13 @@ How do we know the reaction rate is slow? Slow compared to what?
 
 #+BEGIN_SRC python
 V = 2.0  # liters
-v0 = 1.5 # L/min
+v0 = 1.5  # L/min
 
-k = 0.11 # 1 / min
+k = 0.11  # 1 / min
 
 print('Residence time = {}'.format(V / v0))
-print('Reaction time scale = {}'.format(1 / k)) # this is for a 1st order reaction
+# this is for a 1st order reaction
+print('Reaction time scale = {}'.format(1 / k))
 #+END_SRC
 
 #+RESULTS:
@@ -114,6 +117,7 @@ V = 5      # L
 
 Fa0 = Ca0 * v0
 
+
 def objective(Ca):
     Fa = Ca * v0
     ra = -1.75 * Ca / (1 + 10 * Ca)**2
@@ -158,6 +162,7 @@ v0 = 0.15  # L/min
 V = 5      # L
 
 Fa0 = Ca0 * v0  # molar flow of A into reactor
+
 
 def objective(Ca):
     Fa = Ca * v0
