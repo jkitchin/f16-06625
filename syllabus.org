@@ -203,7 +203,7 @@ The tentative course schedule is here. It may change.
    CLOSED: [2016-09-15 Thu 14:01]
 
 ** DONE [2016-09-19 Mon] [[./rxns-book/complex-mole-balances.org]]
-   CLOSED: [2016-09-19 Mon 19:53]
+   CLOSED: [2016-09-21 Wed 13:24]
 
 ** [2016-09-21 Wed] [[./rxns-book/transient-cstr-mss.org]]
 
@@ -338,6 +338,16 @@ solution:cstr-1
    :CATEGORY: homework
    :POINTS:   2
    :CUSTOM_ID: levenspiel
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+
+** TODO assignment:transient-cstr				 :assignment:
+   DEADLINE: <2016-09-23 Fri>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: transient-cstr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
