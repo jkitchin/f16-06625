@@ -322,7 +322,7 @@ solution:batch-1
 
 solution:cstr-1
 
-** TODO assignment:two-species-rate				 :assignment:
+** COLLECTED assignment:two-species-rate			 :assignment:
    DEADLINE: <2016-09-20 Tue>
    :PROPERTIES:
    :CATEGORY: homework

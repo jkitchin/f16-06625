@@ -261,7 +261,11 @@ plt.savefig('images/changing-moles-pfr-2.png')
 
 - It is important to keep track of when the number of moles in a reaction change because we define the concentration of a species as
 
+<<<<<<< HEAD
+\( C_j = F_j / \ \nu \)
+=======
 \( C_j = F_j / \nu \)
+>>>>>>> f1bac89724bc2eecd71785e5264f4bdfb6942154
 
 - and \nu depends on the total number of moles in the system.
 
@@ -305,15 +309,16 @@ where:
 
 - \beta_0 is a constant that depends only on the properties of the packed bed, and the entrance gas conditions:
 
-| A_c    | bed cross-sectional area                       |
-| \rho_c | solid catalyst density                         |
-| \phi   | catalyst porosity                              |
-| \mu    | gas viscosity                                  |
-| G      | superficial mass velocity (\rho u)             |
-| u      | superficial velocity (volumetric flow / A_c)   |
-| D_p    | catalyst bead diameter                         |
-| g_c    | 32.174 lb_m ft/s^2/lb_f     (in metric g_c=1)  |
-| \rho_0 | inlet gas density                              |
+| A_c | bed cross-sectional area                    |
+| \rho_c | solid catalyst density                      |
+| \phi  | catalyst porosity                           |
+| \mu  | gas viscosity                               |
+| G  | superficial mass velocity (\rho u)             |
+| u  | superficial velocity (volumetric flow / A_c) |
+| D_p | catalyst bead diameter                      |
+| g_c | 32.174 lb_m ft/s^2/lb_f     (in metric g_c=1)   |
+| \rho_0 | inlet gas density                           |
+                                            
 
 - Clearly, we need additional data, but the data are all constants. In fact, it is customary to lump additional constants, and to define:
 
@@ -435,9 +440,14 @@ plt.legend(['$P/P_0$'],loc='upper right')
 plt.tight_layout()
 plt.savefig('images/pressure-drop-pfr.png')
 
+<<<<<<< HEAD
+Fa, Fb, Fc, y = sol.T
+X = (Fa0 - Fa[-1])/ Fa0
+=======
 
 Fa, Fb, Fc, y = sol.T
 X = (Fa0 - Fa[-1]) / Fa0
+>>>>>>> f1bac89724bc2eecd71785e5264f4bdfb6942154
 
 print(X)
 #+END_SRC
