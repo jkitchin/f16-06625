@@ -96,19 +96,23 @@ v0 = FA0 / CA0
 F_exit = 0.2 * FA0 + 0.8 * FA0 + 0.8 * FA0
 
 v = v0 * F_exit / FA0
+print('Entrance volumetric flowrate is {0}.'.format(v0.simplified))
 print('Exit volumetric flowrate is {0}.'.format(v.simplified))
 
 CA_exit = 0.2 * FA0 / v
 
 # Note the triple quoted, multiline string.
 print('''Exit concentration of A is {0}
+
 which is not 0.2 * CA0 ({1})'''.format(CA_exit.simplified,
                                          (0.2 * CA0).simplified))
 #+END_SRC
 
 #+RESULTS:
+: Entrance volumetric flowrate is 0.005812073361296159 m**3/s.
 : Exit volumetric flowrate is 0.01046173205033309 m**3/s.
 : Exit concentration of A is 8.124849651190761 mol/m**3
+: 
 : which is not 0.2 * CA0 (14.624729372143374 mol/m**3)
 
 - You can see just by this algebra that the concentration changes because of the chemical reaction that consumes A, but also because the number of moles is changing, and the volumetric flowrate is increasing.
@@ -133,6 +137,8 @@ import numpy as np
 from scipy.integrate import odeint
 
 Fa0 = 0.425             # mol / s
+Fb0 = 0
+Fc0 = 0
 Fa_exit = 0.2 * Fa0
 
 # we previously calculated this number
@@ -141,10 +147,10 @@ k = 0.072               # 1 / s
 
 def dVdFa(V, Fa):
     xi = (Fa - Fa0) / (-1) # compute reaction extent
-    Fb = xi * 1
-    Fc = xi * 1
+    Fb = Fb0 + xi * 1
+    Fc = Fc0 + xi * 1
     Ft = Fa + Fb + Fc   # total molar flow
-    v = v0 * Ft / Fa0   # volumetric flow
+    v = v0  * Ft / Fa0   # volumetric flow
 
     Ca = Fa / v
     ra = -k * Ca
@@ -155,7 +161,7 @@ Fspan = np.linspace(Fa0, Fa_exit)
 V0 = 0
 sol = odeint(dVdFa, V0, Fspan)
 
-print('At a volume of {0:1.2f} m^3 we achieve 80% conversion of A'.format(sol[-1][0]))
+print('At a volume of {0:1.3f} m^3 we achieve 80% conversion of A'.format(sol[-1][0]))
 
 import matplotlib.pyplot as plt
 plt.plot(Fspan, sol)
@@ -165,7 +171,7 @@ plt.savefig('images/changing-moles-pfr.png')
 #+END_SRC
 
 #+RESULTS:
-: At a volume of 0.20 m^3 we achieve 80% conversion of A
+: At a volume of 0.195 m^3 we achieve 80% conversion of A
 
 [[./images/changing-moles-pfr.png]]
 
@@ -193,11 +199,13 @@ Fa_exit = 0.2 * Fa0
 v0 = 0.0058120733613    # m^3 / s
 k = 0.072               # 1 / s
 
+Ft0 = Fa0
+
 def dFdV(F, V):
 
     Fa, Fb, Fc = F    # we only need Fa for the rate law
     Ft = sum(F)       # total flow rate
-    v = v0 * Ft / Fa0
+    v = v0 * Ft / Ft0
 
     Ca = Fa / v
     ra = - k * Ca
@@ -224,7 +232,7 @@ F0 = [Fa0, 0, 0]
 
 V, sol, TE, YE, IE = odelay(dFdV, F0, Vspan, [event])
 
-print('At a volume of {0:1.2f} m^3 we achieve 80% conversion of A'.format(V[-1]))
+print('At a volume of {0:1.3f} m^3 we achieve 80% conversion of A'.format(V[-1]))
 
 import matplotlib.pyplot as plt
 Fa = sol[:, 0]
@@ -243,7 +251,7 @@ plt.savefig('images/changing-moles-pfr-2.png')
 #+END_SRC
 
 #+RESULTS:
-: At a volume of 0.20 m^3 we achieve 80% conversion of A
+: At a volume of 0.195 m^3 we achieve 80% conversion of A
 
 [[./images/changing-moles-pfr-2.png]]
 
@@ -253,7 +261,7 @@ plt.savefig('images/changing-moles-pfr-2.png')
 
 - It is important to keep track of when the number of moles in a reaction change because we define the concentration of a species as
 
-\( C_j = F_j \ \nu \)
+\( C_j = F_j / \nu \)
 
 - and \nu depends on the total number of moles in the system.
 
@@ -379,6 +387,7 @@ def ode(F, W):
     Pa = Fa / Ft * P
     Pb = Fb / Ft * P
 
+    # the stoichiometry
     ra = -k * Pa**(1.0/3.0) * Pb**(2.0 / 3.0)
     rb = 0.5 * ra
     rc = -ra
@@ -391,6 +400,7 @@ def ode(F, W):
 
     return [dFadW, dFbdW, dFcdW, dydW]
 
+# initial conditions
 y0 = 1.0 # P0/P0
 F0 = [Fa0, Fb0, Fc0, y0]
 
@@ -400,23 +410,40 @@ sol = odeint(ode, F0, Wspan)
 
 import matplotlib.pyplot as plt
 
+Fa = sol[:, 0]
+Fb = sol[:, 1]
+Fc = sol[:, 2]
+y = sol[:, 3]
+
+
+
 plt.subplot(1, 2, 1) # subplot with two columns in one row
 plt.plot(Wspan, sol[:, 0:3]) # plot columns 0, 1, 2
-plt.legend(['A', 'B', 'C'],loc='lower center')
+
+plt.plot(Wspan, Fa, Wspan, Fb, Wspan, Fc)
+
+plt.legend(['A', 'B', 'C'], loc='lower center')
 plt.xlabel('Catalyst weight ($lb_m$)')
 plt.ylabel('Molar flow (mol/min)')
 
 plt.subplot(1, 2, 2)
-plt.plot(Wspan, sol[:,3], 'k--') # plot column 3
+plt.plot(Wspan, sol[:, 3], 'k--') # plot column 3
 plt.xlabel('Catalyst weight ($lb_m$)')
 plt.ylabel('$P/P_0$')
 plt.legend(['$P/P_0$'],loc='upper right')
 
 plt.tight_layout()
 plt.savefig('images/pressure-drop-pfr.png')
+
+
+Fa, Fb, Fc, y = sol.T
+X = (Fa0 - Fa[-1]) / Fa0
+
+print(X)
 #+END_SRC
 
 #+RESULTS:
+: 0.609861618368
 
 [[./images/pressure-drop-pfr.png]]
 
@@ -424,4 +451,54 @@ plt.savefig('images/pressure-drop-pfr.png')
 
 - Set \alpha to 0 to see the effect of the pressure drop. Does conversion increase or decrease?
 
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+A = np.array([[0, 1], [1, 2], [3, 4]])
+
+print(A[:, 0])
+
+a, b, c = A
+
+print(a)
+print(b)
+
+print(A.T)
+d, e = A.T
+print(d)
+
+
+Alist = [[0, 1], [1, 2], [3, 4]]
+print(Alist)
+print(np.transpose(Alist))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[0 1 3]
+[0 1]
+[1 2]
+[[0 1 3]
+ [1 2 4]]
+[0 1 3]
+[[0, 1], [1, 2], [3, 4]]
+[[0 1 3]
+ [1 2 4]]
+:END:
+
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+print(np.hstack([[0, 1], [2, 3]]))
+print(np.vstack([[0, 1], [2, 3]]))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[0 1 2 3]
+[[0 1]
+ [2 3]]
+:END:
 
