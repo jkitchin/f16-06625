@@ -311,8 +311,8 @@ solution:ode-3
 
 solution:batch-1
 
-** TODO assignment:cstr-1					 :assignment:
-   DEADLINE: <2016-09-19 Mon>
+** GRADED assignment:cstr-1					 :assignment:
+   CLOSED: [2016-09-21 Wed 10:36] DEADLINE: <2016-09-19 Mon>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
@@ -320,6 +320,7 @@ solution:batch-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:cstr-1
 
 ** TODO assignment:two-species-rate				 :assignment:
    DEADLINE: <2016-09-20 Tue>
