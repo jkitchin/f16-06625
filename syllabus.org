@@ -341,6 +341,7 @@ solution:cstr-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+v0 = 0.66 L/hr
 
 ** TODO assignment:transient-cstr				 :assignment:
    DEADLINE: <2016-09-23 Fri>
