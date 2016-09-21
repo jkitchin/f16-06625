@@ -84,9 +84,9 @@ Check *techela log* for error messages."
 	 (progn 
 	   (mygit "git add *")
 	   (mygit "git commit -am \"my changes\"") 
-	   (mygit "git pull origin master")
+	   (mygit "git pull") 
 	   (mygit "git commit -am \"commit post pull\""))
-       (mygit "git pull origin master"))
+       (mygit "git pull"))
 
      ;; now, open the file
      (find-file (expand-file-name
