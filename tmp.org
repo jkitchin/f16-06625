@@ -1,0 +1,4 @@
+#+BEGIN_SRC emacs-lisp
+(let ((tq-assignment-directory "/Users/jkitchin/techela/f16-06625/course/"))
+(tq-get-assignment "cstr-1"))
+#+END_SRC

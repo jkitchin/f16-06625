@@ -25,7 +25,7 @@ CAin = 0.5  # mol/L
 v0 = 1.5   # L/min
 V = 2.0    # reactor volume (L)
 
-FA0 = CAin * v0
+FA0 = CAin * v0  # molar flow of A into the reactor
 
 k = 0.11   # rate constant (1/min)
 
@@ -36,7 +36,7 @@ def dCadt(Ca, t):
     return FA0 / V - Fa / V + rA
 
 tspan = np.linspace(0.0, 20.0)
-Ca0 = 0.0  # initial condition in the tank
+Ca0 = 0.5  # initial condition in the tank
 sol = odeint(dCadt, Ca0, tspan)
 
 import matplotlib.pyplot as plt
@@ -89,6 +89,63 @@ print('Reaction time scale = {}'.format(1 / k))
 
 - The concentration is changing at early times because of the flow into the reactor.
 
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+
+CAin = 0.5  # mol/L
+v0 = 1.5   # L/min
+V = 2.0    # reactor volume (L)
+
+FA0 = CAin * v0  # molar flow of A into the reactor
+
+# k = 0.11   # rate constant (1/min)
+
+def dCadt(Ca, t, k):
+    rA = -k * Ca
+    Fa = v0 * Ca
+    return FA0 / V - Fa / V + rA
+
+ans2 = fsolve(dCadt, 0.5, args=(0, 0.11))
+print(ans2)
+print(list(ans2))
+
+print(np.array([fsolve(dCadt, 0.5, args=(0, k)) for k in np.linspace(0.1, 1.0, 10)]))
+
+
+results = []
+for k in [0.11, 0.22, 0.33, 0.44, 0.55, 0.66, 0.77]:
+   def obj2(Ca):
+       rA = -k * Ca
+       Fa = v0 * Ca
+       return FA0 / V - Fa / V + rA
+
+#   results.append(fsolve(obj2, 0.5)[0])
+
+   results += [fsolve(obj2, 0.5)[0]]
+#   results = results + [fsolve(obj2, 0.5)[0]]
+print(results)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 0.43604651]
+[0.43604651162790697]
+[[ 0.44117647]
+ [ 0.39473684]
+ [ 0.35714286]
+ [ 0.32608696]
+ [ 0.3       ]
+ [ 0.27777778]
+ [ 0.25862069]
+ [ 0.24193548]
+ [ 0.22727273]
+ [ 0.21428571]]
+[0.43604651162790697, 0.38659793814432986, 0.34722222222222221, 0.31512605042016806, 0.28846153846153844, 0.26595744680851063, 0.24671052631578946]
+:END:
+
+
+
 * Multiple steady states in a CSTR
  [[index:multiple steady states]]
 
@@ -133,7 +190,7 @@ plt.plot([min(Caspan), max(Caspan)], [0, 0], 'r-')
 # escaped. some strings like \n stand for newline, \t for tab, etc...
 # Alternatively you can escape the \ with another \ like this:
 # plt.xlabel('$\\xi$')
-plt.xlabel(r'$\xi$')
+plt.xlabel('$\\xi$')
 
 plt.ylabel('objective function')
 plt.savefig('images/multiple-steady-states.png')
