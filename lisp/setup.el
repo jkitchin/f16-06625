@@ -77,18 +77,17 @@ Check *techela log* for error messages."
 
     (with-current-directory
      student-repo-dir
-     (if (not (string= "" (shell-command-to-string
-			   "git status --porcelain")))
-	 ;; There are some local changes. We commit them, pull,
-	 ;; and commit merges if there are any
-	 (progn 
-	   (mygit "git add *")
-	   (mygit "git commit -am \"my changes\"") 
-	   (mygit "git pull src master") 
-	   (mygit "git commit -am \"commit post pull from src\"")
-	   (mygit "git pull origin master"))
-       (mygit "git pull src master"))
+     (mygit "git fetch src")
+     (when (not (string= "" (shell-command-to-string
+			     "git status --porcelain")))
+       ;; There are some local changes. We commit them, pull,
+       ;; and commit merges if there are any
+       (mygit "git add *")
+       (mygit "git commit -am \"my changes\"") 
+       (mygit "git merge src/master")
+       (mygit "git commit -am \"commit post pull from src\""))
 
+     (mygit "git pull origin master")
      ;; now, open the file
      (find-file (expand-file-name
 		 (concat label ".org")
