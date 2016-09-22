@@ -142,3 +142,40 @@ Check *techela log* for error messages."
 		      (techela-course-techela-server tq-current-course)
 		      label))
        (find-file (concat label "/" label ".org")))))))
+
+
+;; * get setup hook to auto-update
+
+
+(let ((preload (expand-file-name "user/preload.el" scimax-dir)))
+  (unless (file-exists-p preload)
+    (with-temp-file preload
+      (insert ";; Do not delete this. It was added by techela.\n")
+      (insert
+       (prin1-to-string '(defvar scimax-preload-loaded nil
+			   "Variable of whether preload has been run already."))) 
+      (lispy-multiline)
+      (insert "\n\n")
+      (insert
+       (prin1-to-string '(when (not scimax-preload-loaded)
+			   (let ((default-directory scimax-dir))
+			     (when (not (string= "" (shell-command-to-string "git status --porcelain")))
+			       (shell-command "git add *")
+			       (shell-command "git commit -am \"commiting scimax.\""))
+			     (shell-command "git pull origin master")
+			     (shell-command "git submodule init")
+			     (shell-command "git submodule update"))))) 
+      (lispy-multiline)
+      (buffer-string))
+    (with-current-directory scimax-dir
+			    (when (not (string= "" (shell-command-to-string "git status --porcelain")))
+			      (shell-command "git add *")
+			      (shell-command "git commit -am \"commiting scimax.\"")) 
+			    (shell-command "git pull origin master")
+			    (shell-command "git submodule update"))))
+
+
+
+
+
+
