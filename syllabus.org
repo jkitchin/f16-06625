@@ -205,7 +205,8 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-09-19 Mon] [[./rxns-book/complex-mole-balances.org]]
    CLOSED: [2016-09-21 Wed 13:24]
 
-** [2016-09-21 Wed] [[./rxns-book/transient-cstr-mss.org]]
+** DONE [2016-09-21 Wed] [[./rxns-book/transient-cstr-mss.org]]
+   CLOSED: [2016-09-21 Wed 19:22]
 
 ** [2016-09-26 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
 
