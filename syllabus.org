@@ -333,7 +333,7 @@ solution:cstr-1
    :END:
 
 
-** TODO assignment:levenspiel					 :assignment:
+** COLLECTED assignment:levenspiel				 :assignment:
    DEADLINE: <2016-09-21 Wed>
    :PROPERTIES:
    :CATEGORY: homework
