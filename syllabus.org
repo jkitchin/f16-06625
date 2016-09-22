@@ -366,3 +366,13 @@ For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:practice-quiz-1				 :assignment:
+   DEADLINE: <2016-09-27 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: practice-quiz-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
