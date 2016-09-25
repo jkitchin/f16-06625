@@ -334,8 +334,8 @@ solution:cstr-1
    :END:
 
 
-** GRADED assignment:levenspiel					 :assignment:
-   CLOSED: [2016-09-25 Sun 19:29] DEADLINE: <2016-09-21 Wed>
+** COLLECTED assignment:levenspiel				 :assignment:
+   DEADLINE: <2016-09-21 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
