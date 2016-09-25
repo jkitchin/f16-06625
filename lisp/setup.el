@@ -176,6 +176,19 @@ Check *techela log* for error messages."
 
 
 
+(defun autopep8 ()
+  "Replace Python code block contents with autopep8 corrected code."
+  (interactive)
+  (let* ((src (org-element-context))
+	 (beg (org-element-property :begin src))
+	 (value (org-element-property :value src))) 
+    (save-excursion
+      (goto-char beg)
+      (search-forward value)
+      (shell-command-on-region
+       (match-beginning 0)
+       (match-end 0)
+       "autopep8 -a -a -" nil t))))
 
 
 
