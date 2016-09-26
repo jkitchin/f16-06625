@@ -150,6 +150,7 @@ v0 = Fa0 / Ca0  # inlet volumetric flow
 
 Cbs = 0.0    # concentration of B outside shell
 
+
 def dFdV(F, V):
     Fa, Fb, Fc = F     # unpack the variables
     Ft = Fa + Fb + Fc  # compute total molar flow
@@ -160,7 +161,7 @@ def dFdV(F, V):
     ra = -k * Ca       # compute reaction rate
     rb = -ra
     rc = -ra
-    Rb = kb * (Cbs - Cb) # rate of mass transfer across shell
+    Rb = kb * (Cbs - Cb)  # rate of mass transfer across shell
 
     # define the mole balances
     dFadV = ra
@@ -168,7 +169,7 @@ def dFdV(F, V):
     dFcdV = rc
     return [dFadV, dFbdV, dFcdV]
 
-Vspan = np.linspace(0.0, 400.0) # liters
+Vspan = np.linspace(0.0, 400.0)  # liters
 F0 = [Fa0, 0, 0]
 sol = odeint(dFdV, F0, Vspan)
 Faexit, Fbexit, Fcexit = sol[-1, :]
