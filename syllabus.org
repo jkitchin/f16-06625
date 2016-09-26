@@ -324,8 +324,8 @@ solution:batch-1
 
 solution:cstr-1
 
-** COLLECTED assignment:two-species-rate			 :assignment:
-   DEADLINE: <2016-09-20 Tue>
+** GRADED assignment:two-species-rate				 :assignment:
+   CLOSED: [2016-09-26 Mon 15:37] DEADLINE: <2016-09-20 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
