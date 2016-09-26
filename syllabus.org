@@ -242,13 +242,14 @@ The tentative course schedule is here. It may change.
 
 ** [2016-11-21 Mon] [[./rxns-book/non-isothermal-batch.org]]
 
-** [2016-11-23 Wed]  [[./rxns-book/non-isothermal-cstr.org]]
+** [2016-11-23 Wed] * THANKSGIVING NO CLASS *
 
-** [2016-11-28 Mon] * MRS NO CLASS*
+** [2016-11-28 Mon] [[./rxns-book/non-isothermal-cstr.org]] 
 
 ** [2016-11-30 Wed] [[./rxns-book/non-isothermal-pfr.org]]
 
 ** [2016-12-05 Mon] [[./rxns-book/nonisothermal-mult-rxns.org]]
+
 ** [2016-12-07 Wed] EXAM 3 (Cumulative through 12/07)
 
 * Assignments
@@ -333,8 +334,8 @@ solution:cstr-1
    :END:
 
 
-** COLLECTED assignment:levenspiel				 :assignment:
-   DEADLINE: <2016-09-21 Wed>
+** GRADED assignment:levenspiel					 :assignment:
+   CLOSED: [2016-09-25 Sun 19:32] DEADLINE: <2016-09-21 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
@@ -347,7 +348,7 @@ v0 = 0.66 L/hr
 For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
 
 
-** TODO assignment:transient-cstr				 :assignment:
+** COLLECTED assignment:transient-cstr				 :assignment:
    DEADLINE: <2016-09-23 Fri>
    :PROPERTIES:
    :CATEGORY: homework
@@ -373,6 +374,16 @@ For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
    :CATEGORY: homework
    :POINTS:   2
    :CUSTOM_ID: practice-quiz-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+
+** TODO assignment:practice-exam-1				 :assignment:
+   DEADLINE: <2016-09-28 Wed>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: practice-exam-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
