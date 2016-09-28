@@ -359,6 +359,7 @@ For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:transient-cstr
 
 ** COLLECTED assignment:membrane-1				 :assignment:
    DEADLINE: <2016-09-27 Tue>
