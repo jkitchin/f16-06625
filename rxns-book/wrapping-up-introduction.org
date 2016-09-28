@@ -96,44 +96,14 @@ print(_fsolve(objective_nounits, 10))
 - You need the latest version of pycse for this functionality
 - Run this block to make sure you have the most recent version
 
-#+BEGIN_SRC python
-from setuptools.command import easy_install
+#+BEGIN_SRC python :results output org drawer
+import pip
 
-for pkg in ['pycse', 'quantities']:
-    easy_install.main(['-U', pkg])
+for package in ['pycse==1.6.3', 'quantities']:
+    pip.main(['install', '-U', package])
 #+END_SRC
 
 #+RESULTS:
-#+begin_example
-Searching for pycse
-Reading https://pypi.python.org/simple/pycse/
-Best match: pycse 1.51
-Downloading https://pypi.python.org/packages/source/p/pycse/pycse-1.51.tar.gz#md5=d6216564b6a7aa41423f066d23117265
-Processing pycse-1.51.tar.gz
-Writing /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-eBaocC/pycse-1.51/setup.cfg
-Running pycse-1.51/setup.py -q bdist_egg --dist-dir /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-eBaocC/pycse-1.51/egg-dist-tmp-qz6fBv
-Copying pycse-1.51-py2.7.egg to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
-Removing pycse 1.50 from easy-install.pth file
-Adding pycse 1.51 to easy-install.pth file
-Installing publish.py script to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/bin
-
-Installed /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pycse-1.51-py2.7.egg
-Processing dependencies for pycse
-Finished processing dependencies for pycse
-Searching for quantities
-Reading https://pypi.python.org/simple/quantities/
-Best match: quantities 0.10.1
-Downloading https://pypi.python.org/packages/source/q/quantities/quantities-0.10.1.zip#md5=75bb0571d220ea12abb31883b499f90c
-Processing quantities-0.10.1.zip
-Writing /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-IbPfuu/quantities-0.10.1/setup.cfg
-Running quantities-0.10.1/setup.py -q bdist_egg --dist-dir /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-IbPfuu/quantities-0.10.1/egg-dist-tmp-13uzSm
-Copying quantities-0.10.1-py2.7.egg to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
-Adding quantities 0.10.1 to easy-install.pth file
-
-Installed /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/quantities-0.10.1-py2.7.egg
-Processing dependencies for quantities
-Finished processing dependencies for quantities
-#+end_example
 
 PYCSE (v1.47+) provides this wrapped function pydoc:pycse.qmath.fsolve.
 
