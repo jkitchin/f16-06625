@@ -15,14 +15,18 @@ Check *techela log* for error messages."
   (interactive)
   (tq-insert-system-info)
 
+  (goto-char (point-min))
+  (gb-set-filetag "EMAIL" (gethash "user-mail-address" (tq-read-user-data)))
+  (gb-set-filetag "AUTHOR" (gethash "user-full-name" (tq-read-user-data)))
+
   ;; Let's assume turning in will work, and set the time.
   (gb-set-filetag "TURNED-IN" (current-time-string))
 
   ;; make sure all buffers are saved
   (save-some-buffers t t)
-  
+
   (mygit "git add *")
-  
+
   (let ((status (car (mygit "git commit -am \"turning in\""))))
     (unless (or (= 0 status)		; no problem
 		(= 1 status))		; no change in files
