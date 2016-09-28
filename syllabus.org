@@ -208,7 +208,8 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-09-21 Wed] [[./rxns-book/transient-cstr-mss.org]]
    CLOSED: [2016-09-21 Wed 19:22]
 
-** [2016-09-26 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
+** DONE [2016-09-26 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
+   CLOSED: [2016-09-28 Wed 13:06]
 
 ** [2016-09-28 Wed] [[./rxns-book/wrapping-up-introduction.org]]
 
@@ -333,6 +334,7 @@ solution:cstr-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:two-species-rate
 
 ** GRADED assignment:levenspiel					 :assignment:
    CLOSED: [2016-09-25 Sun 19:32] DEADLINE: <2016-09-21 Wed>
@@ -347,6 +349,7 @@ v0 = 0.66 L/hr
 
 For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
 
+solution:levenspiel
 
 ** COLLECTED assignment:transient-cstr				 :assignment:
    DEADLINE: <2016-09-23 Fri>
@@ -357,8 +360,9 @@ For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:transient-cstr
 
-** TODO assignment:membrane-1					 :assignment:
+** COLLECTED assignment:membrane-1				 :assignment:
    DEADLINE: <2016-09-27 Tue>
    :PROPERTIES:
    :CATEGORY: homework
@@ -368,7 +372,7 @@ For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
    :END:
 
 
-** TODO assignment:practice-quiz-1				 :assignment:
+** COLLECTED assignment:practice-quiz-1				 :assignment:
    DEADLINE: <2016-09-27 Tue>
    :PROPERTIES:
    :CATEGORY: homework

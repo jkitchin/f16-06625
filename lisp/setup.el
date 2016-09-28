@@ -73,7 +73,8 @@ Check *techela log* for error messages."
 	   "git remote add origin {{host}}:student-work/{{label}}/{{userid}}-{{label}}"
 	   (ht ("host" (techela-course-techela-server tq-current-course))
 	       ("label" label)
-	       ("userid" (gethash "user-mail-address" (tq-read-user-data)))))))))
+	       ("userid" (gethash "user-mail-address" (tq-read-user-data))))))
+	 (mygit "git branch --set-upstream-to=origin/master"))))
 
     (with-current-directory
      student-repo-dir

@@ -859,3 +859,8 @@ You should have learned:
 You have seen examples of:
 1. solving nonlinear equations
 2. integrating ordinary differential equations
+
+
+
+DO NOT CLICK THIS UNTIL YOU ARE INSTRUCTED TOO!
+assignment:quiz-1
