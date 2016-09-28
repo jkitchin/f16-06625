@@ -391,3 +391,13 @@ solution:transient-cstr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:quiz-1					 :assignment:
+   DEADLINE: <2016-09-28 Wed>
+   :PROPERTIES:
+   :CATEGORY: quiz
+   :POINTS:   2
+   :CUSTOM_ID: quiz-1
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
