@@ -199,4 +199,5 @@ Check *techela log* for error messages."
        "autopep8 -a -a -" nil t))))
 
 
-
+;; set to nil so we can edit with special entities on.
+(setq org-catch-invisible-edits nil)
