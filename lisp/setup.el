@@ -92,7 +92,10 @@ Check *techela log* for error messages."
      ;; now, open the file
      (find-file (expand-file-name
 		 (concat label ".org")
-		 student-repo-dir)))))
+		 student-repo-dir))
+     (goto-char (point-min))
+     (gb-set-filetag "EMAIL" (gethash "user-mail-address" (tq-read-user-data)))
+     (gb-set-filetag "AUTHOR" (gethash "user-full-name" (tq-read-user-data))))))
 
 ;; * have students course under vc
 ;; except for me. I don't want to commit my changes automatically
