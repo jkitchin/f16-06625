@@ -29,17 +29,19 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 #+BEGIN_SRC python
 import quantities as u
-from scipy.optimize import fsolve as _fsolve # give fsolve a new name
+from scipy.optimize import fsolve as _fsolve  # give fsolve a new name
 
 Fa0 = 3 * u.mol / u.min
-Fa = Fa0*(1 - 0.8)
-nu = 1*u.L/u.min
+Fa = Fa0 * (1 - 0.8)
+nu = 1 * u.L / u.min
 k = 0.34 * 1 / u.hr
+
 
 def objective(V):
     Ca = Fa / nu
     rA = -k * Ca
     return Fa0 - Fa + rA * V
+
 
 def fsolve(func, t0):
     'wrapped fsolve command to work with quantities'
@@ -57,11 +59,13 @@ def fsolve(func, t0):
     # put the original units back on the solution
     return sol * tU
 
-print(fsolve(objective, 10*u.L))
+print(fsolve(objective, 10 * u.L))
 
 # Confirm the answer is correct with no units
+
+
 def objective_nounits(V):
-    k = 0.34 / 60.0 # 1/min    A unit conversion by hand
+    k = 0.34 / 60.0  # 1/min    A unit conversion by hand
     Fa0 = 3.0       # mol/min
     Fa = Fa0 * (1 - 0.8)
     nu = 1.0
@@ -142,16 +146,17 @@ from pycse import fsolve
 import quantities as u
 
 Fa0 = 3 * u.mol / u.min
-Fa = Fa0*(1 - 0.8)
-nu = 1*u.L/u.min
+Fa = Fa0 * (1 - 0.8)
+nu = 1 * u.L / u.min
 k = 0.34 * 1 / u.hr
+
 
 def objective(V):
     Ca = Fa / nu
     rA = -k * Ca
     return Fa0 - Fa + rA * V
 
-print(fsolve(objective, 10*u.L))
+print(fsolve(objective, 10 * u.L))
 #+END_SRC
 
 #+RESULTS:
@@ -248,7 +253,7 @@ print(sol[-1, 0])
 
 Same answer. Still no units.
 
-*** Using quantities with a wrapped odeint function		     :gotcha:
+*** Using quantities with a wrapped odeint function	    :gotcha:optional:
 
 - Let us consider wrapping the odeint function
 
