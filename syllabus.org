@@ -392,7 +392,7 @@ solution:transient-cstr
    :END:
 
 
-** TODO assignment:quiz-1					 :assignment:
+** COLLECTED assignment:quiz-1					 :assignment:
    DEADLINE: <2016-09-28 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
