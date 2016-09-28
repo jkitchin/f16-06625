@@ -334,6 +334,7 @@ solution:cstr-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:two-species-rate
 
 ** GRADED assignment:levenspiel					 :assignment:
    CLOSED: [2016-09-25 Sun 19:32] DEADLINE: <2016-09-21 Wed>
@@ -359,7 +360,7 @@ For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
    :END:
 
 
-** TODO assignment:membrane-1					 :assignment:
+** COLLECTED assignment:membrane-1				 :assignment:
    DEADLINE: <2016-09-27 Tue>
    :PROPERTIES:
    :CATEGORY: homework
