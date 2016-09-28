@@ -381,6 +381,7 @@ solution:transient-cstr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:practice-quiz-1
 
 ** TODO assignment:practice-exam-1				 :assignment:
    DEADLINE: <2016-09-28 Wed>
