@@ -27,6 +27,105 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 - We need to solve $0 = F_{A0} - F_A + r_A V$ for $V$.
 
+
+#+BEGIN_SRC python :results output org drawer :session
+import quantities as u
+from scipy.optimize import fsolve as _fsolve  # give fsolve a new name
+
+Fa0 = 3 * u.mol / u.min
+Fa = Fa0 * (1 - 0.8)
+nu = 1 * u.L / u.min
+k = 0.34 * 1 / u.hr
+
+
+def objective(V):
+    Ca = Fa / nu
+    rA = -k * Ca
+    return Fa0 - Fa + rA * V
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Python 3.5.1 |Anaconda 4.0.0 (x86_64)| (default, Dec  7 2015, 11:24:55) 
+[GCC 4.2.1 (Apple Inc. build 5577)] on darwin
+Type "help", "copyright", "credits" or "license" for more information.
+>>> python.el: native completion setup loaded
+:END:
+
+#+BEGIN_SRC python :results output org drawer :session
+def fsolve(func, t0):
+    'wrapped fsolve command to work with quantities'
+    # store the units on the initial guess
+    tU = 1 * t0.units  # units on initial guess, normalized
+    print(t0)
+    print(tU)
+    # wrap the function so it returns a regular number
+    def wrapped_func(t):
+        't will be unitless, so we add unit to it. t * tU has units.'
+        return float(func(t * tU))
+    # use the original fsolve with the wrapped function
+    sol, = _fsolve(wrapped_func, t0)
+    # put the original units back on the solution
+    print(sol)
+    return sol * tU
+
+print(fsolve(objective, 10*u.L))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+
+... ... ... ... ... ... ... ... ... ... ... ... ... ... >>> 10.0 L
+1.0 L
+705.882352941
+705.8823529411767 L
+:END:
+
+#+BEGIN_SRC python :results output org drawer :session
+print(dir(1*u.L))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+['T', '__abs__', '__add__', '__and__', '__array__', '__array_finalize__', '__array_interface__', '__array_prepare__', '__array_priority__', '__array_struct__', '__array_wrap__', '__bool__', '__class__', '__contains__', '__copy__', '__deepcopy__', '__delattr__', '__delitem__', '__dict__', '__dir__', '__divmod__', '__doc__', '__eq__', '__float__', '__floordiv__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getstate__', '__gt__', '__hash__', '__iadd__', '__iand__', '__ifloordiv__', '__ilshift__', '__imatmul__', '__imod__', '__imul__', '__index__', '__init__', '__int__', '__invert__', '__ior__', '__ipow__', '__irshift__', '__isub__', '__iter__', '__itruediv__', '__ixor__', '__le__', '__len__', '__lshift__', '__lt__', '__matmul__', '__mod__', '__module__', '__mul__', '__ne__', '__neg__', '__new__', '__or__', '__pos__', '__pow__', '__radd__', '__rand__', '__rdivmod__', '__reduce__', '__reduce_ex__', '__repr__', '__rfloordiv__', '__rlshift__', '__rmatmul__', '__rmod__', '__rmul__', '__ror__', '__round__', '__rpow__', '__rrshift__', '__rshift__', '__rsub__', '__rtruediv__', '__rxor__', '__setattr__', '__setitem__', '__setstate__', '__sizeof__', '__str__', '__sub__', '__subclasshook__', '__truediv__', '__xor__', '_dimensionality', '_reference', '_tolist', 'all', 'any', 'argmax', 'argmin', 'argpartition', 'argsort', 'astype', 'base', 'byteswap', 'choose', 'clip', 'compress', 'conj', 'conjugate', 'copy', 'ctypes', 'cumprod', 'cumsum', 'data', 'diagonal', 'dimensionality', 'dot', 'dtype', 'dump', 'dumps', 'fill', 'flags', 'flat', 'flatten', 'getfield', 'imag', 'item', 'itemset', 'itemsize', 'magnitude', 'max', 'mean', 'min', 'nanargmax', 'nanargmin', 'nanmax', 'nanmean', 'nanmin', 'nanstd', 'nansum', 'nbytes', 'ndim', 'newbyteorder', 'nonzero', 'partition', 'prod', 'ptp', 'put', 'ravel', 'real', 'repeat', 'rescale', 'reshape', 'resize', 'round', 'searchsorted', 'setfield', 'setflags', 'shape', 'simplified', 'size', 'sort', 'squeeze', 'std', 'strides', 'sum', 'swapaxes', 'take', 'tobytes', 'tofile', 'tolist', 'tostring', 'trace', 'transpose', 'units', 'var', 'view']
+:END:
+
+#+BEGIN_SRC python :results output org drawer :session
+print(objective(10 * u.L))
+
+_fsolve(objective, 10 * u.L)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+2.3660000000000005 mol/min
+>>> Traceback (most recent call last):
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/quantities/quantity.py", line 192, in rescale
+    cf = get_conversion_factor(from_u, to_u)
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/quantities/quantity.py", line 53, in get_conversion_factor
+    assert from_u.dimensionality == to_u.dimensionality
+AssertionError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/scipy/optimize/minpack.py", line 146, in fsolve
+    res = _root_hybr(func, x0, args, jac=fprime, **options)
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/scipy/optimize/minpack.py", line 212, in _root_hybr
+    shape, dtype = _check_func('fsolve', 'func', func, x0, args, n, (n,))
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/scipy/optimize/minpack.py", line 26, in _check_func
+    res = atleast_1d(thefunc(*((x0[:numinputs],) + args)))
+  File "<stdin>", line 4, in objective
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/quantities/quantity.py", line 63, in g
+    other = other.rescale(self.units)
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/quantities/quantity.py", line 196, in rescale
+    %(from_u._dimensionality, to_u._dimensionality)
+ValueError: Unable to convert between units of "mol/(h*L)" and "mol/min"
+:END:
+
+
+
 #+BEGIN_SRC python
 import quantities as u
 from scipy.optimize import fsolve as _fsolve  # give fsolve a new name
@@ -159,16 +258,34 @@ import quantities as u
 nu = 1 * u.L / u.min
 k = 0.34 * 1 / u.hr
 
+V = 10 * u.L
+tau = V / nu
+print((k * tau))
+
+
+
 # V = D * nu / k
-print('Volume = {}'.format(Dsol * nu / k))   # this prints oddly
-                                             # (time/time) because the
+V = Dsol * nu / k
+print('V = ',V.rescale(u.L))
+print(V.magnitude)
+print(V.units.simplified.units)
+print(V.units.simplified.magnitude)
+print(float(V))
+
+print('Volume = {:1.2f} {}'.format(V.magnitude * V.units.simplified.magnitude, V.units.simplified.units))   # this prints oddly
+#                                             # (time/time) because the
                                              # units are not simplified
-print((Dsol * nu / k).simplified)
+#print((Dsol * nu / k).simplified)
 #+END_SRC
 
 #+RESULTS:
-: Volume = 11.7647058824 h*L/min
-: 0.705882352941 m**3
+: 3.4000000000000004 min/h
+: V =  705.8823529411766 L
+: 11.764705882352944
+: 1.0 m**3
+: 0.06
+: 11.764705882352944
+: Volume = 0.71 1.0 m**3
 
 - This method has a different set of tradeoffs
   - We had to derive dimensionless equations
@@ -181,7 +298,7 @@ print((Dsol * nu / k).simplified)
 ** quantities in odeint
 
 - The units on the output of odeint are the units of the initial condition
-- Let us examine a constant volume batch reactor with $-r_A = k C_A$, and $k = 0.0006$ L/mol/s, and ask what is the concentration of $A$ after 10 minutes if the initial concentration is $C_A(t=0) = 1$ mol / L.
+- Let us examine a constant volume batch reactor with $-r_A = k C_A$, and $k = 0.0006$ 1/s, and ask what is the concentration of $A$ after 10 minutes if the initial concentration is $C_A(t=0) = 1$ mol / L.
 
 \( \frac{dC_A}{dt} = r_A \)
 
@@ -190,7 +307,7 @@ print((Dsol * nu / k).simplified)
 #+BEGIN_SRC python
 import numpy as np
 Ca0 = 1
-k = 0.0006 * 60     # L / mol / min
+k = 0.0006 * 60     # 1 / min
 t = 10              # min
 print(Ca0 * np.exp(-k * t))
 #+END_SRC
@@ -206,7 +323,7 @@ print(Ca0 * np.exp(-k * t))
 import numpy as np
 from scipy.integrate import odeint
 Ca0 = 1.0
-k = 0.0006 * 60  # unit conversion by hand to L / mol / min
+k = 0.0006 * 60  # unit conversion by hand to 1 / min
 
 def dCadt(Ca, t):
     ra = -k * Ca
@@ -232,6 +349,19 @@ Same answer. Still no units.
   - This is not obvious that should have to do that!
   - That is one very big downside to this approach
   - And it underscores the need to test new approaches
+
+#+BEGIN_SRC python :results output org drawer
+import quantities as u
+
+a = 10*u.L
+
+print(a.rescale(u.m**3))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0.01 m**3
+:END:
 
 #+BEGIN_SRC python
 import quantities as u
@@ -283,16 +413,16 @@ def dCadt(Ca, t):
     ra  = -k * Ca
     return ra
 
-# This does not work! The units are not scaled properly
-#tspan = np.linspace(0.0, 10.0)*u.min
-tspan = np.linspace(0.0, 600.0)*u.sec
+
+tspan = np.linspace(0.0, 600.0) * u.sec
+
 
 sol = odeint(dCadt, Ca0, tspan)
 print(sol[-1, 0])
 #+END_SRC
 
 #+RESULTS:
-: 0.697676302326 mol/L
+: 0.6976763023259407 mol/L
 
 - This last example underscores again the need to be careful when working with units.
 
@@ -308,25 +438,40 @@ import numpy as np
 from scipy.optimize import fsolve
 
 def objective(x):
-    return np.exp(x) - 2.0
+    return np.exp(x) + 2.0
 
 sol, info, ier, message = fsolve(objective, 0.5, full_output=True)
 if ier == 1:
     print(message)
 else:
-    print('fsolve did not finish correctly. Check your work')
+    print('fsolve did not finish correctly. Check your work', ier)
 
 # Note the advanced string formatting in this example
 print('''
-Nsteps taken = {info[nfev]}
-objective(sol) = {info[fvec]}'''.format(info=info))
+Nsteps taken = {a[nfev]}
+objective(sol) = {a[fvec]}'''.format(a=info))
+
+print('''
+Nsteps taken = {0}
+objective(sol) = {1}'''.format(info['nfev'], info['fvec']))
+
+print(info)
+
+a = np.array([0, 1, 2, 3, 4])
+
+print('e0: {var[0]}'.format(var=a))
 #+END_SRC
 
 #+RESULTS:
-: The solution converged.
+: fsolve did not finish correctly. Check your work 5
 : 
-: Nsteps taken = 8
-: objective(sol) = [ 0.]
+: Nsteps taken = 17
+: objective(sol) = [ 2.]
+: 
+: Nsteps taken = 17
+: objective(sol) = [ 2.]
+: {'fvec': array([ 2.]), 'qtf': array([ 2.]), 'nfev': 17, 'r': array([  5.67615265e-15]), 'fjac': array([[ 1.]])}
+: e0: 0
 
 - This kind of information is especially helpful in longer programs, or when you embed fsolve in a loop
 - You can use programming to catch errors and handle them gracefully
