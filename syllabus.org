@@ -372,8 +372,8 @@ solution:transient-cstr
    :END:
 
 
-** COLLECTED assignment:practice-quiz-1				 :assignment:
-   DEADLINE: <2016-09-27 Tue>
+** GRADED assignment:practice-quiz-1				 :assignment:
+   CLOSED: [2016-09-29 Thu 00:46] DEADLINE: <2016-09-27 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
