@@ -29,17 +29,19 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 #+BEGIN_SRC python
 import quantities as u
-from scipy.optimize import fsolve as _fsolve # give fsolve a new name
+from scipy.optimize import fsolve as _fsolve  # give fsolve a new name
 
 Fa0 = 3 * u.mol / u.min
-Fa = Fa0*(1 - 0.8)
-nu = 1*u.L/u.min
+Fa = Fa0 * (1 - 0.8)
+nu = 1 * u.L / u.min
 k = 0.34 * 1 / u.hr
+
 
 def objective(V):
     Ca = Fa / nu
     rA = -k * Ca
     return Fa0 - Fa + rA * V
+
 
 def fsolve(func, t0):
     'wrapped fsolve command to work with quantities'
@@ -57,11 +59,13 @@ def fsolve(func, t0):
     # put the original units back on the solution
     return sol * tU
 
-print(fsolve(objective, 10*u.L))
+print(fsolve(objective, 10 * u.L))
 
 # Confirm the answer is correct with no units
+
+
 def objective_nounits(V):
-    k = 0.34 / 60.0 # 1/min    A unit conversion by hand
+    k = 0.34 / 60.0  # 1/min    A unit conversion by hand
     Fa0 = 3.0       # mol/min
     Fa = Fa0 * (1 - 0.8)
     nu = 1.0
@@ -92,44 +96,14 @@ print(_fsolve(objective_nounits, 10))
 - You need the latest version of pycse for this functionality
 - Run this block to make sure you have the most recent version
 
-#+BEGIN_SRC python
-from setuptools.command import easy_install
+#+BEGIN_SRC python :results output org drawer
+import pip
 
-for pkg in ['pycse', 'quantities']:
-    easy_install.main(['-U', pkg])
+for package in ['pycse==1.6.3', 'quantities']:
+    pip.main(['install', '-U', package])
 #+END_SRC
 
 #+RESULTS:
-#+begin_example
-Searching for pycse
-Reading https://pypi.python.org/simple/pycse/
-Best match: pycse 1.51
-Downloading https://pypi.python.org/packages/source/p/pycse/pycse-1.51.tar.gz#md5=d6216564b6a7aa41423f066d23117265
-Processing pycse-1.51.tar.gz
-Writing /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-eBaocC/pycse-1.51/setup.cfg
-Running pycse-1.51/setup.py -q bdist_egg --dist-dir /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-eBaocC/pycse-1.51/egg-dist-tmp-qz6fBv
-Copying pycse-1.51-py2.7.egg to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
-Removing pycse 1.50 from easy-install.pth file
-Adding pycse 1.51 to easy-install.pth file
-Installing publish.py script to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/bin
-
-Installed /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/pycse-1.51-py2.7.egg
-Processing dependencies for pycse
-Finished processing dependencies for pycse
-Searching for quantities
-Reading https://pypi.python.org/simple/quantities/
-Best match: quantities 0.10.1
-Downloading https://pypi.python.org/packages/source/q/quantities/quantities-0.10.1.zip#md5=75bb0571d220ea12abb31883b499f90c
-Processing quantities-0.10.1.zip
-Writing /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-IbPfuu/quantities-0.10.1/setup.cfg
-Running quantities-0.10.1/setup.py -q bdist_egg --dist-dir /var/folders/5q/lllv2yf95hg_n6h6kjttbmdw0000gn/T/easy_install-IbPfuu/quantities-0.10.1/egg-dist-tmp-13uzSm
-Copying quantities-0.10.1-py2.7.egg to /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages
-Adding quantities 0.10.1 to easy-install.pth file
-
-Installed /Users/jkitchin/Library/Enthought/Canopy_64bit/User/lib/python2.7/site-packages/quantities-0.10.1-py2.7.egg
-Processing dependencies for quantities
-Finished processing dependencies for quantities
-#+end_example
 
 PYCSE (v1.47+) provides this wrapped function pydoc:pycse.qmath.fsolve.
 
@@ -142,16 +116,17 @@ from pycse import fsolve
 import quantities as u
 
 Fa0 = 3 * u.mol / u.min
-Fa = Fa0*(1 - 0.8)
-nu = 1*u.L/u.min
+Fa = Fa0 * (1 - 0.8)
+nu = 1 * u.L / u.min
 k = 0.34 * 1 / u.hr
+
 
 def objective(V):
     Ca = Fa / nu
     rA = -k * Ca
     return Fa0 - Fa + rA * V
 
-print(fsolve(objective, 10*u.L))
+print(fsolve(objective, 10 * u.L))
 #+END_SRC
 
 #+RESULTS:
@@ -248,7 +223,7 @@ print(sol[-1, 0])
 
 Same answer. Still no units.
 
-*** Using quantities with a wrapped odeint function		     :gotcha:
+*** Using quantities with a wrapped odeint function	    :gotcha:optional:
 
 - Let us consider wrapping the odeint function
 
@@ -859,6 +834,88 @@ You should have learned:
 You have seen examples of:
 1. solving nonlinear equations
 2. integrating ordinary differential equations
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
