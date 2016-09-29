@@ -362,8 +362,8 @@ solution:levenspiel
 
 solution:transient-cstr
 
-** COLLECTED assignment:membrane-1				 :assignment:
-   DEADLINE: <2016-09-27 Tue>
+** GRADED assignment:membrane-1					 :assignment:
+   CLOSED: [2016-09-29 Thu 18:43] DEADLINE: <2016-09-27 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
