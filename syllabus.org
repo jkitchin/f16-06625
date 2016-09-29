@@ -383,7 +383,7 @@ solution:transient-cstr
 
 solution:practice-quiz-1
 
-** TODO assignment:practice-exam-1				 :assignment:
+** COLLECTED assignment:practice-exam-1				 :assignment:
    DEADLINE: <2016-09-28 Wed>
    :PROPERTIES:
    :CATEGORY: homework
