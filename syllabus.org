@@ -371,6 +371,7 @@ solution:transient-cstr
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:membrane-1
 
 ** GRADED assignment:practice-quiz-1				 :assignment:
    CLOSED: [2016-09-29 Thu 00:46] DEADLINE: <2016-09-27 Tue>
