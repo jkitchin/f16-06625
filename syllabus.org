@@ -407,7 +407,7 @@ solution:practice-exam-1
 
 solution:quiz-1
 
-** TODO assignment:quiz-2					 :assignment:
+** COLLECTED assignment:quiz-2					 :assignment:
    DEADLINE: <2016-10-03 Mon>
    :PROPERTIES:
    :CATEGORY: quiz
