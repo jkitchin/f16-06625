@@ -394,6 +394,7 @@ solution:practice-quiz-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+solution:practice-exam-1
 
 ** GRADED assignment:quiz-1					 :assignment:
    CLOSED: [2016-09-28 Wed 18:58] DEADLINE: <2016-09-28 Wed>
@@ -404,3 +405,4 @@ solution:practice-quiz-1
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+solution:quiz-1
