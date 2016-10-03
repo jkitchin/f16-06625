@@ -260,6 +260,104 @@ print('C_C = {0:1.4f} mol / L'.format(xi_eq))
 
 - We get the same result as before.
 
+*** Equilibria with multiple reactions
+
+- We use the same fundamental approaches to solving equilibrium problems when there are multiple reactions
+ + In fact, we do not need to consider reactions at all if we know the Gibbs free energies of each species
+
+- Let us consider this set of reactions, where all species are in the gas phase. Assume we start with equimolar amounts of A and B, and a total pressure of 2.5 atm at 400 K.
+
+1. \(A + B \rightleftharpoons C\) with K_1 = 108
+2. \(A + B \rightleftharpoons D \) with K_2 = 284
+
+We want to know what the equilibrium composition for these reactions are.
+
+We have two equations:
+\(K_1 = \frac{a_C}{a_A a_B} \)
+
+and
+
+\(K_2 = \frac{a_D}{a_A a_B} \)
+
+- We know the activity of a gas species is $a_j = P_j / 1 atm$ or equivalently in mole fraction: $a_j = x_j P / 1 atm$.
+
+- We define reaction extents for each reaction: \xi_1 and \xi_2
+
+- Then:
+\begin{align}
+n_A = n_{A0} - \xi_1 - \xi_2 \\
+n_B = n_{B0} - \xi_1 - \xi_2 \\
+n_C = \xi_1  \\
+n_D = \xi_2 \\
+n_{total} = n_{t0} - \xi_1 - \xi_2
+\end{align}
+
+- We can define mole fractions from these equations which allow us to express the equilibrium equations in two unknowns.
+
+- It is convenient to normalize all equations by $n_{t0}$, which leads to these definitions for the mole fractions:
+
+\begin{align}
+y_A = \frac{y_{A0} - \xi_1' - \xi_2'}{1 - \xi_1' - \xi_2'} \\
+y_B = \frac{y_{B0} - \xi_1' - \xi_2'}{1 - \xi_1' - \xi_2'} \\
+y_C = \frac{\xi_1'}{1 - \xi_1' - \xi_2'} \\
+y_D = \frac{\xi_2'}{1 - \xi_1' - \xi_2'} \\
+\end{align}
+
+- These are plugged into the activity $a_j = y_j P / 1 atm$.
+
+Here is the code we use to solve this problem.
+
+#+BEGIN_SRC python
+ya0 = 0.5  # initial mole fraction of A
+yb0 = 0.5  # initial mole fraction of B
+P = 2.5    # initial pressure in atm
+
+def xj(extent):
+    'convenience function to calculate mole fractions'
+    ext1, ext2 = extent
+    ya = (ya0 - ext1 - ext2) / (1.0 - ext1 - ext2)
+    yb = (yb0 - ext1 - ext2) / (1.0 - ext1 - ext2)
+    yc = (ext1) / (1.0 - ext1 - ext2)
+    yd = (ext2) / (1.0 - ext1 - ext2)
+    return [ya, yb, yc, yd]
+
+def func(extent):
+    'zeros function for fsolve'
+    ya, yb, yc, yd = xj(extent)
+
+    eq1 = 108.0 - (yc * P)/(ya * P * yb * P)
+    eq2 = 284.0 - (yd * P)/(ya * P * yb * P)
+
+    return [eq1, eq2]
+
+from scipy.optimize import fsolve
+
+guess = [0.1, 0.39]
+sol = fsolve(func, guess)
+
+print('The reaction extents are:\n',sol)
+
+print('The mole fractions are: \n',xj(sol))
+#+END_SRC
+
+#+RESULTS:
+: The reaction extents are:
+:  [ 0.13335692  0.35067931]
+: The mole fractions are: 
+:  [0.030939713798347378, 0.030939713798347378, 0.25846179039432998, 0.67965878200897523]
+
+- There are significant amounts of each product
+
+- Note that other initial guesses give unphysical solutions, i.e. negative mole fractions.
+
+- Also note that this solution applies to a /constant total pressure/ which means in this case the volume must be changing since there is a change in the number of moles
+  + You would get a different result in a constant volume reactor where the total pressure changes
+
+- There is a constraint on the two reaction extents.
+  + since no mole fraction can be negative, $\xi_1' + \xi_2' \le y_{A0}$
+  + Other solutions violate this constraint
+  + You may have to use constrained optimization to find physical solutions
+
 *** Temperature dependent equilibrium constants
 
 - We defined the equilibrium constant as $K = e^{-\Delta G /(RT)}$.
@@ -358,7 +456,7 @@ print('At 500 K the reaction energy is {0}'.format(e500))
 - You can see here that lower temperatures make the reaction much more exothermic.
 - The equilibrium constant would be considerably larger, and the products more favored at the lower temperature.
 
-*** Another view of chemical equilibrium
+*** Another view of chemical equilibrium			   :optional:
 
 - The composition at chemical equilibrium is the one that minimizes the Gibbs free energy of the mixture.
 
@@ -516,104 +614,6 @@ print('The Gibbs free energy is minimized at xi = {0} mol/L'.format(sol))
 :          Iterations: 6
 :          Function evaluations: 12
 : The Gibbs free energy is minimized at xi = 0.0331875 mol/L
-
-*** Equilibria with multiple reactions
-
-- We use the same fundamental approaches to solving equilibrium problems when there are multiple reactions
- + In fact, we do not need to consider reactions at all if we know the Gibbs free energies of each species
-
-- Let us consider this set of reactions, where all species are in the gas phase. Assume we start with equimolar amounts of A and B, and a total pressure of 2.5 atm at 400 K.
-
-1. \(A + B \rightleftharpoons C\) with K_1 = 108
-2. \(A + B \rightleftharpoons D \) with K_2 = 284
-
-We want to know what the equilibrium composition for these reactions are.
-
-We have two equations:
-\(K_1 = \frac{a_C}{a_A a_B} \)
-
-and
-
-\(K_2 = \frac{a_D}{a_A a_B} \)
-
-- We know the activity of a gas species is $a_j = P_j / 1 atm$ or equivalently in mole fraction: $a_j = x_j P / 1 atm$.
-
-- We define reaction extents for each reaction: \xi_1 and \xi_2
-
-- Then:
-\begin{align}
-n_A = n_{A0} - \xi_1 - \xi_2 \\
-n_B = n_{B0} - \xi_1 - \xi_2 \\
-n_C = \xi_1  \\
-n_D = \xi_2 \\
-n_{total} = n_{t0} - \xi_1 - \xi_2
-\end{align}
-
-- We can define mole fractions from these equations which allow us to express the equilibrium equations in two unknowns.
-
-- It is convenient to normalize all equations by $n_{t0}$, which leads to these definitions for the mole fractions:
-
-\begin{align}
-y_A = \frac{y_{A0} - \xi_1' - \xi_2'}{1 - \xi_1' - \xi_2'} \\
-y_B = \frac{y_{B0} - \xi_1' - \xi_2'}{1 - \xi_1' - \xi_2'} \\
-y_C = \frac{\xi_1'}{1 - \xi_1' - \xi_2'} \\
-y_D = \frac{\xi_2'}{1 - \xi_1' - \xi_2'} \\
-\end{align}
-
-- These are plugged into the activity $a_j = y_j P / 1 atm$.
-
-Here is the code we use to solve this problem.
-
-#+BEGIN_SRC python
-ya0 = 0.5  # initial mole fraction of A
-yb0 = 0.5  # initial mole fraction of B
-P = 2.5    # initial pressure in atm
-
-def xj(extent):
-    'convenience function to calculate mole fractions'
-    ext1, ext2 = extent
-    ya = (ya0 - ext1 - ext2) / (1.0 - ext1 - ext2)
-    yb = (yb0 - ext1 - ext2) / (1.0 - ext1 - ext2)
-    yc = (ext1) / (1.0 - ext1 - ext2)
-    yd = (ext2) / (1.0 - ext1 - ext2)
-    return [ya, yb, yc, yd]
-
-def func(extent):
-    'zeros function for fsolve'
-    ya, yb, yc, yd = xj(extent)
-
-    eq1 = 108.0 - (yc * P)/(ya * P * yb * P)
-    eq2 = 284.0 - (yd * P)/(ya * P * yb * P)
-
-    return [eq1, eq2]
-
-from scipy.optimize import fsolve
-
-guess = [0.1, 0.39]
-sol = fsolve(func, guess)
-
-print('The reaction extents are:\n',sol)
-
-print('The mole fractions are: \n',xj(sol))
-#+END_SRC
-
-#+RESULTS:
-: The reaction extents are:
-:  [ 0.13335692  0.35067931]
-: The mole fractions are: 
-:  [0.030939713798347378, 0.030939713798347378, 0.25846179039432998, 0.67965878200897523]
-
-- There are significant amounts of each product
-
-- Note that other initial guesses give unphysical solutions, i.e. negative mole fractions.
-
-- Also note that this solution applies to a /constant total pressure/ which means in this case the volume must be changing since there is a change in the number of moles
-  + You would get a different result in a constant volume reactor where the total pressure changes
-
-- There is a constraint on the two reaction extents.
-  + since no mole fraction can be negative, $\xi_1' + \xi_2' \le y_{A0}$
-  + Other solutions violate this constraint
-  + You may have to use constrained optimization to find physical solutions
 
 
 *** Gibbs energy constrained minimization and the NIST webbook	   :optional:
