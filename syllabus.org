@@ -406,3 +406,13 @@ solution:practice-exam-1
    :END:
 
 solution:quiz-1
+
+** TODO assignment:quiz-2					 :assignment:
+   DEADLINE: <2016-10-03 Mon>
+   :PROPERTIES:
+   :CATEGORY: quiz
+   :POINTS:   3
+   :CUSTOM_ID: quiz-2
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
