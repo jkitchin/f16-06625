@@ -211,7 +211,8 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-09-26 Mon] [[./rxns-book/misc-reactor-mole-balance.org]]
    CLOSED: [2016-09-28 Wed 13:06]
 
-** [2016-09-28 Wed] [[./rxns-book/wrapping-up-introduction.org]]
+** DONE [2016-09-28 Wed] [[./rxns-book/wrapping-up-introduction.org]]
+   CLOSED: [2016-10-03 Mon 08:50]
 
 ** [2016-10-03 Mon] [[./rxns-book/multiple-rxns-1.org]]
 
