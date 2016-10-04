@@ -416,3 +416,5 @@ solution:quiz-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+solution:quiz-2
