@@ -440,14 +440,9 @@ plt.legend(['$P/P_0$'],loc='upper right')
 plt.tight_layout()
 plt.savefig('images/pressure-drop-pfr.png')
 
-<<<<<<< HEAD
 Fa, Fb, Fc, y = sol.T
 X = (Fa0 - Fa[-1])/ Fa0
-=======
 
-Fa, Fb, Fc, y = sol.T
-X = (Fa0 - Fa[-1]) / Fa0
->>>>>>> f1bac89724bc2eecd71785e5264f4bdfb6942154
 
 print(X)
 #+END_SRC
