@@ -432,7 +432,9 @@ Collecting .exam-1-2** COLLECTED assignment:exam-1-1				 :assignment:
    :END:
 
 
-** COLLECTED assignment:exam-1-2				 :assignment:
+ Done.
+
+Collecting .exam-1-3** COLLECTED assignment:exam-1-2				 :assignment:
    DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
    :CATEGORY: exam1
@@ -442,7 +444,7 @@ Collecting .exam-1-2** COLLECTED assignment:exam-1-1				 :assignment:
    :END:
 
 
-** TODO assignment:exam-1-3					 :assignment:
+** COLLECTED assignment:exam-1-3				 :assignment:
    DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
    :CATEGORY: exam1
