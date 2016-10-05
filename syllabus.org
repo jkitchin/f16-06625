@@ -422,7 +422,7 @@ solution:quiz-2
 
  Done.
 
-** COLLECTED assignment:exam-1-1 				 :assignment:
+** COLLECTED assignment:exam-1-1				 :assignment:
    DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
    :CATEGORY: exam1
