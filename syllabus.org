@@ -454,7 +454,7 @@ solution:quiz-2
    :END:
 
 
-** COLLECTED assignment:exam-1-4 				 :assignment:
+** COLLECTED assignment:exam-1-4				 :assignment:
    DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
    :CATEGORY: exam1
