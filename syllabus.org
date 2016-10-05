@@ -429,3 +429,13 @@ solution:quiz-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:exam-1-2					 :assignment:
+   DEADLINE: <2016-10-05 Wed>
+   :PROPERTIES:
+   :CATEGORY: exam1
+   :POINTS:   4
+   :CUSTOM_ID: exam-1-2
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
