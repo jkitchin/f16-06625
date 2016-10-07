@@ -451,6 +451,8 @@ solution:quiz-2
    :END:
 
 
+solution:exam-1-3
+
 ** COLLECTED assignment:exam-1-4				 :assignment:
    DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
@@ -460,5 +462,3 @@ solution:quiz-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-
-solution:exam-1-3
