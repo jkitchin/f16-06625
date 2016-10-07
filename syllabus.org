@@ -460,3 +460,5 @@ solution:quiz-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+solution:exam-1-3
