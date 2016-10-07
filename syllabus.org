@@ -217,7 +217,8 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-10-03 Mon] [[./rxns-book/multiple-rxns-1.org]]
    CLOSED: [2016-10-05 Wed 13:45]
 
-** [2016-10-05 Wed] EXAM 1 (will cover material through 9/30)
+** DONE [2016-10-05 Wed] EXAM 1 (will cover material through 9/30)
+   CLOSED: [2016-10-07 Fri 13:20]
 
 ** [2016-10-10 Mon] [[./rxns-book/multiple-rxns-2.org]]
 
@@ -417,10 +418,8 @@ solution:quiz-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-
 solution:quiz-2
 
- Done.
 
 ** COLLECTED assignment:exam-1-1				 :assignment:
    DEADLINE: <2016-10-05 Wed>
@@ -430,8 +429,6 @@ solution:quiz-2
    :CUSTOM_ID: exam-1-1
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
-
-
 
 
 ** COLLECTED assignment:exam-1-2				 :assignment:
