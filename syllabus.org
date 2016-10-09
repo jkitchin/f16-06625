@@ -431,8 +431,8 @@ solution:quiz-2
    :END:
 
 
-** COLLECTED assignment:exam-1-2				 :assignment:
-   DEADLINE: <2016-10-05 Wed>
+** GRADED assignment:exam-1-2					 :assignment:
+   CLOSED: [2016-10-09 Sun 00:42] DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
    :CATEGORY: exam1
    :POINTS:   4
