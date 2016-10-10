@@ -409,8 +409,8 @@ solution:practice-exam-1
 
 solution:quiz-1
 
-** COLLECTED assignment:quiz-2					 :assignment:
-   DEADLINE: <2016-10-03 Mon>
+** GRADED assignment:quiz-2					 :assignment:
+   CLOSED: [2016-10-10 Mon 15:04] DEADLINE: <2016-10-03 Mon>
    :PROPERTIES:
    :CATEGORY: quiz
    :POINTS:   3
@@ -461,6 +461,20 @@ solution:exam-1-3
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+<<<<<<< HEAD
 solution:exam-1-4
 
+=======
+
+solution:exam-1-4
+
+** TODO assignment:survey-2					 :assignment:
+   DEADLINE: <2016-10-10 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: survey-2
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+>>>>>>> 31383ef285e7a56706c1c5493687c6f30fc18b59
 
