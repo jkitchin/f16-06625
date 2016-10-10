@@ -468,3 +468,13 @@ solution:exam-1-2
 solution:exam-1-4
 
 solution:exam-1-4
+
+** TODO assignment:survey-2					 :assignment:
+   DEADLINE: <2016-10-10 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   2
+   :CUSTOM_ID: survey-2
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
