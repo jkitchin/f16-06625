@@ -409,8 +409,8 @@ solution:practice-exam-1
 
 solution:quiz-1
 
-** COLLECTED assignment:quiz-2					 :assignment:
-   DEADLINE: <2016-10-03 Mon>
+** GRADED assignment:quiz-2					 :assignment:
+   CLOSED: [2016-10-10 Mon 15:04] DEADLINE: <2016-10-03 Mon>
    :PROPERTIES:
    :CATEGORY: quiz
    :POINTS:   3
