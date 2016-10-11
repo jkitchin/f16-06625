@@ -488,3 +488,13 @@ solution:survey-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:nh3-decomp					 :assignment:
+   DEADLINE: <2016-10-14 Fri>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: nh3-decomp
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
