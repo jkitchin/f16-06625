@@ -390,8 +390,8 @@ solution:membrane-1
 
 solution:practice-quiz-1
 
-** COLLECTED assignment:practice-exam-1				 :assignment:
-   DEADLINE: <2016-09-28 Wed>
+** GRADED assignment:practice-exam-1				 :assignment:
+   CLOSED: [2016-10-11 Tue 21:03] DEADLINE: <2016-09-28 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
