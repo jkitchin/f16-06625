@@ -1,0 +1,23 @@
+#+TITLE: Exam-1 summary
+
+Reminder: exam 1 is only 10% of your grade
+
+| problem  | avg | std |
+|----------+-----+-----|
+| exam-1-1 |  73 |  13 |
+| exam-1-2 |  50 |  19 |
+| exam-1-3 |  84 |   8 |
+| exam-1-4 |  67 |  15 |
+
+Why are these lower than homeworks?
+1. Time constraints. You have to practice this.
+2. Solo work. You are on your own for these.
+3. Make sure you review the solutions, and that you can do these problems on your own, with time constraints. You will see problems like them in the future.
+
+solution:exam-1-1
+
+solution:exam-1-2
+
+solution:exam-1-3
+
+solution:exam-1-4
