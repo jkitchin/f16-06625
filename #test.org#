@@ -70,3 +70,96 @@ C_N2 = 0.0382 mol / L
 C_H2 = 0.1147 mol / L
 :END:
 
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+# Thursday homework
+Kp_old = 0.00459926651124
+
+n = 2 - 4
+Kc = 1 / 9.6 
+T = 300 + 273 # K
+R = 8.314e-3  # kJ/mol/K
+
+Kp = Kc * (R * T)**n
+
+C0 = [0.1, 0., 0.]
+
+def func(xi):
+    return Kp - (xi**2) / (Ca0 - xi)**2
+
+from scipy.optimize import fsolve
+guess = 0.05
+xi_eq, = fsolve(func, guess)
+print('xi_eq = ', xi_eq)
+
+print('C_A = {0:1.4f} mol / L'.format(Ca0 - xi_eq))
+print('C_C = {0:1.4f} mol / L'.format(xi_eq))
+
+xispan = np.linspace(-0.5, 0.5, 1000)
+
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+-9.40604828701e-06
+:END:
+
+
+\(\ce{2NH3} \leftrightharpoons \ce{N2} + \ce{3H2}\) at 300 °C is approximately:
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Thursday homework
+Kp_old = 0.00459926651124
+
+n = 2 - 4
+Kc = 1 / 9.6 
+T = 300 + 273 # K
+R = 8.314e-3  # kJ/mol/K
+
+Kp = Kc * (R * T)**n
+
+C0 = [0.1, 0., 0.]
+a = [2, 1, 3]
+
+def func(xi):
+    CA = (C0[0] + a[0]*xi)**a[0]
+    CB = (C0[1] + a[1]*xi)**a[1]
+    CC = (C0[2] + a[2]*xi)**a[2]
+
+    return Kp - (CB * CC) / CA
+
+from scipy.optimize import fsolve
+guess = 0.5
+xi_eq, = fsolve(func, guess)
+print('xi_eq = ',xi_eq)
+
+xispan = np.linspace(0, 0.5)
+ans = [func(x) for x in xispan]
+
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.plot(xispan, ans)
+ax.plot([-0.5, 0.5], [0, 0], 'k--')
+ax.set_xlabel('extent')
+ax.set_ylabel('objective function')
+ax.set_xlim(xispan[0], xispan[-1])
+# ax.get_xaxis().set_ticks([])
+
+plt.tight_layout()
+plt.savefig('example_xi.png')
+
+print('C_A = {0:1.4f} mol / L'.format(C0[0] - xi_eq))
+print('C_C = {0:1.4f} mol / L'.format(xi_eq))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+('xi_eq = ', 0.051428511315431094)
+C_A = 0.0486 mol / L
+C_C = 0.0514 mol / L
+:END:
+
+[[./example_xi.png]]
