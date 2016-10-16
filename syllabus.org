@@ -525,3 +525,13 @@ solution:survey-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:regress-3					 :assignment:
+   DEADLINE: <2016-10-19 Wed>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   2
+   :CUSTOM_ID: regress-3
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
