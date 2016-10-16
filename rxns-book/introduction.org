@@ -46,23 +46,121 @@ for package in ['pycse==1.6.3', 'uncertainties', 'quantities', 'jedi', 'rope']:
 
 #+RESULTS:
 :RESULTS:
-Collecting pycse==1.6.3
-Collecting quantities==0.10.1 (from pycse==1.6.3)
-Installing collected packages: quantities, pycse
-  Found existing installation: quantities 0+unknown
-    Uninstalling quantities-0+unknown:
-      Successfully uninstalled quantities-0+unknown
-  Found existing installation: pycse 0.6.2
-    Can't uninstall 'pycse'. No files were found to uninstall.
-Successfully installed pycse-0.6.2 quantities-0.10.1
-Requirement already up-to-date: uncertainties in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
-Collecting quantities
+Requirement already up-to-date: pycse==1.6.3 in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: quantities==0.10.1 in /usr/local/lib/python2.7/dist-packages (from pycse==1.6.3)
+Cleaning up...
+Requirement already up-to-date: uncertainties in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: uncertainties in /usr/local/lib/python2.7/dist-packages
+Cleaning up...
+Cleaning up...
+Downloading/unpacking quantities from https://pypi.python.org/packages/e4/73/23dbd5482d16e6e7bac98e3998c22cbcbecf92dda447bfe1b9ea4ae1509a/quantities-0.11.1.zip#md5=f4c6287bfd2e93322b25a7c1311a0243
+Downloading/unpacking quantities from https://pypi.python.org/packages/e4/73/23dbd5482d16e6e7bac98e3998c22cbcbecf92dda447bfe1b9ea4ae1509a/quantities-0.11.1.zip#md5=f4c6287bfd2e93322b25a7c1311a0243
+Downloading/unpacking quantities from https://pypi.python.org/packages/e4/73/23dbd5482d16e6e7bac98e3998c22cbcbecf92dda447bfe1b9ea4ae1509a/quantities-0.11.1.zip#md5=f4c6287bfd2e93322b25a7c1311a0243
+  Running setup.py (path:/tmp/pip_build_jacob/quantities/setup.py) egg_info for package quantities
+  Running setup.py (path:/tmp/pip_build_jacob/quantities/setup.py) egg_info for package quantities
+  Running setup.py (path:/tmp/pip_build_jacob/quantities/setup.py) egg_info for package quantities
+    
+    
+    
 Installing collected packages: quantities
-  Found existing installation: quantities 0+unknown
-    Can't uninstall 'quantities'. No files were found to uninstall.
-Successfully installed quantities-0+unknown
-Requirement already up-to-date: jedi in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
-Requirement already up-to-date: rope in /Users/jkitchin/anaconda3/lib/python3.5/site-packages
+Installing collected packages: quantities
+Installing collected packages: quantities
+  Found existing installation: quantities 0.10.1
+  Found existing installation: quantities 0.10.1
+  Found existing installation: quantities 0.10.1
+    Uninstalling quantities:
+    Uninstalling quantities:
+    Uninstalling quantities:
+Cleaning up...
+Cleaning up...
+Cleaning up...
+Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 283, in run
+    requirement_set.install(install_options, global_options, root=options.root_path)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1432, in install
+    requirement.uninstall(auto_confirm=True)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 599, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1845, in remove
+    renames(path, new_path)
+  File "/usr/lib/python2.7/dist-packages/pip/util.py", line 296, in renames
+    shutil.move(old, new)
+  File "/usr/lib/python2.7/shutil.py", line 300, in move
+    rmtree(src)
+  File "/usr/lib/python2.7/shutil.py", line 252, in rmtree
+    onerror(os.remove, fullname, sys.exc_info())
+  File "/usr/lib/python2.7/shutil.py", line 250, in rmtree
+    os.remove(fullname)
+OSError: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/quantities-0.10.1.egg-info/SOURCES.txt'
+
+Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 283, in run
+    requirement_set.install(install_options, global_options, root=options.root_path)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1432, in install
+    requirement.uninstall(auto_confirm=True)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 599, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1845, in remove
+    renames(path, new_path)
+  File "/usr/lib/python2.7/dist-packages/pip/util.py", line 296, in renames
+    shutil.move(old, new)
+  File "/usr/lib/python2.7/shutil.py", line 300, in move
+    rmtree(src)
+  File "/usr/lib/python2.7/shutil.py", line 252, in rmtree
+    onerror(os.remove, fullname, sys.exc_info())
+  File "/usr/lib/python2.7/shutil.py", line 250, in rmtree
+    os.remove(fullname)
+OSError: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/quantities-0.10.1.egg-info/SOURCES.txt'
+
+Exception:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/pip/basecommand.py", line 122, in main
+    status = self.run(options, args)
+  File "/usr/lib/python2.7/dist-packages/pip/commands/install.py", line 283, in run
+    requirement_set.install(install_options, global_options, root=options.root_path)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1432, in install
+    requirement.uninstall(auto_confirm=True)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 599, in uninstall
+    paths_to_remove.remove(auto_confirm)
+  File "/usr/lib/python2.7/dist-packages/pip/req.py", line 1845, in remove
+    renames(path, new_path)
+  File "/usr/lib/python2.7/dist-packages/pip/util.py", line 296, in renames
+    shutil.move(old, new)
+  File "/usr/lib/python2.7/shutil.py", line 300, in move
+    rmtree(src)
+  File "/usr/lib/python2.7/shutil.py", line 252, in rmtree
+    onerror(os.remove, fullname, sys.exc_info())
+  File "/usr/lib/python2.7/shutil.py", line 250, in rmtree
+    os.remove(fullname)
+OSError: [Errno 13] Permission denied: '/usr/local/lib/python2.7/dist-packages/quantities-0.10.1.egg-info/SOURCES.txt'
+
+Storing debug log for failure in /home/jacob/.pip/pip.log
+Storing debug log for failure in /home/jacob/.pip/pip.log
+Storing debug log for failure in /home/jacob/.pip/pip.log
+Requirement already up-to-date: jedi in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: jedi in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: jedi in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: jedi in /usr/local/lib/python2.7/dist-packages
+Cleaning up...
+Cleaning up...
+Cleaning up...
+Cleaning up...
+Requirement already up-to-date: rope in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: rope in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: rope in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: rope in /usr/local/lib/python2.7/dist-packages
+Requirement already up-to-date: rope in /usr/local/lib/python2.7/dist-packages
+Cleaning up...
+Cleaning up...
+Cleaning up...
+Cleaning up...
+Cleaning up...
 :END:
 
 The ways to undo:
@@ -96,7 +194,7 @@ print('pycse version {}'.format(pycse.__version__))
 : numpy version 1.10.4
 : scipy version 0.17.0
 : matplotlib version 1.5.1
-: quantities version 0+unknown
+: quantities version 0.10.1
 : uncertainties version 3.0.1
 : pycse version 1.6.3
 

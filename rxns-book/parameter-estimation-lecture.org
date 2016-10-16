@@ -96,12 +96,15 @@ XTy = np.dot(X.T, y)
 p = np.dot(np.linalg.inv(XTX), XTy)
 slope, intercept = p # note the order in X
 print('The slope is {0} \nand intercept is {1}'.format(slope, intercept))
+print(p.shape)
+# Python 3 syntax
+print(np.linalg.inv(X.T @ X) @ (X.T @ y))
 
 # plot data and fit
 import matplotlib.pyplot as plt
-
-plt.plot(x, y, 'bo')
-plt.plot(x, np.dot(X, p), 'r--')
+print('p', p, p.T)
+plt.plot(x, y, 'bo')  # data points
+plt.plot(x, X @ p, 'r--')  # the fit
 plt.xlabel('x')
 plt.ylabel('y')
 plt.savefig('images/la-line-fit.png')
@@ -110,6 +113,9 @@ plt.savefig('images/la-line-fit.png')
 #+RESULTS:
 : The slope is -0.3145221843003413 
 : and intercept is 0.000624573378839699
+: (2,)
+: [-0.31452218  0.00062457]
+: p [-0.31452218  0.00062457] [-0.31452218  0.00062457]
 
 - You should always plot the fitted function over the data to visually assess the quality of the fit
 
@@ -145,6 +151,7 @@ p = np.dot(np.linalg.inv(XTX), XTy)
 
 e = y - np.dot(X,p)
 pprint.pprint(e)
+print(e)
 
 SSE = np.dot(e, e)
 
@@ -158,6 +165,7 @@ print('R-squared = {0} '.format(Rsq))
 #+RESULTS:
 : array([-0.0006, -0.0004, -0.0011, -0.0008, -0.0006,  0.0009,  0.0025,
 :         0.0025, -0.0024])
+: [-0.0006 -0.0004 -0.0011 -0.0008 -0.0006  0.0009  0.0025  0.0025 -0.0024]
 : R-squared = 0.9999972914903201 
 
 - The R^2 tells you how much of the variation in the data is explained by the model.
@@ -180,25 +188,32 @@ import numpy as np
 x = np.array([0, 0.5, 1, 1.5, 2.0, 3.0, 4.0, 6.0, 10])
 y = np.array([0, -0.157, -0.315, -0.472, -0.629, -0.942, -1.255, -1.884, -3.147])
 
-X = np.column_stack([x, x**0])
+X = np.column_stack([x**2, x, x**0])
 
 # Choose 95% confidence level
 alpha = 1 - 0.95
 p, pint, se = regress(X, y, alpha)
-slope_interval, intercept_interval = pint
+curvature, slope_interval, intercept_interval = pint
 
 print('The slope is between {0} \n'
       'at the 95% confidence level'.format(slope_interval))
 
 print('The intercept is between {0} \n'
       'at the 95% confidence level'.format(intercept_interval))
+
+print(curvature)
+print(p)
+print(se)
 #+END_SRC
 
 #+RESULTS:
-: The slope is between [-0.31500091 -0.31404346] 
+: The slope is between [-0.31405335 -0.31211207] 
 : at the 95% confidence level
-: The intercept is between [-0.00144683  0.00269598] 
+: The intercept is between [-0.00275218  0.00056076] 
 : at the 95% confidence level
+: [ -2.42293896e-04  -5.23386903e-05]
+: [ -1.47316293e-04  -3.13082708e-01  -1.09570886e-03]
+: [  3.69479009e-05   3.77596250e-04   6.44394241e-04]
 
 - Note in this case that the second parameter includes 0
   - We cannot conclude that this parameter is significant.
@@ -296,7 +311,7 @@ intercept_range = pint[0]
 alpha_range = pint[1]
 
 k = np.exp(intercept_range)
-
+print(p)
 print('alpha = {0} at the 95% confidence level'.format(alpha_range))
 print('k = {0} at the 95% confidence level'.format(k))
 
@@ -309,6 +324,7 @@ plt.savefig('images/regression-rate.png')
 #+END_SRC
 
 #+RESULTS:
+: [-2.838  1.79 ]
 : alpha = [ 1.482  2.097] at the 95% confidence level
 : k = [ 0.019  0.178] at the 95% confidence level
 
@@ -417,6 +433,9 @@ print('Summed squared error = {}'.format(sum(fCa - Ca)**2))
 # always visually inspect the fit
 plt.plot(t, Ca, 'ko ')
 plt.plot(t, fCa)
+tfit = np.linspace(-100, 500)
+pfit = np.polyval(pCa, tfit)
+plt.plot(tfit, pfit)
 plt.xlabel('$t$ (min)')
 plt.ylabel('$C_A$ (mol/L)')
 plt.title('Polynomial fit to the data')
@@ -457,6 +476,7 @@ plt.savefig('images/poly-regression-rate.png')
 : alpha = [ 1.877  2.22 ] at the 95% confidence level
 : k = [ 0.078  0.271] at the 95% confidence level
 
+[[./images/polyfit-1.png]]
 
 [[./images/poly-regression-rate.png]]
 
@@ -497,7 +517,7 @@ def func(x, a, b):
     'nonlinear function in a and b to fit to data'
     return a * x / (b + x)
 
-initial_guess = [1.2, 0.03]
+initial_guess = [1, 2]
 
 pars, pcov = curve_fit(func, x, y, p0=initial_guess)
 
@@ -516,7 +536,7 @@ plt.savefig('images/nonlin-curve-fit.png')
 #+END_SRC
 
 #+RESULTS:
-: a = 1.3275314145379786 and b=0.026461556970080666
+: a = 2.989058049779716 and b=-0.0340876722689279
 
 [[./images/nonlin-curve-fit.png]]
 
