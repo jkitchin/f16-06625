@@ -482,7 +482,7 @@ solution:exam-1-4
 
 solution:survey-2
 
-** TODO assignment:nh3-equil					 :assignment:
+** COLLECTED assignment:nh3-equil				 :assignment:
    DEADLINE: <2016-10-13 Thu>
    :PROPERTIES:
    :CATEGORY: homework
