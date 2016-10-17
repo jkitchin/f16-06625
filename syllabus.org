@@ -223,7 +223,8 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-10-10 Mon] [[./rxns-book/multiple-rxns-2.org]]
    CLOSED: [2016-10-11 Tue 19:51]
 
-** [2016-10-12 Wed] [[./rxns-book/parameter-estimation.org]]
+** DONE [2016-10-12 Wed] [[./rxns-book/parameter-estimation.org]]
+   CLOSED: [2016-10-16 Sun 20:01]
 
 [[./exam-1-summary.org]]
 
