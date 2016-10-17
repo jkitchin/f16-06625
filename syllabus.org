@@ -497,7 +497,7 @@ solution:nh3-equil
 ** assignment:nh3-decomp					   :practice:
 
 
-** TODO assignment:survey-3					 :assignment:
+** COLLECTED assignment:survey-3				 :assignment:
    DEADLINE: <2016-10-17 Mon>
    :PROPERTIES:
    :CATEGORY: participation
