@@ -493,6 +493,7 @@ solution:survey-2
    :END:
 
 
+solution:nh3-equil
 ** assignment:nh3-decomp					   :practice:
 
 
