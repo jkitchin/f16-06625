@@ -546,3 +546,13 @@ solution:survey-2
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:survey-3					 :assignment:
+   DEADLINE: <2016-10-17 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: survey-3
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
