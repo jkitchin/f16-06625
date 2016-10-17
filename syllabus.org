@@ -528,7 +528,7 @@ solution:survey-2
 
 
 ** TODO assignment:regress-3					 :assignment:
-   DEADLINE: <2016-10-19 Wed>
+   DEADLINE: <2016-10-20 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
