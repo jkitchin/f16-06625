@@ -496,6 +496,16 @@ solution:survey-2
 ** assignment:nh3-decomp					   :practice:
 
 
+** TODO assignment:survey-3					 :assignment:
+   DEADLINE: <2016-10-17 Mon>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: survey-3
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
+
 
 ** TODO assignment:creative-1					 :assignment:
    DEADLINE: <2016-10-17 Mon>
@@ -544,15 +554,5 @@ solution:survey-2
    :POINTS:   3
    :CUSTOM_ID: regress-4
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
-   :END:
-
-
-** TODO assignment:survey-3					 :assignment:
-   DEADLINE: <2016-10-17 Mon>
-   :PROPERTIES:
-   :CATEGORY: participation
-   :POINTS:   1
-   :CUSTOM_ID: survey-3
-   :RUBRIC:   (("participation" . 1.0))
    :END:
 
