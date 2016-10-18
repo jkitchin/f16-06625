@@ -483,8 +483,8 @@ solution:exam-1-4
 
 solution:survey-2
 
-** COLLECTED assignment:nh3-equil				 :assignment:
-   DEADLINE: <2016-10-13 Thu>
+** GRADED assignment:nh3-equil					 :assignment:
+   CLOSED: [2016-10-18 Tue 00:24] DEADLINE: <2016-10-13 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   2
@@ -497,7 +497,7 @@ solution:nh3-equil
 ** assignment:nh3-decomp					   :practice:
 
 
-** TODO assignment:survey-3					 :assignment:
+** COLLECTED assignment:survey-3				 :assignment:
    DEADLINE: <2016-10-17 Mon>
    :PROPERTIES:
    :CATEGORY: participation
