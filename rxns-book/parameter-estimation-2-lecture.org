@@ -27,12 +27,13 @@ Ca = np.array([0.05, 0.038, 0.0306, 0.0256, 0.0222, 0.0195, 0.0174])
 
 Ca0 = 0.05
 
-def dCadt(Ca, t, k, alpha):
-    return -k * Ca**alpha
+def dCadt(Cax, t, k, alpha):
+    return -k * Cax**alpha
 
 def model(t, k, alpha):
-    Ca = odeint(dCadt, Ca0, t, args=(k, alpha))
-    return Ca[:,0]  # must return a 1D array here
+    sol_Ca = odeint(dCadt, Ca0, t, args=(k, alpha))
+    print(sol_Ca.shape, sol_Ca[:, 0].shape)
+    return sol_Ca[:, 0]  # must return a 1D array here
 
 guess = [0.1, 2.0] # from the linear regression
 
@@ -42,11 +43,26 @@ k_range, alpha_range = np.array(pint)
 
 print('alpha = {} at the 95% confidence level'.format(alpha_range))
 print('k = {0} at the 95% confidence level'.format(k_range))
+
+import matplotlib.pyplot as plt
+#plt.plot(t, Ca, 'bo', label='data')
+
+print(sum(np.array(Ca) - model(t, 0.12, 2))**2)
+
+ks = np.linspace(0.09, 0.15)
+sse = [sum(np.array(Ca) - model(t, k, 2))**2 for k in ks]
+plt.figure()
+plt.plot(ks, sse)
+plt.show()
 #+END_SRC
 
 #+RESULTS:
+
+
+
 : alpha = [ 2.002  2.071] at the 95% confidence level
 : k = [ 0.126  0.159] at the 95% confidence level
+: 3.01909144302e-10
 
 - The confidence intervals here are identical to the nonlinear fit to the analytical solution!
 
@@ -101,6 +117,23 @@ print('The rate is {0} mol/L/s'.format(k*CA))
 
 - In this approach we sample the variables with uncertainty and perform the calculations many times.
 
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+import matplotlib.pyplot as plt
+
+N = 10000
+muk = 0.1
+sigmak = 0.02
+k = np.random.normal(muk, sigmak, N)
+
+plt.hist(k, bins=20)
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+:END:
+
 - Then we use statistical analysis to determine the uncertainty of the result.
 
 - We illustrate the approach on estimating the uncertainty
@@ -118,7 +151,7 @@ CA = 2.0
 
 r = k * CA
 print('The average rate is {0} mol/L/s'.format(np.mean(r)))
-print('The standard error is {0} mol/L/s'.format(np.std(r)))
+print('The standard dev is {0} mol/L/s'.format(np.std(r)))
 
 plt.hist(r, 20)
 plt.xlabel('r')
@@ -127,8 +160,8 @@ plt.savefig('images/mc-error.png')
 #+END_SRC
 
 #+RESULTS:
-: The average rate is 0.1999504881836344 mol/L/s
-: The standard error is 0.04004353594723885 mol/L/s
+: The average rate is 0.1992885863411643 mol/L/s
+: The standard dev is 0.040026772660252896 mol/L/s
 
 [[./images/mc-error.png]]
 
@@ -193,8 +226,44 @@ print(np.std(SOL) / np.mean(SOL) * 100 / 2)
 #+END_SRC
 
 #+RESULTS:
-: Ca(exit) = 0.0050125420033237614+/-0.00017007176258470075
-: 1.69646221889
+: Ca(exit) = 0.0050096938000553995+/-0.00016860525953520298
+: 1.68279006926
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.optimize import fsolve
+
+N = 10000    # number of MC samples
+V =  66000   # L
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+
+# create the array to store the results in
+# It is usually more efficient to create arrays then fill them in.
+SOL = np.empty(k.shape)
+
+for i in range(N):
+    def func(Ca):
+        ra = -k[i] * Ca**2
+        return Fa0[i] - v0[i] * Ca + V * ra
+    guess = 0.1 * Fa0[i] / v0[i]  # guessing 90% conversion
+    SOL[i], = fsolve(func, guess)
+
+print('Ca(exit) = {0}+/-{1}'.format(np.mean(SOL), np.std(SOL)))
+
+# This is an approximate % uncertainty
+print(np.std(SOL) / np.mean(SOL) * 100 / 2)
+
+import matplotlib.pyplot as plt
+plt.hist(SOL, bins=20)
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+: Ca(exit) = 0.005006921285902862+/-0.0001683815760346129
+: 1.6814881483
 
 - This analysis shows there is about 2% uncertainty in the exit concentration
   - that may be acceptable
@@ -234,7 +303,8 @@ def Ca_solve(v0, k, Fa0, V):
     return sol
 
 # Step 3
-Ca_exit = u.wrap(Ca_solve)(v0, k, Fa0, V)
+f = u.wrap(Ca_solve)
+Ca_exit = f(v0, k, Fa0, V)
 print('The exit concentration is {0}'.format(Ca_exit))
 #+END_SRC
 
