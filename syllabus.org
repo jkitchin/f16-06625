@@ -510,7 +510,7 @@ solution:nh3-equil
 
 
 
-** TODO assignment:creative-1					 :assignment:
+** COLLECTED assignment:creative-1				 :assignment:
    DEADLINE: <2016-10-17 Mon>
    :PROPERTIES:
    :CATEGORY: homework
