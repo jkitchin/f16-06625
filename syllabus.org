@@ -230,9 +230,9 @@ The tentative course schedule is here. It may change.
 
 ** [2016-10-17 Mon] [[./rxns-book/parameter-estimation-2.org]]
 
-** [2016-10-19 Wed] Jake Boes guest lecture
+** [2016-10-19 Mon] Jake Boes guest lecture
 
-** [2016-10-24 Mon] [[./rxns-book/mechanism-determination.org]]
+** [2016-10-24 Wed] [[./rxns-book/mechanism-determination.org]]
 
 ** [2016-10-26 Wed] [[./rxns-book/engineering-applications.org]]
 
@@ -436,6 +436,7 @@ solution:quiz-2
 
 solution:exam-1-1
 
+solution:exam-1-1
 ** GRADED assignment:exam-1-2					 :assignment:
    CLOSED: [2016-10-09 Sun 00:42] DEADLINE: <2016-10-05 Wed>
    :PROPERTIES:
