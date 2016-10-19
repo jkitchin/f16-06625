@@ -5,7 +5,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 - Emacs is a text editor built from its own coding language.
 
-- This coding back-end makes it extremely powerful for much more than just text editing
+- This coding back-end makes it extremely powerful for much more than just text editing.
 
 - Sort of like how python is useful for more than just reactor design problems.
 
@@ -501,7 +501,7 @@ ValueError: x and y arrays must be equal in length along interpolation axis.
 
 *** Other bugs may be present without producing errors
 
-- IMPORTANT NOTE: The most difficult bugs to fix are the ones that don't produce an error message at all!
+IMPORTANT NOTE: The most difficult bugs to fix are the ones that don't produce an error message at all!
 
 - These situations rely upon your expert knowledge of how these systems work, what is a reasonable solution, and understanding of how basic coding features operate.
 
@@ -512,15 +512,17 @@ assignment:debugging
 - Discussion with your neighbore on how to solve is problems is encouraged!
 
 * Basic concepts of Python wrappers
-- A large number of you expressed interest in knowing how wrappers operate.
+A large number of you expressed interest in knowing how wrappers operate.
 
 - This is likely due to the fact that we shown examples of them for the quantities package as well as the uncertainties package.
 
-- While these packages can be useful, their implementation is often tedious due to
+- While these packages can be useful, their implementation is often tedious for more complex functions.
 
-- Knowing how to use these packages is not required for the course!
+- Knowing how to use these packages is not required for the course, although it can be helpful for simple applications!
 
-- To understand the need for wrappers, it is helpful to understand some of the origin of Python code.
+
+
+To understand the need for wrappers, it is helpful to understand some of the origin of Python code.
 
 - Python is a culmination of modules from many different developers, often with different purposes in mind (like numpy, scipy, and matplotlib).
 
@@ -745,7 +747,7 @@ plt.savefig('./images/polynomial-overfitting.png')
 
 - Also note that while you can return the fitting statistics, polyfit will not calculate a confidence interval for you.
 
-# A more flexable linear fitting tool which calculates confidence intervals
+A more flexable linear fitting tool which calculates confidence intervals
 pydoc:pycse.regress
 
 #+BEGIN_SRC python :results output org drawer
@@ -859,10 +861,14 @@ plt.savefig('./images/polynomial-curvefit.png')
 
 - Interestingly, even though the fitted parameters are found to be the same, nlinfit predicts a smaller confidence interval than regress when using the same model.
 
-- This probably shouldn't be the case, although I am not certain.
+- This probably shouldn't be the case, although I am only 95% confident!
 
 - Based on the example above, for fits with few parameters, non-linear fitting techniques tend to be just as viable as linear fits.
 
 - This will not be the case for models with large numbers of variables.
 
 - We can also see here how a linear fit could potentially be used to identify good initial guesses for similar models using non-linear fits.
+
+Lets end with an exercise in identifying good models to fit data based on actual work being done in the Kitchin group:
+
+assignment:free-energy-regression
