@@ -230,7 +230,7 @@ The tentative course schedule is here. It may change.
 
 ** [2016-10-17 Mon] [[./rxns-book/parameter-estimation-2.org]]
 
-** [2016-10-19 Mon] Jake Boes guest lecture
+** [2016-10-19 Mon] [[./rxns-book/regression-review.org]]
 
 ** [2016-10-24 Wed] [[./rxns-book/mechanism-determination.org]]
 

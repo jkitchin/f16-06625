@@ -1,7 +1,7 @@
 #+STARTUP: showall
 elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
-* COMMENT Tips for faster coding/debugging in emacs
+* Tips for faster coding/debugging in emacs
 
 - Emacs is a text editor built from its own coding language.
 
@@ -42,7 +42,7 @@ C-g: End current process
 
 - These commands are critically important in emacs. If you think emacs has forzen, chances are it's just trying to execute something in the background.
 
-- Practice exiting out of this infinate code block:
+- Practice exiting out of this infinite code block:
 
 #+BEGIN_SRC python :results output org drawer
 
@@ -146,18 +146,140 @@ Enter (and exit) python IDE mode: C-c ' (Your cursor has to be over a code block
 - Let's try out some of our new shortcuts. Go ahead and put your cursor over this block and press C-c ':
 
 #+BEGIN_SRC python :results output org drawer
+import numpy as np
 
+# Some things work differently in the Python IDE than they do in org-mode.
 
+# Lets assume we want to make a list of integers from 0-9 raised to powers of x
+# where x is a range of integers from 0-3.
+X = np.arange(0, 4)
+print(X)
 
+for x in X:
+W = []
+W += [0**x]
+W += [1**x]
+W += [2**x]
+W += [3**x]
+W += [4**x]
+W += [5**x]
+W += [6**x]
+W += [7**x]
+W += [8**x]
+W += [9**x]
+
+print W
+
+# There are mutiple errors in this code. IDE can help us identify where the problem is
+# and or new shortcuts can help us fix it more efficiently.
 #+END_SRC
+
+#+RESULTS:
+:RESULTS:
+:END:
+
+- From the example above, you may have realized that this is not the best way to populate the list "W".
+
+- Next, lets talk about how to effectively utilize loops, but before we do fill out this survey to reflect on what we learned in this section:
+
+assignment:survey-emacs-shortcuts
 
 
 ** Fun with loops
 - There are many different ways to perform loops, not all of which are created equal.
 
-- However, just because certain methods are less-efficient then others in some applications, doesn't mean this will be true for all applications.
-
 - Determining the simplest implementation for any given situation takes a lot of situational experience which comes with practice.
+
+- Here are some of the basics you need to know about Python syntax we use for loops
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+# There are generally two ways to approach list generation:
+
+# 1) Create an empty list and add to it as needed
+LIST = []  # Empty list
+
+LIST = LIST + [1]  # Adding a list that contains 1 to the empty list 
+print(LIST)
+
+# This is syntactically the same as above
+LIST += [2]
+print(LIST)
+
+# We can do this using variables as well
+i = 3
+LIST += [i]
+print(LIST)
+
+# 2) Create a list of the size we need to begin with
+NEW_LIST = np.zeros(3)
+print(NEW_LIST)
+
+# Now we have to index the list to change the entires
+NEW_LIST[0] = 1
+print(NEW_LIST)
+
+NEW_LIST[1] = 2
+print(NEW_LIST)
+
+NEW_LIST[2] = 3
+print(NEW_LIST)
+
+# Fun fact: A computer scientist always prefers the second method.
+# This is because it is less computationally intensive to change the value
+# in an existing list than it is to continuosuly expand the size of your list.
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[1]
+[1, 2]
+[1, 2, 3]
+[ 0.  0.  0.]
+[ 1.  0.  0.]
+[ 1.  2.  0.]
+[ 1.  2.  3.]
+:END:
+
+- There are a few tools for the purpose of generating simple lists
+
+pydoc:numpy.linspace
+
+pydoc:numpy.arange
+
+pydoc:range
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+# np.linspace generates an array of 'num' floats between the first and last value
+L1 = np.linspace(1, 50, num=50)
+print(L1)
+
+# np.arange generates an array of values evenly spaced by step
+L2 = np.arange(1, 50, step=2)
+print(L2)
+
+# You can make these counting backwards as well
+L3 = np.arange(50, 1, step=-2)
+print(L3)
+
+# Same as np.arange, but returns a list instead of an array
+L4 = range(1, 50, 2)
+print(L4)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[  1.   2.   3.   4.   5.   6.   7.   8.   9.  10.  11.  12.  13.  14.  15.
+  16.  17.  18.  19.  20.  21.  22.  23.  24.  25.  26.  27.  28.  29.  30.
+  31.  32.  33.  34.  35.  36.  37.  38.  39.  40.  41.  42.  43.  44.  45.
+  46.  47.  48.  49.  50.]
+[ 1  3  5  7  9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41 43 45 47 49]
+[50 48 46 44 42 40 38 36 34 32 30 28 26 24 22 20 18 16 14 12 10  8  6  4  2]
+[1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31, 33, 35, 37, 39, 41, 43, 45, 47, 49]
+:END:
 
 - Here are some examples of how to produce a list of the squared values for integers from 0-4.
 
@@ -165,8 +287,7 @@ Enter (and exit) python IDE mode: C-c ' (Your cursor has to be over a code block
 import numpy as np
 
 # The brute force approach
-W = []
-W += [0**2]
+W = [0**2]
 W += [1**2]
 W += [2**2]
 W += [3**2]
@@ -209,17 +330,50 @@ print(A)
 [0, 1, 4, 9, 16]
 :END:
 
-- Obviously, this is a trivial example. 
+- Just because certain methods are less-efficient then others in some applications, doesn't mean this will be true for all applications.
 
 *** What are some of the advantages and disadvantages to using each of these looping methods?
 
-** debugging example
+
+- The examples thus far have been fairly trivial, but we are only using fairly simple applications of loops for this class.
+
+- How could you use the methods above to generate the following diagram:
+
+#+BEGIN_EXAMPLE
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+#+END_EXAMPLE
+
+#+BEGIN_SRC python
+star = '* '
+
+print(star * 2)
+#+END_SRC
+
+#+RESULTS:
+: * * 
+
+** Examples debugging from an expert perspective
+- The following example problem was provided via the course mailing list. 
 
 A gaseous feed of pure A (1 mol/L) enters a plug flow reactor of 2 L and reacts as follows:
 
 2A --> R    -ra= 0.005*Ca^2
 
 Find the what feed rate (L/min) will give an outlet concentration Ca = 0.5 mol/L.
+
+- The solution provided is complex and contains multiple extra steps in order to utilize fsolve to find a precise solution.
+
+- Debugging such complex multi-stage code can be tedious and daunting when attempted all at once.
+
+- Fortunately, when problems have multiple stages we can use the tools outlined in the first section to break it into more manageable pieces.
 
 #+BEGIN_SRC python :results output org drawer
 import numpy as np
@@ -254,10 +408,10 @@ def dFdV(F, V, v0):
 
 def Ca(v0):
     '''We need to create a function of Ca(v0) to use fsolve'''
-    F = odeint(dFdV, [Ca0 * v0, 0.], Vspan, args=(v0,))
+    F = odeint(dFdV, [Ca0 * v0, 0.], Vspan)
     v = v0 * sum(F[-1]) / (Ca0 * v0)
     C = F / v
-    return C[-1, 0]
+    return C
 
 # odeint cannot accept an array when returning mutliple flowrates
 # Therefore, we create a proxy function to perfrom essentially the
@@ -281,15 +435,102 @@ plt.tight_layout()
 plt.show()
 #+END_SRC
 
-#+RESULTS:
-:RESULTS:
-Volumetric flow rate: 0.49 L/min
-Exit concentration of Ca: 0.5 mol/L
-:END:
+*** The first error produced from the code block looks as follow:
+
+#+BEGIN_EXAMPLE
+Traceback (most recent call last):
+  File "<stdin>", line 41, in <module>
+  File "<stdin>", line 33, in Ca
+  File "/usr/local/lib/python2.7/dist-packages/scipy/integrate/odepack.py", line 215, in odeint
+    ixpr, mxstep, mxhnil, mxordn, mxords)
+TypeError: dFdV() takes exactly 3 arguments (2 given)
+#+END_EXAMPLE
+
+- Notice that there are multiple error messages reported for this more complex example.
+
+- This is called the "traceback" which provides a list of functions utilized from the line that produced the error in your code, to the actual function which produced the error.
+
+- As an expect, I often look at the last line first. If the error message is one that I recognize, I can usually resolve the issue quickly.
+
+- In this case, "dFdV() takes exactly 3 arguments (2 given)" is fairly informative. I have a function named dFdV(F, V, v0) which takes a molar flowrate, volume, and volumetric flowrate. At some location, I am apparently only giving this function 2 of those 3 variables.
+
+- To quickly identify the location this is happening, I just to the top of the traceback.
+
+- I know that "<stdin>" refers to code that I am executing, so I first find line 41 in python IDE mode.
+
+- Line 41 contains a call to the Ca function, which is also mentioned in the next line of the traceback, so I move to line 33 next.
+
+- Line 33 contains a call the the dFdV function, and now I can see that the additional argument v0 is not being provided to my function.
 
 
-* Python wrappers and how they work
-- 
+*** The error message for the next bug is less helpful than the last:
+
+#+BEGIN_EXAMPLE
+Traceback (most recent call last):
+  File "<stdin>", line 41, in <module>
+  File "/usr/local/lib/python2.7/dist-packages/scipy/interpolate/interpolate.py", line 412, in __init__
+    _Interpolator1D.__init__(self, x, y, axis=axis)
+  File "/usr/local/lib/python2.7/dist-packages/scipy/interpolate/polyint.py", line 61, in __init__
+    self._set_yi(yi, xi=xi, axis=axis)
+  File "/usr/local/lib/python2.7/dist-packages/scipy/interpolate/polyint.py", line 126, in _set_yi
+    raise ValueError("x and y arrays must be equal in length along "
+ValueError: x and y arrays must be equal in length along interpolation axis.
+#+END_EXAMPLE
+
+- Most of the traceback isn't that helpful either, since it refers to scipy package functions.
+
+- So, the gist of the error is that there are two arrays: x and y that are not the same shape, but should be, and the problem origionated in my code at line 41 (The last time "<stdin>" is referenced).
+
+- This time I will need to manipulate the variables to determine what is wrong. 
+
+- Line 41 contains the scipy.interp1d function which takes two arrays as arguments. It seems likely that these are the x and y arrays refereed to in the error message.
+
+- Commenting out line 41 and everything after it will let me look at the size of each array.
+
+- Now I can see that "map(Ca, v0span)" is significantly larger than "v0span".
+
+- I know that the map function returns a list of results from the Ca function for each element from v0span, so the Ca function must not be generating what I thought.
+
+- The purpose of the Ca function is to produce the exit concentration of Ca for a given v0.
+
+- Passing a single v0 through the Ca function, I can now see that the function is returning a list of Ca and Cr values representing concentrations through the extent of the reactor.
+
+- Now I know that I need to select the exit concentration from the list to have the function produce the desired result.
+
+- Finally, I can uncomment the final section of my code and everything runs as planned.
+
+*** Other bugs may be present without producing errors
+
+- IMPORTANT NOTE: The most difficult bugs to fix are the ones that don't produce an error message at all!
+
+- These situations rely upon your expert knowledge of how these systems work, what is a reasonable solution, and understanding of how basic coding features operate.
+
+- Lets practice these coding skills now by working through the assignment below in class:
+
+assignment:debugging
+
+- Discussion with your neighbore on how to solve is problems is encouraged!
+
+* Basic concepts of Python wrappers
+- A large number of you expressed interest in knowing how wrappers operate.
+
+- This is likely due to the fact that we shown examples of them for the quantities package as well as the uncertainties package.
+
+- While these packages can be useful, their implementation is often tedious due to
+
+- Knowing how to use these packages is not required for the course!
+
+- To understand the need for wrappers, it is helpful to understand some of the origin of Python code.
+
+- Python is a culmination of modules from many different developers, often with different purposes in mind (like numpy, scipy, and matplotlib).
+
+- That means many that not all of the modules we use designed to support features from other modules.
+
+- This is particularly true of less widely used modules like quantities and uncertainties.
+
+- Therefore, to make their functions compatible with other, more commonly used modules, these developers implement wrappers which allow them to manipulate those functions without actually changing them.
+
+- Here is an example of the most basic wrapper implementation.
 
 #+BEGIN_SRC python :results output org drawer
 # First we define the wapper.
@@ -321,6 +562,8 @@ def wrap():
 # This wrapper doesn't do much!
 @wrap()
 def divide(x, y, an_extra_parameter=0):
+   """This is someone elses function, which I can't change
+   """
    return x / float(y)
 
  
@@ -334,6 +577,9 @@ print(divide(1, 2, an_extra_parameter='Bob'))
 0.5
 :END:
 
+- In more complex examples, we can add our own additional functions to the wrapper.
+
+- Consider how we might prevent the function from returning an error if we were to divide by zero.
 
 #+BEGIN_SRC python :results output org drawer
 
@@ -361,6 +607,8 @@ def trace_out(func, *args):
 
 @wrap(trace_in, trace_out)
 def divide(x, y):
+   """This is someone elses function, which I can't change
+   """
    return x / float(y)
 
 print(divide(1, 2))
@@ -372,6 +620,8 @@ trace_in is being run
 trace_out is being run
 0.5
 :END:
+
+- Finally, the pre-function and post-function can be written in such a way that the original function achieves the desired effect without being edited directly.
 
 #+BEGIN_SRC python :results output org drawer
 import numpy as np
@@ -393,7 +643,7 @@ def wrap(pre, post):
 
 
 def trace_in(func, *args):
-    print('trace_in is checking to make sure y !=0')
+    print('trace_in is checking to make sure y != 0')
 
     x, y = args
 
@@ -411,6 +661,8 @@ def trace_out(func, result):
 
 @wrap(trace_in, trace_out)
 def divide(x, y):
+   """This is someone elses function, which I can't change
+   """
    return x / float(y)
 
 print(divide(1, 0))
@@ -418,10 +670,199 @@ print(divide(1, 0))
 
 #+RESULTS:
 :RESULTS:
-trace_in is checking to make sure y !=0
+trace_in is checking to make sure y != 0
 trace_out is being run
 [[https://pogoprinciple.files.wordpress.com/2012/02/divide3.jpg]]
 nan
 :END:
 
-* A real-world fitting example.
+- Previously, Dr. Kitchin has demonstrated how we would wrap fsolve to account for units: [[./rxns-book/wrapping-up-introduction.org]].
+
+- The quantities package does not provide function wrapping like uncertainties does, so in this example the wrapper is hard-coded around the fsolve function.
+
+- Even the uncertainties wrapper may not behave correctly with all functions. Consider using Monte-Carlo techniques instead as they tend to be more robust.
+
+* Review of estimating parameters from experimental kinetics data
+- Uncertainty is everywhere in engineering and learning how to manage it is a valuable skill even outside of reactor design.
+
+- In general, when fitting to models we categorize into two main topics.
+
+** Linear solvers:
+- Linear solvers are trivially easy to solve and do not require an initial guess.
+
+- However, not all data follows a linear trend and transforming models into linear form often fit more poorly than non-linear fits.
+
+# A numpy function for fitting data to a polynomial of a specified order
+pydoc:numpy.polyfit
+
+# A convenient way to evaulate the parameters that come from numpy.polyfit
+pydoc:numpy.poly1d
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([0.0, 1.0, 2.0, 3.0,  4.0,  5.0])
+y = np.array([0.0, 0.8, 0.9, 0.1, -0.8, -1.0])
+
+# Create a third-order polynomial to fit the data
+fit, cov = np.polyfit(x, y, 4, cov=True)
+
+std_dev = np.diag(cov)
+print(std_dev)
+
+p = np.poly1d(fit)
+
+# Create a thirtieth-order polynomial to fit the data
+p30 = np.poly1d(np.polyfit(x, y, 30))
+
+xp = np.linspace(-2, 6, 100)
+
+plt.figure(figsize=(6, 4))
+plt.plot(x, y, '.')
+plt.plot(xp, p(xp), '-')
+plt.plot(xp, p30(xp), '--')
+plt.ylim(-2, 2)
+plt.tight_layout()
+plt.savefig('./images/polynomial-overfitting.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ -4.82253086e-05  -4.88376935e-03  -4.90451389e-02  -5.37455208e-02
+  -3.95250693e-03]
+:END:
+
+[[./images/polynomial-overfitting.png]]
+
+- The figure shown above demonstrates a common mistake made by beginners.
+
+- A model is only as powerful as its predictive capability. Although the 30th-order polynomial fits the data perfectly, its predictive capability is dubious at best.
+
+- This also underlines the importance of visually inspecting the interpolations and extrapolations of your fit.
+
+- Generally speaking, interpolations are more predictive than extrapolations, although this may not be true for poor fitting models.
+
+- Also note that while you can return the fitting statistics, polyfit will not calculate a confidence interval for you.
+
+# A more flexable linear fitting tool which calculates confidence intervals
+pydoc:pycse.regress
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from pycse import regress
+import matplotlib.pyplot as plt
+
+x = np.array([0.0, 1.0, 2.0, 3.0,  4.0,  5.0])
+y = np.array([0.0, 0.8, 0.9, 0.1, -0.8, -1.0])
+
+# We can control which features we fit to.
+X = np.column_stack([x**4, x**2, x**1])
+
+pars, pint, se = regress(X, y, alpha=0.05)
+
+print(pars)
+print(pint)
+
+xp = np.linspace(-2, 6, 100)
+
+# Unfortunatly, regress does not 
+def fit(x, A, C, D):
+    return A*x**4 + C*x**2 + D*x**1
+
+plt.figure(figsize=(6, 4))
+plt.plot(x, y, '.')
+plt.plot(xp, fit(xp, *pars), '-')
+plt.ylim(-2, 2)
+plt.tight_layout()
+plt.savefig('./images/polynomial-regress.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 0.008723   -0.54426774  1.4283812 ]
+[[ 0.00501202  0.01243399]
+ [-0.70289172 -0.38564377]
+ [ 1.05618245  1.80057995]]
+:END:
+
+[[./images/polynomial-regress.png]]
+
+- By removing the 3rd and 0th order terms, the fit becomes much more stable at the extrapolated ends.
+
+- Assuming there is some error associated with the initial data, I could make a compelling argument that the simpler model provides a more accurate representation of the trend, and is potentially more predictive.
+
+- Unfortunatly, regress does not return have a poly1d function for convenient plotting, so we must create our own function if we want to demonstrate the interpolation graphically.
+
+- However, poly1d can be used if the traditional polynomial form is used.
+
+** Non-linear solvers:
+- Non-linear solvers are not as simple to solve and sometimes no good solutions can be found at all.
+
+- These fitting methods rely on initial guesses and can be quite sensitive to these guesses, especially at higher-orders.
+
+- These solvers are also very flexible and can at least attempt to fit to any model provided.
+
+# The standard function used for non-linear fitting
+pydoc:scipy.curve_fit
+
+# Same as a basic scipy.curve_fit but also incorporates the calculation of confidence intervals.
+pydoc:pycse.nlinfit
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from pycse import regress
+import matplotlib.pyplot as plt
+from scipy.optimize import curve_fit
+from pycse import nlinfit
+
+x = np.array([0.0, 1.0, 2.0, 3.0,  4.0,  5.0])
+y = np.array([0.0, 0.8, 0.9, 0.1, -0.8, -1.0])
+
+
+def fit(x, A, C, D):
+    return A*x**4 + C*x**2 + D*x**1
+
+
+# This comes from the linear fit above
+initial_guess = [1, 1, 1]
+
+pars, pcov = curve_fit(fit, x, y, initial_guess)
+pars2, pint, se = nlinfit(fit, x, y, initial_guess, 0.05)
+
+print(pars)
+print(pars2)
+
+print(pint)
+
+xp = np.linspace(-2, 6, 100)
+
+plt.figure(figsize=(6, 4))
+plt.plot(x, y, '.')
+plt.plot(xp, fit(xp, *pars), 'b-')
+plt.plot(xp, fit(xp, *pars), 'r--')
+plt.ylim(-2, 2)
+plt.tight_layout()
+plt.savefig('./images/polynomial-curvefit.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 0.008723   -0.54426774  1.4283812 ]
+[ 0.008723   -0.54426774  1.4283812 ]
+[[ 0.00597818  0.01146782]
+ [-0.66159357 -0.42694192]
+ [ 1.15308533  1.70367707]]
+:END:
+
+[[./images/polynomial-curvefit.png]]
+
+- Interestingly, even though the fitted parameters are found to be the same, nlinfit predicts a smaller confidence interval than regress when using the same model.
+
+- This probably shouldn't be the case, although I am not certain.
+
+- Based on the example above, for fits with few parameters, non-linear fitting techniques tend to be just as viable as linear fits.
+
+- This will not be the case for models with large numbers of variables.
+
+- We can also see here how a linear fit could potentially be used to identify good initial guesses for similar models using non-linear fits.
