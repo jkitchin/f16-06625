@@ -569,3 +569,13 @@ solution:nh3-equil
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+
+** TODO assignment:survey-emacs-shortcuts			 :assignment:
+   DEADLINE: <2016-10-19 Wed>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: survey-emacs-shortcuts
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
