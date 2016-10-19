@@ -111,7 +111,7 @@ print('The rate is {0} mol/L/s'.format(k*CA))
 import numpy as np
 import matplotlib.pyplot as plt
 
-N = 100000000
+N = 1000000
 muk = 0.1
 sigmak = 0.02
 k = np.random.normal(muk, sigmak, N)
@@ -123,7 +123,7 @@ CA = 2.0
 r = k * CA
 print('The average rate is {0} mol/L/s'.format(np.mean(r)))
 print('The standard error is {0} mol/L/s'.format(np.std(r)))
-print(n)
+print(SE)
 
 plt.hist(r, 500)
 plt.xlabel('r')
@@ -132,8 +132,9 @@ plt.savefig('images/mc-error.png')
 #+END_SRC
 
 #+RESULTS:
-: The average rate is 0.199999924163 mol/L/s
-: The standard error is 0.0399965838498 mol/L/s
+: The average rate is 0.200035949063 mol/L/s
+: The standard error is 0.0399783940845 mol/L/s
+: 2e-05
 
 [[./images/mc-error.png]]
 
@@ -287,11 +288,11 @@ r_1 = np.array([1.2, 2.0, 1.36, 0.36, 0.74]) # mol/m^3/min
 def rate(Ca, k, alpha):
     return k * Ca**alpha
 
-p, pint, se = nlinfit(rate, C_A, r_1, [10, 0.5])
+p, pint, se = nlinfit(rate, C_A, r_1, [10, 0.5], alpha=0.2)
 print('k is between {0}'.format(pint[0]))
 print('alpha is between {0}'.format(pint[1]))
 #+END_SRC
 
 #+RESULTS:
-: k is between [ 0.90004765  1.23445293]
-: alpha is between [ 0.30394028  0.58845699]
+: k is between [ 0.98120479  1.15329579]
+: alpha is between [ 0.37298991  0.51940735]

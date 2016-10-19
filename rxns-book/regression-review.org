@@ -1,0 +1,427 @@
+#+STARTUP: showall
+elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
+
+* COMMENT Tips for faster coding/debugging in emacs
+
+- Emacs is a text editor built from its own coding language.
+
+- This coding back-end makes it extremely powerful for much more than just text editing
+
+- Sort of like how python is useful for more than just reactor design problems.
+
+- If you've spent a lot of time with a particular operating system, you've probably figured out how to implement it's shortcuts more effectively, or even customize those shortcuts.
+
+- These little familiarities are often the reason why we prefer to use one tool over another.
+
+- Although emacs is powerful, it's many capabilities also make it difficult to master.
+
+#+attr_org: :width 500
+[[./images/editor-learning-curve.png]]
+
+- However, you will be using it for the remainder of this course, so take advantage of this time and our experience. You are encouraged to ask questions!
+
+- Scimax (the package we use) is a large library of customizations created by Dr. Kitchin.
+
+- Its purpose is two fold: 
+1) To create a text editing environment designed for ease of scientific research.
+2) To make it easier for young professional to implement scientific coding solutions.
+
+- For the purposes of this class, you will primarily be using emacs as a Python IDE (Integrated Development Environment).
+
+- Since we are using it as the environment in which we code, it is critically important to know how to utilize it effectively to accelerate your coding speed.
+
+- For the most part, this will come with practice, but here are some shortcuts which I use frequently:
+
+Cut: C-w
+Copy: A-w
+Paste: C-y
+Undo: C-/
+(If you prefer Microsoft's defaults of C-x, C-c, C-v, and C-z, see below for how to make this change permanent)
+
+C-g: End current process
+
+- These commands are critically important in emacs. If you think emacs has forzen, chances are it's just trying to execute something in the background.
+
+- Practice exiting out of this infinate code block:
+
+#+BEGIN_SRC python :results output org drawer
+
+test = True
+
+# Fun fact: While code is executing, lists get stored in your memory.
+# If you run code that generates an infinatly expanding list, you'll crash your computer!
+
+# Don't believe me? Wait until after class to try it ;)
+count = 0
+while test == True:
+    count += 1
+
+#+END_SRC
+
+- Other useful shortcuts:
+
+Expand a python code block: <p TAB
+
+<p
+
+Split screen vertically: C-x 3
+Focus on only selected buffer: C-x 1
+Undotree (undo a lot of stuff): C-x u
+Select region: C-space (then press the up or down arrows)
+delete everything in the line after the cursor: C-k
+Toggle images in org-mode: C-c C-x C-v
+
+#+attr_org: :width 300
+[[./images/emacs_user_at_work.jpg]]
+
+Toggle latex equations in section: c-c c-x c-l
+
+\(E=mc^{2}\)
+
+Toggle pretty entities: C-c C-x \
+
+E = m_{a}c^{s}
+
+- I also take advantage of the fact that emacs is easily customizable to make my own shortcuts for emacs commands which I use frequently:
+
+#+begin_src emacs-lisp
+;; make latex equations larger
+(plist-put org-format-latex-options :scale 1.5)
+
+
+;; make hotkeys for triggering spell check 
+;; this is how i find your typo's so quickly when checking your homework ^.^
+(global-set-key (kbd "<xf86new>") 'flyspell-buffer)  ;; f4 key
+
+;; navigational controls
+(global-set-key (kbd "<mouse-9>") 'next-buffer)      ;; Side arrow up on mouse
+(global-set-key (kbd "<mouse-8>") 'previous-buffer)  ;; Side arrow down on mouse
+
+;; Hotkeys for python mode
+(global-set-key (kbd "C-c <left>") 'python-indent-shift-left) ;; Indent a region left
+(global-set-key (kbd "C-c <right>") 'python-indent-shift-right) ;; Indent a region right
+(global-set-key (kbd "C-c <down>") 'comment-dwim)  ;; Comment a region quickly
+
+;; Highlights the selected line when in lisp or org files
+(add-hook 'org-mode-hook 'hl-line-mode)
+(add-hook 'emacs-lisp-mode-hook 'hl-line-mode)
+#+END_SRC
+
+#+RESULTS:
+| hl-line-mode | lisp-outline-setup | (lambda nil (lispy-mode) (eldoc-mode)) | seq--activate-font-lock-keywords | ac-emacs-lisp-mode-setup |
+
+#+BEGIN_SRC emacs-lisp
+;; Toggle the microsoft-version of copy-paste keys
+;; I do not use this any longer, but I did when I was first learning
+(cua-mode t)
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+;; This command will give you line numbers on the side of your screen.
+;; Very handy when debugging code!
+(linum-mode t)
+#+END_SRC
+
+- Executing the code block above will give you access to all of the commands until you close emacs.
+
+- Chances are you'll get tired of running this block all the time, so you can also makes these changes permenent by adding them to a specific file.
+
+- That file can be accessed in your menu at: Scimax > Customize user.el
+
+- Adding any of these lines to this file will make them execute every time you open emacs!
+
+- Be careful not to add bad code to this file, or it will disrupt your booting process.
+
+
+- Finally, I've saved the best for last:
+
+Enter (and exit) python IDE mode: C-c ' (Your cursor has to be over a code block)
+
+- This shortcut is a critical component to my work-flow as a Python coder who uses emacs.
+
+- Org-documents (like the one we're in now) are not designed specifically for making code editing simple.
+
+- The python IDE mode *is* intended for this purpose.
+
+- Let's try out some of our new shortcuts. Go ahead and put your cursor over this block and press C-c ':
+
+#+BEGIN_SRC python :results output org drawer
+
+
+
+#+END_SRC
+
+
+** Fun with loops
+- There are many different ways to perform loops, not all of which are created equal.
+
+- However, just because certain methods are less-efficient then others in some applications, doesn't mean this will be true for all applications.
+
+- Determining the simplest implementation for any given situation takes a lot of situational experience which comes with practice.
+
+- Here are some examples of how to produce a list of the squared values for integers from 0-4.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+# The brute force approach
+W = []
+W += [0**2]
+W += [1**2]
+W += [2**2]
+W += [3**2]
+W += [4**2]
+
+print(W)
+
+# The for statement
+X = []
+for i in range(5):
+   X += [i**2]
+
+print(X)
+
+# List comprehension
+Y = [i**2 for i in range(5)]
+
+print(Y)
+
+# An array
+Z = np.arange(0, 5) ** 2
+
+print(Z)
+
+# Mapping
+def sqr(x):
+    return x ** 2
+
+A = map(sqr, range(5))
+
+print(A)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[0, 1, 4, 9, 16]
+[0, 1, 4, 9, 16]
+[0, 1, 4, 9, 16]
+[ 0  1  4  9 16]
+[0, 1, 4, 9, 16]
+:END:
+
+- Obviously, this is a trivial example. 
+
+*** What are some of the advantages and disadvantages to using each of these looping methods?
+
+** debugging example
+
+A gaseous feed of pure A (1 mol/L) enters a plug flow reactor of 2 L and reacts as follows:
+
+2A --> R    -ra= 0.005*Ca^2
+
+Find the what feed rate (L/min) will give an outlet concentration Ca = 0.5 mol/L.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+from scipy.optimize import fsolve
+from scipy.interpolate import interp1d
+
+Ca0 = 1  # mol/L
+k = 0.005 # mol/L^2 s
+Vspan = np.linspace(0, 2) # L
+v0span = np.linspace(0.0001, 0.2)
+Ca_target = 0.5
+
+
+def dFdV(F, V, v0):
+
+    Fa, Fr = F
+    Ft = sum(F)
+    Ft0 = Ca0 * v0
+    v = v0 * Ft / Ft0
+
+    Ca = Fa / v
+    ra = -k * Ca**2
+    rr = -ra / 2.
+
+    dFadV = ra
+    dFrdV = rr
+
+    return [dFadV, dFrdV]
+
+
+def Ca(v0):
+    '''We need to create a function of Ca(v0) to use fsolve'''
+    F = odeint(dFdV, [Ca0 * v0, 0.], Vspan, args=(v0,))
+    v = v0 * sum(F[-1]) / (Ca0 * v0)
+    C = F / v
+    return C[-1, 0]
+
+# odeint cannot accept an array when returning mutliple flowrates
+# Therefore, we create a proxy function to perfrom essentially the
+# same task as Ca, it will run independently of odeint.
+proxy_Ca = interp1d(v0span, map(Ca, v0span), 'cubic')
+
+def obj(v0):
+    '''Our objective function: Ca = 0.5'''
+    return proxy_Ca(v0) - Ca_target
+
+v0_sol = fsolve(obj, 0.01)
+print('Volumetric flow rate: {:.2f} L/min'.format(v0_sol[-1]*60))
+print('Exit concentration of Ca: {:.1f} mol/L'.format(Ca_target))
+
+plt.plot(v0span*60, map(Ca, v0span), 'b-', label='')
+plt.plot(v0span*60, proxy_Ca(v0span), 'r--', label='')
+plt.plot(v0_sol*60, Ca(v0_sol[0]), 'ro', label='Solution')
+plt.xlabel('Volumetric flow rate (L/min)')
+plt.ylabel('$C_A$ (mol/L)')
+plt.tight_layout()
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Volumetric flow rate: 0.49 L/min
+Exit concentration of Ca: 0.5 mol/L
+:END:
+
+
+* Python wrappers and how they work
+- 
+
+#+BEGIN_SRC python :results output org drawer
+# First we define the wapper.
+def wrap():
+
+
+    # Next we define which function we are decorating
+    # This is required syntax for the @wrap command
+    def decorate(func):
+
+        # Finally, we specify what to do when the function is called
+        # For a standard function, this is to return the results only!
+        def call(*args, **kwargs):
+
+            # First, we tell the wrapper to inform us of the arguments
+            print('The arguments being passed to call are:', args)
+            print('The key-word arguments in this example:', kwargs)
+
+            # Then we have it do the usual thing
+            result = func(*args, **kwargs)
+
+            return result
+
+        return call
+
+    return decorate
+
+
+# This wrapper doesn't do much!
+@wrap()
+def divide(x, y, an_extra_parameter=0):
+   return x / float(y)
+
+ 
+print(divide(1, 2, an_extra_parameter='Bob'))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+('The arguments being passed to call are:', (1, 2))
+('The key-word arguments in this example:', {'an_extra_parameter': 'Bob'})
+0.5
+:END:
+
+
+#+BEGIN_SRC python :results output org drawer
+
+def wrap(pre, post):
+    def decorate(func):
+        def call(*args):
+
+            # Now we execute the pre-function and post-functions as well
+            pre(func, *args)
+            result = func(*args)
+            post(func, *args)
+            return result
+        return call
+    return decorate
+
+
+
+
+def trace_in(func, *args):
+   print('trace_in is being run')
+
+def trace_out(func, *args):
+   print('trace_out is being run')
+
+
+@wrap(trace_in, trace_out)
+def divide(x, y):
+   return x / float(y)
+
+print(divide(1, 2))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+trace_in is being run
+trace_out is being run
+0.5
+:END:
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+
+
+def wrap(pre, post):
+    def decorate(func):
+        def call(*args):
+
+            # These end-plate functions can be used to manipulate
+            # the input
+            args = pre(func, *args)
+            result = func(*args)
+            post(func, result)
+            return result
+        return call
+    return decorate
+
+
+
+def trace_in(func, *args):
+    print('trace_in is checking to make sure y !=0')
+
+    x, y = args
+
+    if y == 0:
+        return (x, np.nan)
+    else:
+        return (x, y)
+
+
+def trace_out(func, result):
+    print('trace_out is being run')
+
+    if np.isnan(result):
+        print('[[https://pogoprinciple.files.wordpress.com/2012/02/divide3.jpg]]')
+
+@wrap(trace_in, trace_out)
+def divide(x, y):
+   return x / float(y)
+
+print(divide(1, 0))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+trace_in is checking to make sure y !=0
+trace_out is being run
+[[https://pogoprinciple.files.wordpress.com/2012/02/divide3.jpg]]
+nan
+:END:
+
+* A real-world fitting example.
