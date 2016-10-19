@@ -570,7 +570,7 @@ solution:nh3-equil
    :END:
 
 
-** TODO assignment:survey-emacs-shortcuts			 :assignment:
+** COLLECTED assignment:survey-emacs-shortcuts			 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: participation
