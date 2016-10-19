@@ -1,0 +1,460 @@
+% Created 2016-10-17 Mon 19:50
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[version=3]{mhchem}
+\usepackage[numbers,super,sort&compress]{natbib}
+\usepackage{natmove}
+\usepackage{url}
+\usepackage{minted}
+\usepackage{underscore}
+\usepackage[linktocpage,pdfstartview=FitH,colorlinks,
+linkcolor=blue,anchorcolor=blue,
+citecolor=blue,filecolor=blue,menucolor=blue,urlcolor=blue]{hyperref}
+\usepackage{attachfile}
+\author{John Kitchin}
+\date{Fall 2016}
+\title{Syllabus for  06-625 Chemical and Reactive Systems}
+\begin{document}
+
+\tableofcontents
+
+
+\section{Course details}
+\label{sec:orgheadline14}
+\begin{itemize}
+\item Course: 06-625 Chemical and Reactive Systems
+
+\item Instructor: Professor Kitchin (jkitchin@andrew.cmu.edu)
+\begin{itemize}
+\item Doherty Hall A207F (Office hours by appointment)
+\end{itemize}
+
+\item Teaching assistants (Doherty Hall A204)
+\begin{itemize}
+\item Jacob Boes (\url{mailto:jboes@cmu.edu})
+\item Elif Erdinc (\url{mailto:eerdinc@andrew.cmu.edu})
+\item Office hours by appointment
+\end{itemize}
+
+\item We will not be using a textbook. The course notes will be provided through Emacs. You are welcome to augment your studies from other textbooks on chemical reaction engineering. Here are some good ones.
+
+\item Elements of Chemical Reaction Engineering, Fourth Edition, H. Scott Fogler, Prentice Hall.
+\begin{itemize}
+\item This is one of the most common reaction engineering text books. Many of the examples in the notes were adapted from this book. It has many good conceptual explanations, but it lacks the computational emphasis that this course uses.
+\end{itemize}
+
+\item Chemical Reactor Analysis and Design Fundamentals, James B. Rawlings and John G. Ekerdt, Nob Hill Publishing.
+\begin{itemize}
+\item This book is very numerical problem-solving oriented.
+\end{itemize}
+
+\item The Engineering of Chemical Reactions, Lanny D. Schmidt, Oxford University Press, 1998.
+
+\item Chemical Reactor Analysis and Design, 3rd Edition, Froment, Bischoff De Wilde, Wiley.
+\begin{itemize}
+\item This is a more advanced book, sometimes used in graduate reactor design courses.
+\end{itemize}
+\end{itemize}
+
+This course will not have a "website". All course materials will be accessed through Emacs (M-x techela). You should probably review these notes on using emacs: \url{emacs.org}.
+
+\subsection{Course description - Chemical and Reactive Systems}
+\label{sec:orgheadline1}
+
+This course will cover chemical kinetics and chemical reaction engineering with an emphasis on using computational tools to solve difficult problems. Topics will include reaction rates, stoichiometry, equilibrium and multiple reactions. Determination of rate law parameters and rate laws will be covered. Typical reactors including continuously stirred tank reactors, plug flow reactors and membrane reactors will be studied. The effects of heat and mass transfer on reactor design will be considered. Issues in catalysis will be presented and discussed. Students should expect to use numerical software extensively in the course.
+
+\subsection{Course objectives}
+\label{sec:orgheadline8}
+
+After completing this course you will be able to use Python to solve problems involving the:
+
+\subsubsection{Design of reactors for multiple reactions\hfill{}\textsc{LO1}}
+\label{sec:orgheadline2}
+This includes correctly using stoichiometry, the correct mole balance, selection of the best reactor type to achieve optimal selectivity, and economic considerations in reactor design.
+
+\subsubsection{Design of reactors with pressure drops\hfill{}\textsc{LO2}}
+\label{sec:orgheadline3}
+This includes the role of pressure drop in modulating volumetric flow and gas phase concentrations and the effect of that on the reactor design.
+
+\subsubsection{Derivation of kinetic parameters from experimental data including uncertainty of the parameters\hfill{}\textsc{LO3}}
+\label{sec:orgheadline4}
+This will include linear and nonlinear regression, with confidence intervals. Analysis of kinetic measurements, and experimental design.
+
+\subsubsection{Determination of the effects of parameter uncertainty on reactor design\hfill{}\textsc{LO4}}
+\label{sec:orgheadline5}
+This will consider the role of uncertainty in parameters on design outcomes. For example, how probable is it for a reactor to meet a design objective given uncertainty in the parameters in the design equations?
+
+\subsubsection{Design of reactors where mass-transport effects are important\hfill{}\textsc{LO5}}
+\label{sec:orgheadline6}
+This will include the use of effectiveness factors, and multiphase reaction engineering.
+
+\subsubsection{Design of non-isothermal reactors\hfill{}\textsc{LO6}}
+\label{sec:orgheadline7}
+This will include accounting for changing temperatures on reaction rates, safety analysis of reactor conditions
+
+
+\subsection{Grading}
+\label{sec:orgheadline10}
+
+\begin{table}[htb]
+\caption{\label{categories}
+Categories and weights for graded}
+\centering
+\begin{tabular}{lr}
+Category & weight\\
+\hline
+homework & 0.2\\
+quiz & 0.25\\
+exam1 & 0.1\\
+exam2 & 0.15\\
+exam3 & 0.2\\
+participation & 0.1\\
+\end{tabular}
+\end{table}
+
+Homeworks will be assigned one to three times a week. Each assignment will typically be one problem that should take 30-90 minutes to complete.
+
+Quizzes will be given in class. You should be prepared to take a quiz at any time. These will typically be short, timed problems.
+
+Exams will be scheduled and given during class. You will need your computer for these.
+
+Your participation grade will be determined by the fraction of class exercises you participate in. You will need your computer for these.
+
+You should bring your computer to class every day. You will need it to follow the lecture notes, to participate in class exercises, and to complete quizzes and exams. You are responsible for ensuring the battery is charged, that you can connect to the internet, and that the software required for the course is installed and working. There will not be any makeup assignments.
+
+Late assignments will automatically lose 50\% of their points. Late assignments can only be turned in by email.
+
+\subsubsection{Grading criteria}
+\label{sec:orgheadline9}
+
+You are transitioning into a young professional at this point. That means assignments are done professionally too. In addition to the technical correctness of your work, we will also be assessing the professionalism with which it is presented. Each assignment will show the rubric it will be graded with at the top of the file.
+
+There will be a straight scale (no curve) so you will always know exactly what your grade is at all times. Each problem will be graded considering the approach used, the correctness of the answer, the neatness and quality of presentation, etc\ldots{} Each category of the rubric will be given a letter grade that indicates your level of performance in that category.
+
+"A" work has the following characteristics: The correct approach is used and the problem is set up correctly. The work is not over-simplified and it is easy to see it is done correctly. Any assumptions made were stated and justified. The answers are correct or only the most trivial errors are present, and were identified by the student. All of the correct units were used. The presentation is complete, clear, logical, neat and in order. Error analysis was performed if appropriate. Any figures used have properly labeled axes with units, and a legend if there is more than one curve. Essentially everything that should have been done was done and done correctly. This is the kind of work an employer wants their employees to do, and the kind of work you will be promoted for doing. You should be proud of this work.
+
+"B" work is deficient in one or more of the properties of "A" work. It might be basically right, but essential details are missing such as units, or the presentation is sloppy. You will get by with this kind of work, but you should not expect to be praised for it.
+
+"C" quality work is deficient in more than two of the properties of "A" work. You would probably not get fired for this kind of work, but you may be notified you need to improve and you should not expect any kind of promotion. This is the bare minimum of expected performance.
+
+"D" work is not considered acceptable performance. Repeat offenses could lead to the loss of your job.
+
+"R" work is totally unacceptable performance. You will be fired.
+
+plus/minus modifiers will be used to provide finer grained grades.
+
+Each problem will have a point value associated with it. The letter grade you get serves as a multiplier on that point value. The multipliers are:
+
+\begin{center}
+\begin{tabular}{lr}
+Lettergrade & multiplier\\
+\hline
+A++ & 1\\
+A+ & 0.95\\
+A & 0.9\\
+A- & 0.85\\
+A/B & 0.8\\
+B+ & 0.75\\
+B & 0.7\\
+B- & 0.65\\
+B/C & 0.6\\
+C+ & 0.55\\
+C & 0.5\\
+C- & 0.45\\
+C/D & 0.4\\
+D+ & 0.35\\
+D & 0.3\\
+D- & 0.25\\
+D/R & 0.2\\
+R+ & 0.15\\
+R & 0.1\\
+R- & 0.05\\
+R- - & 0.0\\
+\end{tabular}
+\end{center}
+
+At the end of the semester I will calculate what fraction of the possible points you have earned, and your grade will be based on this distribution:
+
+\begin{center}
+\begin{tabular}{ll}
+80\% >= grade & A\\
+60\% >= grade < 80 & B\\
+40\% >= grade < 60 & C\\
+20\% >= grade < 40 & D\\
+grade < 20\% & R\\
+\end{tabular}
+\end{center}
+
+Note that the standard grade for correct work is an "A", which is not equal to "100\%". It is worth 90\%, which is well above the cutoff for an A. The A+ and A++ designations are reserved for work that is well above "correct".
+
+\subsection{Academic honesty}
+\label{sec:orgheadline11}
+All work is expected to be your original work. You may work with class members to solve the homework problems, but you must turn in your own solutions. It is cheating to turn in someone else's work as your own. If you use code from the internet or the course notes, you should note this in your solution. Duplicated assignments (e.g. two students who turn in the same work) will receive zeros and a warning. Repeat offenses will be reported as academic dishonesty.
+
+When in doubt, review this website: \url{http://www.cmu.edu/academic-integrity/}, and ask if anything is unclear \emph{before} you get in trouble. In particular see these sites:
+\begin{itemize}
+\item \url{http://www.cmu.edu/academic-integrity/collaboration/index.html}
+\item \url{http://www.cmu.edu/academic-integrity/cheating/index.html}
+\item \url{http://www.cmu.edu/academic-integrity/plagiarism/index.html}
+\end{itemize}
+
+\subsection{Religious holidays}
+\label{sec:orgheadline12}
+We will accommodate religious holidays when possible. If your work will be affected by a religious holiday, you must inform Professor Kitchin as early as possible to work out an accommodation in advance.
+
+\subsection{Take care of yourself}
+\label{sec:orgheadline13}
+Do your best to maintain a healthy lifestyle this semester by eating well, exercising, avoiding drugs and alcohol, getting enough sleep and taking some time to relax. This will help you achieve your goals and cope with stress.
+
+All of us benefit from support during times of struggle. You are not alone. There are many helpful resources available on campus and an important part of the college experience is learning how to ask for help. Asking for support sooner rather than later is often helpful.
+
+If you or anyone you know experiences any academic stress, difficult life events, or feelings like anxiety or depression, we strongly encourage you to seek support. Counseling and Psychological Services (CaPS) is here to help: call 412-268-2922 and visit their website at \url{http://www.cmu.edu/counseling/}. Consider reaching out to a friend, faculty or family member you trust for help getting connected to the support that can help.
+
+If you or someone you know is feeling suicidal or in danger of self-harm, call someone immediately, day or night:
+
+CaPS: 412-268-2922
+
+Re:solve Crisis Network: 888-796-8226
+
+If the situation is life threatening, call the police:
+
+On campus: CMU Police: 412-268-2323
+
+Off campus: 911
+
+If you have questions about this or your coursework, please let me know.
+
+\section{Announcements}
+\label{sec:orgheadline16}
+
+\subsection{Highlighting your notes}
+\label{sec:orgheadline15}
+
+See \url{./highlighting.org}. I have created some highlighting capability for Techela notes. You should regard this as experimental, and not rely on it too heavily until you know it does what you want.
+
+
+\section{Class schedule}
+\label{schedule}
+The tentative course schedule is here. It may change.
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-08-29 Mon] } Review syllabus, software}
+\label{sec:orgheadline17}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-08-31 Wed] } \url{./rxns-book/introduction.org}}
+\label{sec:orgheadline18}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-05 Mon] } Labor day \textbf{NO CLASS}  Review this \url{emacs.org}}
+\label{sec:orgheadline19}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-07 Wed] } \url{./rxns-book/reactions+extent.org}}
+\label{sec:orgheadline20}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-12 Mon] } \url{./rxns-book/rates+rate-laws.org}}
+\label{sec:orgheadline21}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-14 Wed] } \url{./rxns-book/mole-balance.org}}
+\label{sec:orgheadline22}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-19 Mon] } \url{./rxns-book/complex-mole-balances.org}}
+\label{sec:orgheadline23}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-21 Wed] } \url{./rxns-book/transient-cstr-mss.org}}
+\label{sec:orgheadline24}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-26 Mon] } \url{./rxns-book/misc-reactor-mole-balance.org}}
+\label{sec:orgheadline25}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-09-28 Wed] } \url{./rxns-book/wrapping-up-introduction.org}}
+\label{sec:orgheadline26}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-10-03 Mon] } \url{./rxns-book/multiple-rxns-1.org}}
+\label{sec:orgheadline27}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-10-05 Wed] } EXAM 1 (will cover material through 9/30)}
+\label{sec:orgheadline28}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-10-10 Mon] } \url{./rxns-book/multiple-rxns-2.org}}
+\label{sec:orgheadline29}
+
+\subsection{{\bfseries\sffamily DONE} \textit{[2016-10-12 Wed] } \url{./rxns-book/parameter-estimation.org}}
+\label{sec:orgheadline30}
+\url{./exam-1-summary.org}
+
+\subsection{\textit{[2016-10-17 Mon] } \url{./rxns-book/parameter-estimation-2.org}}
+\label{sec:orgheadline31}
+
+\subsection{\textit{[2016-10-19 Wed] } Jake Boes guest lecture}
+\label{sec:orgheadline32}
+
+\subsection{\textit{[2016-10-24 Mon] } \url{./rxns-book/mechanism-determination.org}}
+\label{sec:orgheadline33}
+
+\subsection{\textit{[2016-10-26 Wed] } \url{./rxns-book/engineering-applications.org}}
+\label{sec:orgheadline34}
+
+\subsection{\textit{[2016-10-31 Mon] } \url{./rxns-book/mass-transfer-1.org}}
+\label{sec:orgheadline35}
+
+\subsection{\textit{[2016-11-02 Wed] } EXAM 2 (cumulative through 10/28)}
+\label{sec:orgheadline36}
+
+\subsection{\textit{[2016-11-07 Mon] } \url{./rxns-book/generalized-effectiveness-factors.org}}
+\label{sec:orgheadline37}
+
+\subsection{\textit{[2016-11-09 Wed] } \url{./rxns-book/non-isothermal-reactor-design.org}}
+\label{sec:orgheadline38}
+
+\subsection{\textit{[2016-11-14 Mon] } \textbf{AICHE NO CLASS}}
+\label{sec:orgheadline39}
+
+\subsection{\textit{[2016-11-16 Wed] } \textbf{AICHE NO CLASS}}
+\label{sec:orgheadline40}
+
+\subsection{\textit{[2016-11-21 Mon] } \url{./rxns-book/non-isothermal-batch.org}}
+\label{sec:orgheadline41}
+
+\subsection{\textit{[2016-11-23 Wed] } * THANKSGIVING NO CLASS *}
+\label{sec:orgheadline42}
+
+\subsection{\textit{[2016-11-28 Mon] } \url{./rxns-book/non-isothermal-cstr.org}}
+\label{sec:orgheadline43}
+
+\subsection{\textit{[2016-11-30 Wed] } \url{./rxns-book/non-isothermal-pfr.org}}
+\label{sec:orgheadline44}
+
+\subsection{\textit{[2016-12-05 Mon] } \url{./rxns-book/nonisothermal-mult-rxns.org}}
+\label{sec:orgheadline45}
+
+\subsection{\textit{[2016-12-07 Wed] } EXAM 3 (Cumulative through 12/07)}
+\label{sec:orgheadline46}
+
+\section{Assignments}
+\label{assignments}
+\href{tq-agenda}{Upcoming assignments}
+
+\subsection{{\bfseries\sffamily GRADED} \url{intro}\hfill{}\textsc{assignment}}
+\label{intro}
+
+
+\subsection{{\bfseries\sffamily GRADED} \url{survey}\hfill{}\textsc{assignment}}
+\label{survey}
+\url{survey}
+
+\subsection{{\bfseries\sffamily GRADED} \url{parabola}\hfill{}\textsc{assignment}}
+\label{parabola}
+\url{parabola}
+
+\subsection{{\bfseries\sffamily GRADED} \url{ode-3}\hfill{}\textsc{assignment}}
+\label{ode-3}
+\url{ode-3}
+
+\subsection{{\bfseries\sffamily GRADED} \url{batch-1}\hfill{}\textsc{assignment}}
+\label{batch-1}
+\url{batch-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{cstr-1}\hfill{}\textsc{assignment}}
+\label{cstr-1}
+\url{cstr-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{two-species-rate}\hfill{}\textsc{assignment}}
+\label{two-species-rate}
+\url{two-species-rate}
+
+\subsection{{\bfseries\sffamily GRADED} \url{levenspiel}\hfill{}\textsc{assignment}}
+\label{levenspiel}
+v0 = 0.66 L/hr
+
+For the PFR: \(V =  \int_0^V \frac{F_{A0}}{-r_A} dX\)
+
+\url{levenspiel}
+
+\subsection{{\bfseries\sffamily GRADED} \url{transient-cstr}\hfill{}\textsc{assignment}}
+\label{transient-cstr}
+\url{transient-cstr}
+
+\subsection{{\bfseries\sffamily GRADED} \url{membrane-1}\hfill{}\textsc{assignment}}
+\label{membrane-1}
+\url{membrane-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{practice-quiz-1}\hfill{}\textsc{assignment}}
+\label{practice-quiz-1}
+\url{practice-quiz-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{practice-exam-1}\hfill{}\textsc{assignment}}
+\label{practice-exam-1}
+\url{practice-exam-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{quiz-1}\hfill{}\textsc{assignment}}
+\label{quiz-1}
+\url{quiz-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{quiz-2}\hfill{}\textsc{assignment}}
+\label{quiz-2}
+\url{quiz-2}
+
+
+\subsection{{\bfseries\sffamily GRADED} \url{exam-1-1}\hfill{}\textsc{assignment}}
+\label{exam-1-1}
+\url{exam-1-1}
+
+\subsection{{\bfseries\sffamily GRADED} \url{exam-1-2}\hfill{}\textsc{assignment}}
+\label{exam-1-2}
+\url{exam-1-2}
+
+\subsection{{\bfseries\sffamily GRADED} \url{exam-1-3}\hfill{}\textsc{assignment}}
+\label{exam-1-3}
+\url{exam-1-3}
+
+\subsection{{\bfseries\sffamily GRADED} \url{exam-1-4}\hfill{}\textsc{assignment}}
+\label{exam-1-4}
+\url{exam-1-4}
+
+\subsection{{\bfseries\sffamily GRADED} \url{survey-2}\hfill{}\textsc{assignment}}
+\label{survey-2}
+\url{survey-2}
+
+\subsection{{\bfseries\sffamily COLLECTED} \url{nh3-equil}\hfill{}\textsc{assignment}}
+\label{nh3-equil}
+\url{nh3-equil}
+\subsection{\url{nh3-decomp}\hfill{}\textsc{practice}}
+\label{sec:orgheadline47}
+
+
+\subsection{{\bfseries\sffamily TODO} \url{survey-3}\hfill{}\textsc{assignment}}
+\label{survey-3}
+
+
+
+\subsection{{\bfseries\sffamily TODO} \url{creative-1}\hfill{}\textsc{assignment}}
+\label{creative-1}
+
+
+\subsection{{\bfseries\sffamily TODO} \url{regress-1}\hfill{}\textsc{assignment}}
+\label{regress-1}
+
+
+\subsection{{\bfseries\sffamily TODO} \url{regress-2}\hfill{}\textsc{assignment}}
+\label{regress-2}
+
+
+\subsection{{\bfseries\sffamily TODO} \url{regress-3}\hfill{}\textsc{assignment}}
+\label{regress-3}
+
+
+\subsection{{\bfseries\sffamily TODO} \url{regress-4}\hfill{}\textsc{assignment}}
+\label{regress-4}
+\end{document}
