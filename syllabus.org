@@ -579,3 +579,13 @@ solution:nh3-equil
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+
+** TODO assignment:free-energy-regression			 :assignment:
+   DEADLINE: <2016-10-19 Wed>
+   :PROPERTIES:
+   :CATEGORY: participation
+   :POINTS:   1
+   :CUSTOM_ID: free-energy-regression
+   :RUBRIC:   (("participation" . 1.0))
+   :END:
+
