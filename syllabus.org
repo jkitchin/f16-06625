@@ -520,7 +520,7 @@ solution:nh3-equil
    :END:
 
 
-** TODO assignment:regress-1					 :assignment:
+** COLLECTED assignment:regress-1				 :assignment:
    DEADLINE: <2016-10-18 Tue>
    :PROPERTIES:
    :CATEGORY: homework
