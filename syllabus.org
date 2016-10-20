@@ -510,8 +510,8 @@ solution:nh3-equil
 
 
 
-** COLLECTED assignment:creative-1				 :assignment:
-   DEADLINE: <2016-10-17 Mon>
+** GRADED assignment:creative-1					 :assignment:
+   CLOSED: [2016-10-20 Thu 16:59] DEADLINE: <2016-10-17 Mon>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
