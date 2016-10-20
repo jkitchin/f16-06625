@@ -530,7 +530,7 @@ solution:nh3-equil
    :END:
 
 
-** TODO assignment:regress-2					 :assignment:
+** COLLECTED assignment:regress-2				 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: homework
