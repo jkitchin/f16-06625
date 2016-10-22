@@ -560,7 +560,7 @@ solution:nh3-equil
    :END:
 
 
-** TODO assignment:debugging					 :assignment:
+** COLLECTED assignment:debugging				 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: participation
