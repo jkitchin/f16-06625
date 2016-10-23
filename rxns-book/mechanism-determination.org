@@ -61,7 +61,6 @@ r_3 = k_3 C_A^*
 - Let us review what we did
 
   1. We /assumed/ or /postulated/ a mechanism of elementary reaction steps involving active intermediates
-     - The steps of the mechansim /must/ add up to the overall reaction
 
   2. We set the net rate of production of the active intermediates to zero and used that to solve for the concentration of the active intermediates
 
