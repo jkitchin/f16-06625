@@ -228,11 +228,13 @@ The tentative course schedule is here. It may change.
 
 [[./exam-1-summary.org]]
 
-** [2016-10-17 Mon] [[./rxns-book/parameter-estimation-2.org]]
+** DONE [2016-10-17 Mon] [[./rxns-book/parameter-estimation-2.org]]
+   CLOSED: [2016-10-23 Sun 18:50]
 
-** [2016-10-19 Mon] [[./rxns-book/regression-review.org]]
+** DONE [2016-10-19 Wed] [[./rxns-book/regression-review.org]]
+   CLOSED: [2016-10-23 Sun 18:56]
 
-** [2016-10-24 Wed] [[./rxns-book/mechanism-determination.org]]
+** [2016-10-24 Mon] [[./rxns-book/mechanism-determination.org]]
 
 ** [2016-10-26 Wed] [[./rxns-book/engineering-applications.org]]
 
