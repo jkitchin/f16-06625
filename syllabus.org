@@ -552,6 +552,7 @@ solution:nh3-equil
    :END:
 
 
+solution:regress-3
 ** COLLECTED assignment:regress-4				 :assignment:
    DEADLINE: <2016-10-21 Fri>
    :PROPERTIES:
