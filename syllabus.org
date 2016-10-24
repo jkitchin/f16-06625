@@ -532,8 +532,8 @@ solution:nh3-equil
    :END:
 
 
-** COLLECTED assignment:regress-2				 :assignment:
-   DEADLINE: <2016-10-19 Wed>
+** GRADED assignment:regress-2					 :assignment:
+   CLOSED: [2016-10-24 Mon 00:06] DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
