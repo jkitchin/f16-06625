@@ -543,6 +543,7 @@ solution:regress-1
    :END:
 
 
+solution:regress-2
 ** GRADED assignment:regress-3					 :assignment:
    CLOSED: [2016-10-23 Sun 22:20] DEADLINE: <2016-10-20 Thu>
    :PROPERTIES:
