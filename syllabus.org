@@ -614,6 +614,16 @@ Turn on automatic bracket matching
 (electric-pair-mode 1)
 #+END_SRC
 
+#+BEGIN_SRC emacs-lisp
+(defun oscratch ()
+ (interactive)
+ (switch-to-buffer "*Oh scratch, no you didn't*")
+ (org-mode))
+#+END_SRC
+
+#+RESULTS:
+: oscratch
+
 ** TODO assignment:free-energy-regression			 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
