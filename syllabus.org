@@ -585,7 +585,7 @@ solution:regress-3
    :END:
 
 
-solution:survey-emacs-shortcuts
+
 ** TODO assignment:free-energy-regression			 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
