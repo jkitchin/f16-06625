@@ -575,8 +575,8 @@ solution:regress-3
    :END:
 
 
-** COLLECTED assignment:survey-emacs-shortcuts			 :assignment:
-   DEADLINE: <2016-10-19 Wed>
+** GRADED assignment:survey-emacs-shortcuts			 :assignment:
+   CLOSED: [2016-10-24 Mon 13:01] DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   1
