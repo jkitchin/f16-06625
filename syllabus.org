@@ -532,6 +532,7 @@ solution:nh3-equil
    :END:
 
 
+solution:regress-1
 ** GRADED assignment:regress-2					 :assignment:
    CLOSED: [2016-10-24 Mon 00:06] DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
