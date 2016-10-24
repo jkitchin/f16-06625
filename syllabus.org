@@ -555,8 +555,8 @@ solution:regress-2
 
 
 solution:regress-3
-** COLLECTED assignment:regress-4				 :assignment:
-   DEADLINE: <2016-10-21 Fri>
+** GRADED assignment:regress-4					 :assignment:
+   CLOSED: [2016-10-24 Mon 12:00] DEADLINE: <2016-10-21 Fri>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
