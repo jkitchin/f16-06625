@@ -1,3 +1,7 @@
+These are relatively new features that you might want to try out. Practice with them and make sure they work in a way that helps you.
+
+There may still be unpolished "features". If you find one, let me (Prof. Kitchin) know!
+
 * Async python with better feedback
 
 Scimax provides org-babel-async-execute:python to run python blocks asynchronously. It also provides better feedback for errors.
@@ -25,11 +29,15 @@ Traceback (most recent call last):
 ZeroDivisionError: division by zero
 :END:
 
-If you like that, and want C-c C-c to do that everytime, put this in your user.el file:
+The "File" above is a temporary file that is used for the run. It is deleted after the run is done.
+
+If you like that, and want C-c C-c to do that every time, put this in your user.el file:
 
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'org-ctrl-c-ctrl-c-hook 'org-babel-async-execute:python)
 #+END_SRC
+
+This runs the block "asynchronously" which means emacs is not blocked while the code is running.
 
 * pylint
 

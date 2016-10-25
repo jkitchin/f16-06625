@@ -1,3 +1,4 @@
 org-py-*
 *ltxpng*
 /.ipynb_checkpoints
+.DS_Store
