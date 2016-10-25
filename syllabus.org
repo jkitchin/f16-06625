@@ -581,6 +581,7 @@ solution:regress-4
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
+solution:debugging
 
 ** GRADED assignment:survey-emacs-shortcuts			 :assignment:
    CLOSED: [2016-10-24 Mon 13:01] DEADLINE: <2016-10-19 Wed>
