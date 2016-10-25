@@ -182,12 +182,12 @@ plt.savefig('images/ethane-cracking-1.png')
 
 # now plot the intermediates
 plt.figure()
-plt.semilogy(tspan, sol[:, 1:4])
+plt.plot(tspan, sol[:, 1:4])
 plt.legend(['B', 'C', 'D'], loc='best')
 plt.xlabel('Time (s)')
 plt.ylabel('C (mol/L)')
 plt.savefig('images/ethane-cracking-2.png')
-
+plt.show()
 # Let us save the profiles of A and E for later analysis
 CA = sol[:, 0]
 CE = sol[:, -1]
