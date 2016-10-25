@@ -565,7 +565,7 @@ solution:regress-3
    :END:
 
 solution:regress-4
-solution:regress-4
+
 ** COLLECTED assignment:debugging				 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
