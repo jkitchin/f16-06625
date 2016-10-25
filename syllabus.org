@@ -239,6 +239,8 @@ The tentative course schedule is here. It may change.
 
 ** [2016-10-26 Wed] [[./rxns-book/engineering-applications.org]]
 
+[[./debugging-python.org]]
+
 ** [2016-10-31 Mon] [[./rxns-book/mass-transfer-1.org]]
 
 ** [2016-11-02 Wed] EXAM 2 (cumulative through 10/28)

@@ -1,0 +1,40 @@
+* Async python with better feedback
+
+Scimax provides org-babel-async-execute:python to run python blocks asynchronously. It also provides better feedback for errors.
+
+To use it, put your cursor in a code block and type:
+
+M-x org-babel-async-execute:python
+
+If there is an error, the cursor will jump to the line in the code block that caused the error and temporarily highlight it in red.
+
+#+BEGIN_SRC python :results output org drawer
+# some comment
+
+5 / 0  # an error
+
+print(5)
+
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Traceback (most recent call last):
+  File "/Users/jkitchin/techela/f16-06625/course/py-fe74d4c942892f752c0cc8e5c68fe1db.py", line 3, in <module>
+    5 / 0  # an error
+ZeroDivisionError: division by zero
+:END:
+
+If you like that, and want C-c C-c to do that everytime, put this in your user.el file:
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'org-ctrl-c-ctrl-c-hook 'org-babel-async-execute:python)
+#+END_SRC
+
+* pylint
+
+You can also run
+
+M-x pylint 
+
+in a code block. pylint is a program that analyzes your code block for errors, and it may find errors for you. It does not run the code block, but it often finds syntax errors, missing arguments, undefined variables, etc...
