@@ -501,8 +501,8 @@ solution:nh3-equil
 ** assignment:nh3-decomp					   :practice:
 
 
-** COLLECTED assignment:survey-3				 :assignment:
-   DEADLINE: <2016-10-17 Mon>
+** GRADED assignment:survey-3					 :assignment:
+   CLOSED: [2016-10-24 Mon 21:01] DEADLINE: <2016-10-17 Mon>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   1
@@ -564,7 +564,7 @@ solution:regress-3
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-
+solution:regress-4
 ** COLLECTED assignment:debugging				 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
