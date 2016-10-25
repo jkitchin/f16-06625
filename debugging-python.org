@@ -24,12 +24,86 @@ print(5)
 #+RESULTS:
 :RESULTS:
 Traceback (most recent call last):
-  File "/Users/jkitchin/techela/f16-06625/course/py-fe74d4c942892f752c0cc8e5c68fe1db.py", line 3, in <module>
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-fe74d4c942892f752c0cc8e5c68fe1db.py", line 3, in <module>
     5 / 0  # an error
 ZeroDivisionError: division by zero
 :END:
 
 The "File" above is a temporary file that is used for the run. It is deleted after the run is done.
+
+Here is a more complex error that Jake Boes talked about last time.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+from scipy.optimize import fsolve
+from scipy.interpolate import interp1d
+
+Ca0 = 1  # mol/L
+k = 0.005 # mol/L^2 s
+Vspan = np.linspace(0, 2) # L
+v0span = np.linspace(0.0001, 0.2)
+Ca_target = 0.5
+
+
+def dFdV(F, V, v0):
+
+    Fa, Fr = F
+    Ft = sum(F)
+    Ft0 = Ca0 * v0
+    v = v0 * Ft / Ft0
+
+    Ca = Fa / v
+    ra = -k * Ca**2
+    rr = -ra / 2.
+
+    dFadV = ra
+    dFrdV = rr
+
+    return [dFadV, dFrdV]
+
+
+def Ca(v0):
+    '''We need to create a function of Ca(v0) to use fsolve'''
+    F = odeint(dFdV, [Ca0 * v0, 0.], Vspan)
+    v = v0 * sum(F[-1]) / (Ca0 * v0)
+    C = F / v
+    return C
+
+# odeint cannot accept an array when returning mutliple flowrates
+# Therefore, we create a proxy function to perfrom essentially the
+# same task as Ca, it will run independently of odeint.
+proxy_Ca = interp1d(v0span, list(map(Ca, v0span)), 'cubic')
+
+def obj(v0):
+    '''Our objective function: Ca = 0.5'''
+    return proxy_Ca(v0) - Ca_target
+
+v0_sol = fsolve(obj, 0.01)
+print('Volumetric flow rate: {:.2f} L/min'.format(v0_sol[-1]*60))
+print('Exit concentration of Ca: {:.1f} mol/L'.format(Ca_target))
+
+plt.plot(v0span*60, map(Ca, v0span), 'b-', label='')
+plt.plot(v0span*60, proxy_Ca(v0span), 'r--', label='')
+plt.plot(v0_sol*60, Ca(v0_sol[0]), 'ro', label='Solution')
+plt.xlabel('Volumetric flow rate (L/min)')
+plt.ylabel('$C_A$ (mol/L)')
+plt.tight_layout()
+plt.show()
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Traceback (most recent call last):
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-28087e8ff6b9ac0f288de0dcc46fdfa9.py", line 41, in <module>
+    proxy_Ca = interp1d(v0span, list(map(Ca, v0span)), 'cubic')
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-28087e8ff6b9ac0f288de0dcc46fdfa9.py", line 33, in Ca
+    F = odeint(dFdV, [Ca0 * v0, 0.], Vspan)
+  File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/scipy/integrate/odepack.py", line 215, in odeint
+    ixpr, mxstep, mxhnil, mxordn, mxords)
+TypeError: dFdV() missing 1 required positional argument: 'v0'
+:END:
 
 If you like that, and want C-c C-c to do that every time, put this in your user.el file:
 
@@ -46,3 +120,5 @@ You can also run
 M-x pylint 
 
 in a code block. pylint is a program that analyzes your code block for errors, and it may find errors for you. It does not run the code block, but it often finds syntax errors, missing arguments, undefined variables, etc...
+
+Note this only works after you have loaded techela.
