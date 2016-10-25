@@ -155,21 +155,20 @@ import numpy as np
 X = np.arange(0, 4)
 print(X)
 
-
 for x in X:
-    W = []
-    W += [0**x]
-    W += [1**x]
-    W += [2**x]
-    W += [3**x]
-    W += [4**x]
-    W += [5**x]
-    W += [6**x]
-    W += [7**x]
-    W += [8**x]
-    W += [9**x]
+W = []
+W += [0**x]
+W += [1**x]
+W += [2**x]
+W += [3**x]
+W += [4**x]
+W += [5**x]
+W += [6**x]
+W += [7**x]
+W += [8**x]
+W += [9**x]
 
-print(W)
+print W
 
 # There are mutiple errors in this code. IDE can help us identify where the problem is
 # and or new shortcuts can help us fix it more efficiently.
@@ -177,8 +176,6 @@ print(W)
 
 #+RESULTS:
 :RESULTS:
-[0 1 2 3]
-[0, 1, 8, 27, 64, 125, 216, 343, 512, 729]
 :END:
 
 - From the example above, you may have realized that this is not the best way to populate the list "W".
@@ -342,27 +339,6 @@ print(A)
 
 - How could you use the methods above to generate the following diagram:
 
-#+BEGIN_SRC python
-star = '* '
-
-n= [1, 2, 3, 4, 5, 4, 3, 2, 1]
-
-for i in n:
-    print(star * i)
-
-#+END_SRC
-
-#+RESULTS:
-: * 
-: * * 
-: * * * 
-: * * * * 
-: * * * * * 
-: * * * * 
-: * * * 
-: * * 
-: * 
-
 #+BEGIN_EXAMPLE
 * 
 * * 
@@ -440,7 +416,7 @@ def Ca(v0):
 # odeint cannot accept an array when returning mutliple flowrates
 # Therefore, we create a proxy function to perfrom essentially the
 # same task as Ca, it will run independently of odeint.
-proxy_Ca = interp1d(v0span,list(map(Ca, v0span)), 'cubic')
+proxy_Ca = interp1d(v0span, map(Ca, v0span), 'cubic')
 
 def obj(v0):
     '''Our objective function: Ca = 0.5'''
@@ -450,7 +426,7 @@ v0_sol = fsolve(obj, 0.01)
 print('Volumetric flow rate: {:.2f} L/min'.format(v0_sol[-1]*60))
 print('Exit concentration of Ca: {:.1f} mol/L'.format(Ca_target))
 
-plt.plot(v0span*60, list(map(Ca, v0span)), 'b-', label='')
+plt.plot(v0span*60, map(Ca, v0span), 'b-', label='')
 plt.plot(v0span*60, proxy_Ca(v0span), 'r--', label='')
 plt.plot(v0_sol*60, Ca(v0_sol[0]), 'ro', label='Solution')
 plt.xlabel('Volumetric flow rate (L/min)')
@@ -461,6 +437,14 @@ plt.show()
 
 #+RESULTS:
 :RESULTS:
+Traceback (most recent call last):
+  File "/home/jacob/techela/f16-06625/course/rxns-book/py-12c7ffb2bbcb15a77a9eaa452c68207e.py", line 41, in <module>
+    proxy_Ca = interp1d(v0span, map(Ca, v0span), 'cubic')
+  File "/home/jacob/techela/f16-06625/course/rxns-book/py-12c7ffb2bbcb15a77a9eaa452c68207e.py", line 33, in Ca
+    F = odeint(dFdV, [Ca0 * v0, 0.], Vspan)
+  File "/usr/local/lib/python2.7/dist-packages/scipy/integrate/odepack.py", line 215, in odeint
+    ixpr, mxstep, mxhnil, mxordn, mxords)
+TypeError: dFdV() takes exactly 3 arguments (2 given)
 :END:
 
 *** The first error produced from the code block looks as follow:
