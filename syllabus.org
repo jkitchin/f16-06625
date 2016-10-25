@@ -572,8 +572,8 @@ solution:regress-3
 
 solution:regress-4
 
-** COLLECTED assignment:debugging				 :assignment:
-   DEADLINE: <2016-10-19 Wed>
+** GRADED assignment:debugging					 :assignment:
+   CLOSED: [2016-10-25 Tue 16:35] DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: participation
    :POINTS:   2
