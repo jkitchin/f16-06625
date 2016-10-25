@@ -564,7 +564,7 @@ solution:regress-3
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-
+solution:regress-4
 ** COLLECTED assignment:debugging				 :assignment:
    DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
