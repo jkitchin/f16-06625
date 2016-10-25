@@ -120,3 +120,5 @@ You can also run
 M-x pylint 
 
 in a code block. pylint is a program that analyzes your code block for errors, and it may find errors for you. It does not run the code block, but it often finds syntax errors, missing arguments, undefined variables, etc...
+
+Note this only works after you have loaded techela.
