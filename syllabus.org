@@ -685,7 +685,7 @@ C-u C-u C-c C-x C-l to make latex images in whole buffer
    :END:
 
 
-** TODO assignment:quiz-3					 :assignment:
+** COLLECTED assignment:quiz-3					 :assignment:
    DEADLINE: <2016-10-26 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
