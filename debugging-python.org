@@ -127,6 +127,23 @@ If you do not like the line numbers set this in user.el
 (setq org-babel-async-python-show-line-numbers nil)
 #+END_SRC
 
+
+Note you can probably kill long-running processes too (although there are still some issues if you have used plt.show()):
+#+BEGIN_SRC python :results output org drawer
+while True:
+    pass
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Traceback (most recent call last):
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-cccdd40a5a4cd7ff040d5c98ab35f701.py", line 2, in <module>
+    pass
+KeyboardInterrupt
+:END:
+
+
+
 * pylint
 
 You can also run
