@@ -1,3 +1,10 @@
+One feature many of you requested was better feedback from Emacs when you have errors. I have written some code to do the following things:
+
+1. Run the code block "asynchronously" so it does not freeze up Emacs
+  - Note if you use plt.show(), it may still appear to do that until you close the image.
+
+2. When you get an error it will get inserted into your buffer, and there will be clickable links to the lines that caused the error. Also, the cursor will jump to the line of the last error in your code block, and line numbers will temporarily show in the code block.
+
 These are relatively new features that you might want to try out. Practice with them and make sure they work in a way that helps you.
 
 There may still be unpolished "features". If you find one, let me (Prof. Kitchin) know!
@@ -28,6 +35,7 @@ Traceback (most recent call last):
     5 / 0  # an error
 ZeroDivisionError: division by zero
 :END:
+
 
 The "File" above is a temporary file that is used for the run. It is deleted after the run is done.
 
@@ -72,7 +80,7 @@ def Ca(v0):
     return C
 
 # odeint cannot accept an array when returning mutliple flowrates
-# Therefore, we create a proxy function to perfrom essentially the
+# Therefore, we create a proxy function to perform essentially the
 # same task as Ca, it will run independently of odeint.
 proxy_Ca = interp1d(v0span, list(map(Ca, v0span)), 'cubic')
 
@@ -96,9 +104,9 @@ plt.show()
 #+RESULTS:
 :RESULTS:
 Traceback (most recent call last):
-  File "/Users/jkitchin/techela/f16-06625/course/pymd5-28087e8ff6b9ac0f288de0dcc46fdfa9.py", line 41, in <module>
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-746558abb293c5160d1d8775d12280bf.py", line 41, in <module>
     proxy_Ca = interp1d(v0span, list(map(Ca, v0span)), 'cubic')
-  File "/Users/jkitchin/techela/f16-06625/course/pymd5-28087e8ff6b9ac0f288de0dcc46fdfa9.py", line 33, in Ca
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-746558abb293c5160d1d8775d12280bf.py", line 33, in Ca
     F = odeint(dFdV, [Ca0 * v0, 0.], Vspan)
   File "/Users/jkitchin/anaconda3/lib/python3.5/site-packages/scipy/integrate/odepack.py", line 215, in odeint
     ixpr, mxstep, mxhnil, mxordn, mxords)
@@ -111,7 +119,13 @@ If you like that, and want C-c C-c to do that every time, put this in your user.
 (add-to-list 'org-ctrl-c-ctrl-c-hook 'org-babel-async-execute:python)
 #+END_SRC
 
-This runs the block "asynchronously" which means emacs is not blocked while the code is running.
+Note you can also temporarily add line numbers to a code block with M-x number-line-src-block. These are only temporary though, and disappear when you type a key or click with the mouse.
+
+If you do not like the line numbers set this in user.el
+
+#+BEGIN_SRC emacs-lisp
+(setq org-babel-async-python-show-line-numbers nil)
+#+END_SRC
 
 * pylint
 
@@ -122,3 +136,12 @@ M-x pylint
 in a code block. pylint is a program that analyzes your code block for errors, and it may find errors for you. It does not run the code block, but it often finds syntax errors, missing arguments, undefined variables, etc...
 
 Note this only works after you have loaded techela.
+
+The errors you get may depend on what kind of errors are present.
+#+BEGIN_SRC python :results output org drawer
+def f(x): return x
+
+print(f(4, y))
+
+print 5
+#+END_SRC
