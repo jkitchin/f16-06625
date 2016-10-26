@@ -694,3 +694,5 @@ C-u C-u C-c C-x C-l to make latex images in whole buffer
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+solution:quiz-3
