@@ -148,16 +148,16 @@ def ode(Y, r):
     Ca = Y[1]  # concentration of A in the particle at r
 
     if r == 0:
-        dWadr = 0   # this solves the singularity at r = 0
+        dWadr = -2 * Wa   # this solves the singularity at r = 0
     else:
-        dWadr = -2*Wa/r + k/De*Ca
+        dWadr = -2 * Wa / r + k / De * Ca
 
     dCadr = Wa
     return [dWadr, dCadr]
 
 # Initial conditions
 Ca0 = 0.029315  # Ca(0) (mol/L) guessed to satisfy Ca(R) = CAs
-                # It takes a lot of accuracy to get the solution
+# It takes a lot of accuracy to get the solution
 Wa0 = 0         # no flux at r=0 (mol/m^2/s)
 
 rspan = np.linspace(0, R, 500)
