@@ -254,3 +254,6 @@ plt.savefig('images/thiele-modulus.png')
 - For $\Phi \ll 1$ the effectiveness factor is practically one. That means the diffusion rate is much faster than reaction, so the concentration in the pellet is practically uniform and equal to the surface concentration.
 
 - For $\Phi \gg 1$ then $\eta \approx 1 \Phi$. Near $\Phi = 1$ you may want to evaluate the actual solution.
+
+
+[[elisp:(message-box "Treat! Happy Halloween!")][Click for a Trick or Treat]]
