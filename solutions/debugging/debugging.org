@@ -1,0 +1,371 @@
+#+ASSIGNMENT: debugging
+#+POINTS: 2
+#+CATEGORY: participation
+#+RUBRIC: (("participation" . 1.0))
+#+DUEDATE: <2016-10-19 Wed>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+A CSTR with the following inlet properties is being added to your plant.
+
+- $r_A = k C_A^2$ with $k$ = 3.0 \pm 0.2 L/mol/hr
+- $A$ is fed to the reactor at a rate of 5 \pm 0.05 mol/hr
+- The volumetric flow is 10 \pm 0.1 L/hr
+
+The reactor tank is still to be ordered, but it is critical that A be at least 97% converted before continuing to the next phase of the plant.
+
+The smallest reactor available is 10,000 L and increase in size by 1,000 L up to a maximum of 100,000 L.
+
+Your supervisor wants your team to determine the smallest possible reactor for the job within 6 standard deviations of uncertainty.
+
+Your colleague has generated the following code to solve the problem, but there is at least one bug which they don't know how to fix.
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+N = 1000  # number of MC samples
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+Ca0 = Fa0 / v0
+
+
+def func(Ca, Fa0, v0, k, V):
+    Fa = v0 * Ca
+    ra = -k * Ca**2
+    return Fa0 - Fa + V * ra
+
+
+Vspan = np.arange(10000, 100000, 1000)
+
+avg, std = [], []
+for V in Vspan:
+    for i in range(N):
+
+        # Create the array to store the results in
+        Ca = np.empty(k.shape)
+
+        guess = 0.1 * Ca0  # guessing 90% conversion
+        Ca[i], = fsolve(func, guess, args=(Fa0[i], v0[i], k[i])
+
+    Xi = (Ca0 - Ca) / Ca0
+    avg += [np.mean(Xi)]
+    std += [np.std(Xi) * 6]
+
+plt.errorbar(Vspan, avg, xerr=0, yerr=std)
+plt.plot([Vspan[0], Vspan[-1]], [0.97, 0.97], 'k--')
+plt.savefig('./soln.png')
+#+END_SRC
+
+* Describe to your colleague how you would approach debugging their code.
+
+** First error
+Upon running the code the first time, we get this error:
+
+#+BEGIN_EXAMPLE
+  File "<stdin>", line 31
+    Xi = (Ca0 - Ca) / Ca0
+     ^
+SyntaxError: invalid syntax
+#+END_EXAMPLE
+
+This is a fairly common type of error. Although the error directs us to line 31, there is nothing clearly wrong with this line. 
+
+The hint in this type of error is where the arrow under the code is pointing. It seems to have a problem with the variable definition itself. This usually means the code thinks it's supposed to be including this variable in with something from the previous line.
+
+Taking a closer look at line 29 (The previous line with code) we can see that the fsolve function is missing a closing parenthesis. Now our code looks like this:
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+N = 1000  # number of MC samples
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+Ca0 = Fa0 / v0
+
+
+def func(Ca, Fa0, v0, k, V):
+    Fa = v0 * Ca
+    ra = -k * Ca**2
+    return Fa0 - Fa + V * ra
+
+
+Vspan = np.arange(10000, 100000, 1000)
+
+avg, std = [], []
+for V in Vspan:
+    for i in range(N):
+
+        # Create the array to store the results in
+        Ca = np.empty(k.shape)
+
+        guess = 0.1 * Ca0  # guessing 90% conversion
+        Ca[i], = fsolve(func, guess, args=(Fa0[i], v0[i], k[i]))
+
+    Xi = (Ca0 - Ca) / Ca0
+    avg += [np.mean(Xi)]
+    std += [np.std(Xi) * 6]
+
+plt.errorbar(Vspan, avg, xerr=0, yerr=std)
+plt.plot([Vspan[0], Vspan[-1]], [0.97, 0.97], 'k--')
+plt.savefig('./soln.png')
+#+END_SRC
+
+** Second error
+
+Upon running again the following error is output:
+
+#+BEGIN_EXAMPLE
+Traceback (most recent call last):
+  File "<stdin>", line 29, in <module>
+  File "/usr/local/lib/python2.7/dist-packages/scipy/optimize/minpack.py", line 146, in fsolve
+    res = _root_hybr(func, x0, args, jac=fprime, **options)
+  File "/usr/local/lib/python2.7/dist-packages/scipy/optimize/minpack.py", line 212, in _root_hybr
+    shape, dtype = _check_func('fsolve', 'func', func, x0, args, n, (n,))
+  File "/usr/local/lib/python2.7/dist-packages/scipy/optimize/minpack.py", line 26, in _check_func
+    res = atleast_1d(thefunc(*((x0[:numinputs],) + args)))
+TypeError: func() takes exactly 5 arguments (4 given)
+#+END_EXAMPLE
+
+Most of the traceback relates to module functions which I have called. It is reasonable to assume that there are no errors in the widely used functions, so I direct my attention to the last line which contains "<stdin>" (i.e. my code block). 
+
+Based on the first error, the problem is in line 29, and it has something to do my function "func" and with 5 arguments being needed where there are only 4. I can see from the function "func", that there are 5 arguments. However, in line 29, I am only passing a guess for the first variable along with 3 other parameters. I can see now that fsolve need to have another argument, which is the volume "V".
+
+Now our code looks like this:
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+N = 1000  # number of MC samples
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+Ca0 = Fa0 / v0
+
+
+def func(Ca, Fa0, v0, k, V):
+    Fa = v0 * Ca
+    ra = -k * Ca**2
+    return Fa0 - Fa + V * ra
+
+
+Vspan = np.arange(10000, 100000, 1000)
+
+avg, std = [], []
+for V in Vspan:
+    for i in range(N):
+
+        # Create the array to store the results in
+        Ca = np.empty(k.shape)
+
+        guess = 0.1 * Ca0  # guessing 90% conversion
+        Ca[i], = fsolve(func, guess, args=(Fa0[i], v0[i], k[i], V))
+
+    Xi = (Ca0 - Ca) / Ca0
+    avg += [np.mean(Xi)]
+    std += [np.std(Xi) * 6]
+
+plt.errorbar(Vspan, avg, xerr=0, yerr=std)
+plt.plot([Vspan[0], Vspan[-1]], [0.97, 0.97], 'k--')
+plt.savefig('./soln.png')
+#+END_SRC
+
+** third error
+
+The next time I run the block, I get this error:
+
+#+BEGIN_EXAMPLE
+Traceback (most recent call last):
+  File "<stdin>", line 29, in <module>
+ValueError: too many values to unpack
+#+END_EXAMPLE
+
+Again, the traceback directs me to line 34. This time, the message is vague and not as helpful. One of the variables I am passing to the function is larger than what is required. If I can't remember what shape the arguments are supposed to be, I can look at the python documentation for the function first:
+
+pydoc:scipy.optimize.fsolve
+
+- The first argument is the function to solve.
+
+- The second argument is my initial guess for the dependent variables of my function. In this case, there is only 1 dependent variable, Ca, so this should be an ndarray of size 1.
+
+- Finally, args is the additional arguments to the function. Each of these should be single values as well.
+
+To test these parameters, I want to individually print the length of each one. However, due to the 2 "for" loops, the code is difficult to run, making testing tedious. So, since the purpose of the "for" loop is to provide iterative results for "V" and "i", I can simply manually specify a fixed value for these variables. That will allow me move the function in line 34 outside of the loops and test it more rapidly.
+
+To implement this, I will also need to comment all lines after the fsolve function to avoid additional errors. I do this using my commenting shortcut "C-c (down arrow)" for the region after the fsolve function.
+
+Implementing these temporary changes, I end up with the following:
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+N = 1000  # number of MC samples
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+Ca0 = Fa0 / v0
+
+
+def func(Ca, Fa0, v0, k, V):
+    Fa = v0 * Ca
+    ra = -k * Ca**2
+    return Fa0 - Fa + V * ra
+
+V = 10000
+i = 0
+
+# Create the array to store the results in
+Ca = np.empty(k.shape)
+
+guess = 0.1 * Ca0  # guessing 90% conversion
+Ca[i], = fsolve(func, guess, args=(Fa0[i], v0[i], k[i], V))
+
+# Vspan = np.arange(10000, 100000, 1000)
+
+# avg, std = [], []
+# for V in Vspan:
+#     for i in range(N):
+
+#         # Create the array to store the results in
+#         Ca = np.empty(k.shape)
+
+#         guess = 0.1 * Ca0  # guessing 90% conversion
+#         Ca[i], = fsolve(func, guess, args=(Fa0[i], v0[i], k[i], V))
+
+#     Xi = (Ca0 - Ca) / Ca0
+#     avg += [np.mean(Xi)]
+#     std += [np.std(Xi) * 6]
+
+# plt.errorbar(Vspan, avg, xerr=0, yerr=std)
+# plt.plot([Vspan[0], Vspan[-1]], [0.97, 0.97], 'k--')
+# plt.savefig('./soln.png')
+#+END_SRC
+
+Running this block gives me the same error, now on line 25. The difference is now I can check the length of each input into fsolve without worrying about the loops.
+
+By printing "guess", the problem becomes more apparent. It is an array 1000 variables long rather than the required single value. This is in turn because Ca0 is 1000 variables long. "guess" needs to be indexed the same way the other variables are. Now we can uncomment the rest of the code and fix the original line.
+
+Doing so brings us to the following code:
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+N = 1000  # number of MC samples
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+Ca0 = Fa0 / v0
+
+
+def func(Ca, Fa0, v0, k, V):
+    Fa = v0 * Ca
+    ra = -k * Ca**2
+    return Fa0 - Fa + V * ra
+
+
+Vspan = np.arange(10000, 100000, 1000)
+
+avg, std = [], []
+for V in Vspan:
+    for i in range(N):
+
+        # Create the array to store the results in
+        Ca = np.empty(k.shape)
+
+        guess = 0.1 * Ca0  # guessing 90% conversion
+        Ca[i], = fsolve(func, guess[i], args=(Fa0[i], v0[i], k[i], V))
+
+    Xi = (Ca0 - Ca) / Ca0
+    avg += [np.mean(Xi)]
+    std += [np.std(Xi) * 6]
+
+plt.errorbar(Vspan, avg, xerr=0, yerr=std)
+plt.plot([Vspan[0], Vspan[-1]], [0.97, 0.97], 'k--')
+plt.savefig('./soln.png')
+#+END_SRC
+
+
+** fourth error
+
+Success! The code block runs now. However, upon inspection of the figure, something still appears to be wrong! The most sinister errors are those that do not provide traceback messages.
+
+For this error, we go through a process similar to the third error, first moving the fsolve function outside the loop and solving for a single value. Once we have confirmed the error is not in the fsolve function, there are not many other places to look. Most of the other lines are simple algebra, except for line 26. 
+
+In this line, the Ca array is being defined as an empty array before we populate instance "i" in line 29. Unfortunately, we are clearing that information each time we perform the second loop for a new "i" and we end up with a nearly empty array after we're done.
+
+The solution is to move the array anywhere outside of the second "for" loop. This results in the completed code shown in the final section below.
+
+* What is the minimum volume of the reactor needed to obtain 97% conversion of species A?
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.optimize import fsolve
+import matplotlib.pyplot as plt
+
+N = 10000  # number of MC samples
+
+Fa0 = np.random.normal(5, 0.05, N)
+v0 = np.random.normal(10.0, 0.1, N)
+k = np.random.normal(3.0, 0.2, N)
+Ca0 = Fa0 / v0
+
+
+def func(Ca, Fa0, v0, k, V):
+    Fa = v0 * Ca
+    ra = -k * Ca**2
+    return Fa0 - Fa + V * ra
+
+
+# Create the array to store the results in
+Ca = np.empty(k.shape)
+
+guess = 0.1 * Ca0  # guessing 90% conversion
+
+Vspan = np.arange(10000, 15000, 1000)
+
+avg, std = [], []
+for V in Vspan:
+    for i in range(N):
+
+        Ca[i], = fsolve(func, guess[i], args=(Fa0[i], v0[i], k[i], V))
+
+    Xi = (Ca0 - Ca) / Ca0
+    avg += [np.mean(Xi)]
+    std += [np.std(Xi) * 6]
+
+plt.errorbar(Vspan, avg, xerr=0, yerr=std)
+plt.plot(Vspan, np.array(avg) - np.array(std), 'r-')
+plt.plot([Vspan[0], Vspan[-1]], [0.97, 0.97], 'k--')
+plt.xlabel('Reactor volume (L)')
+plt.ylabel('Conversion fraction of A')
+plt.savefig('./soln.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+:END:
+
+[[./soln.png]]
+
+We need to know that the chosen reactor size will produce a 97% conversion of A up to 6 standard deviations from the mean. So, we are interested in the lower bound of our uncertainty at 6 standard deviations being greater than 97% conversion.
+
+This can be achieved with a minimum reactor volume of 11,000L.

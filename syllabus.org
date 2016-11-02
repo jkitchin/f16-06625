@@ -539,7 +539,7 @@ solution:nh3-equil
    :END:
 
 
-solution:regress-1
+solution:regress-1 [[./solutions/regress-1/regress-1.org]]
 
 ** GRADED assignment:regress-2					 :assignment:
    CLOSED: [2016-10-24 Mon 00:06] DEADLINE: <2016-10-19 Wed>
@@ -551,8 +551,8 @@ solution:regress-1
    :END:
 
 
-solution:regress-2
-
+solution:regress-2 [[./solutions/regress-2/regress-2.org]]
+ 
 ** GRADED assignment:regress-3					 :assignment:
    CLOSED: [2016-10-23 Sun 22:20] DEADLINE: <2016-10-20 Thu>
    :PROPERTIES:
@@ -563,7 +563,7 @@ solution:regress-2
    :END:
 
 
-solution:regress-3
+solution:regress-3 [[./solutions/regress-3/regress-3.org]]
 
 ** GRADED assignment:regress-4					 :assignment:
    CLOSED: [2016-10-24 Mon 12:00] DEADLINE: <2016-10-21 Fri>
@@ -574,9 +574,9 @@ solution:regress-3
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
-solution:regress-4
+solution:regress-4  [[./solutions/regress-4/regress-4.org]]
 
-** GRADED assignment:debugging					 :assignment:
+** Graded assignment:debugging					 :assignment:
    CLOSED: [2016-10-25 Tue 16:35] DEADLINE: <2016-10-19 Wed>
    :PROPERTIES:
    :CATEGORY: participation
@@ -585,7 +585,7 @@ solution:regress-4
    :RUBRIC:   (("participation" . 1.0))
    :END:
 
-solution:debugging
+solution:debugging  [[./solutions/debugging/debugging.org]]
 
 solution:debugging
 ** GRADED assignment:survey-emacs-shortcuts			 :assignment:
@@ -692,4 +692,5 @@ C-u C-u C-c C-x C-l to make latex images in whole buffer
    :END:
 
 
-solution:quiz-3
+solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
+ 
