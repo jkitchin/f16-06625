@@ -81,17 +81,24 @@ plt.xlabel('volumetric flow')
 plt.ylabel('Cost ($/mol)')
 plt.savefig('images/cost.png')
 
+
+imin = np.argmin(cost(v0))
+print('Min cost of ${} at V={}'.format(cost(v0)[imin], v0[imin]))
+
 from scipy.optimize import fmin
 v_opt, = fmin(cost, 120)
 print('Lowest cost is at a volumetric flow of {0} m^3/min'.format(v_opt))
+print('The lowest cost is ${}'.format(cost(v_opt)))
 #+END_SRC
 
 #+RESULTS:
+: Min cost of $3.655606758832566 at V=104.28571428571428
 : Optimization terminated successfully.
 :          Current function value: 3.655521
 :          Iterations: 19
 :          Function evaluations: 38
 : Lowest cost is at a volumetric flow of 104.72140502929688 m^3/min
+: The lowest cost is $3.6555210486674237
 
 [[./images/cost.png]]
 
@@ -108,7 +115,7 @@ Show that the costs in the example above are dominated by reactor volume at low 
 
 - Say compound X with a concentration of 2.5 kmol / m^3 flows at a rate of 12 m^3/min into a tubular reactor where it is converted to $Y$.
 
-- The reaction occurs at a rate of $r = 30.0 C_X$ mol/m^3/min
+- The reaction occurs at a rate of $r = 30.0 C_X$ 1/min
 
 - $Y$ has a value $V_Y$ of $1.50 / kmol, and the cost of reactor operation $C_R$ is $2.50 per minute per m^3.
 
@@ -122,7 +129,7 @@ Show that the costs in the example above are dominated by reactor volume at low 
   - It is not strictly necessary, we could just get $F_X$, and compute $F_Y$ by stoichiometry later
   - Instead, we compute $F_Y$ in the solution
 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :results output org drawer
 import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
@@ -160,11 +167,41 @@ plt.plot(Vspan, profit)
 plt.xlabel('Reactor volume (m$^3$)')
 plt.ylabel('Profit ($)')
 plt.savefig('images/profit.png')
+
+
+imax = np.argmax(profit)
+print(imax)
+print('Max profit of ${} at V = {}'.format(profit[imax], Vspan[imax]))
+
+
+def profit(V, sign=1):
+   F = odeint(dFdV, [FX0, FY0], [0, V])
+   FY = F[-1, 1]
+   profit = FY * V_Y - V * C_R
+   return profit * sign
+
+print(profit(1.53))
+
+from scipy.optimize import fmin
+
+opt_V, = fmin(profit, 1.5, args=(-1,))
+print('Maximum profit is {} at V = {}'.format(profit(opt_V), opt_V))
 #+END_SRC
 
 #+RESULTS:
+: 25
+: Max profit of $40.193141393479685 at V = 1.530612244897959
+: 40.1931703548
+: Optimization terminated successfully.
+:          Current function value: -40.193337
+:          Iterations: 11
+:          Function evaluations: 22
+: Maximum profit is 40.19333745971681 at V = 1.5226318359375
 
 [[./images/profit.png]]
+
+
+pydoc:scipy.optimize.fmin
 
 - You can see a maximum in profit at a reactor volume of about 1.5 m^3.
 
@@ -214,6 +251,7 @@ def profit(V, sign=1): # the default value of sign is 1
     profit = product_value - operating_cost
     return profit * sign
 
+print(profit[5])
 from scipy.optimize import fmin
 
 V_opt, = fmin(profit, 1.5, args=(-1,))
@@ -222,14 +260,19 @@ print('The maximum profit is ${0:1.2f} at V={1:1.2f} m^3'.format(profit(V_opt), 
 #+END_SRC
 
 #+RESULTS:
-: Optimization terminated successfully.
-:          Current function value: -40.193337
-:          Iterations: 11
-:          Function evaluations: 22
-: The maximum profit is $40.19 at V=1.52 m^3
+: Traceback (most recent call last):
+:   File "/Users/jkitchin/techela/f16-06625/course/rxns-book/pymd5-60f97374f4f50de7de3e8c299e5aa76d.py", line 35, in <module>
+:     print(profit[5])
+: TypeError: 'function' object is not subscriptable
+
+
 
 - The point of these examples is to illustrate how to combine mole balance and reactor design equations with additional information to help select the best design
   - You may want to minimize total cost
   - or maximize profit
 
 - Other applications might be finding operating conditions to avoid certain pressure increases, or minimizing a pressure drop
+
+
+
+assignment:quiz-3

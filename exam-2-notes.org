@@ -1,0 +1,50 @@
+* exam-2-1
+
+change \v to v to see the equation
+
+\(v = V_{max}C_S /(K_m + C_S)\)
+
+\(v = V_{max}C_S /(K_m + C_S)\)
+
+Do not worry about the units. Assume they work.
+
+* exam-2-2
+
+*Correction* Multiply by K_m
+
+In \(C_S(t) = K_m W\left(\frac{S_0}{K_m} \exp\left(\frac{S_0}{K_m} - \frac{V_{max}}{K_m}t\right)\right)\) 
+
+S_0 is the same as C_S0, the initial concentration
+
+Deep breath.... and the next one.
+
+Sweet sassy molassy! two down and one to go.
+
+A: Its my turn give it to me!
+B: no! its my turn give it to me!
+Prof. Kitchin: ALL of you, TURN IT IN!
+
+Help! I am losing points!
+Doctor: Sounds like you need a TURNITINequet.
+
+#TURNITIN
+
+Beck (from Odelay): I got three TURN IT INS and a microphone... (sorry Beck)
+
+I ♥ TURN IT IN
+
+I swear I will stop when you TURN IT IN!
+
+s l o w T U R N I T I N!
+
+Vintage 80s Hair Metal Band: Europe
+Its the final countdown!
+
+- [X] Turned in exam-2-1
+- [X] Turned in exam-2-2
+- [X] Turned in exam-2-3
+
+# Local Variables:
+# ov-highlight-data: "((176%20204%20\"Pink\"%20nil)%20(713%20727%20\"Pink\"%20nil))"
+# eval: (ov-highlight-load)
+# End:

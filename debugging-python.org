@@ -30,10 +30,6 @@ print(5)
 
 #+RESULTS:
 :RESULTS:
-Traceback (most recent call last):
-  File "/Users/jkitchin/techela/f16-06625/course/pymd5-fe74d4c942892f752c0cc8e5c68fe1db.py", line 3, in <module>
-    5 / 0  # an error
-ZeroDivisionError: division by zero
 :END:
 
 
@@ -119,6 +115,9 @@ If you like that, and want C-c C-c to do that every time, put this in your user.
 (add-to-list 'org-ctrl-c-ctrl-c-hook 'org-babel-async-execute:python)
 #+END_SRC
 
+#+RESULTS:
+| org-babel-async-execute:python | org-babel-hash-at-point | org-babel-execute-safely-maybe |
+
 Note you can also temporarily add line numbers to a code block with M-x number-line-src-block. These are only temporary though, and disappear when you type a key or click with the mouse.
 
 If you do not like the line numbers set this in user.el
@@ -126,6 +125,8 @@ If you do not like the line numbers set this in user.el
 #+BEGIN_SRC emacs-lisp
 (setq org-babel-async-python-show-line-numbers nil)
 #+END_SRC
+
+#+RESULTS:
 
 
 Note you can probably kill long-running processes too (although there are still some issues if you have used plt.show()):
@@ -160,5 +161,14 @@ def f(x): return x
 
 print(f(4, y))
 
-print 5
+print(5)
 #+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Traceback (most recent call last):
+  File "/Users/jkitchin/techela/f16-06625/course/pymd5-ae5c31e18acbcda2f9a854f319900a2b.py", line 3, in <module>
+    print(f(4, y))
+NameError: name 'y' is not defined
+:END:
+
