@@ -26,11 +26,12 @@ from scipy.special import iv
 import matplotlib.pyplot as plt
 
 Phi = np.logspace(-2, 2)
+#Phi = np.linspace(0.01, 100, 1000)
 eta_sphere = 1.0 / Phi * (1.0 / np.tanh(3 * Phi) - 1.0 / (3 * Phi))
 eta_cylinder = 1 / Phi * iv(1, 2 * Phi) / iv(0, 2 * Phi)
 eta_slab = np.tanh(Phi) / Phi
 
-plt.loglog(Phi, eta_sphere, label='sphere')
+plt.loglog(Phi, eta_sphere, '.',label='sphere')
 plt.loglog(Phi, eta_cylinder, label='cylinder')
 plt.loglog(Phi, eta_slab, label='slab')
 
@@ -98,6 +99,8 @@ plt.savefig('images/thiele-geometries.png')
 Note this takes longer than usual to run.
 
 We consider three reaction orders here.
+
+pydoc:pycse.BVP_nl
 
 #+BEGIN_SRC python
 import numpy as np
@@ -190,16 +193,20 @@ for order in n:
             return [(cbar[1] - cbar[0])/(rbar[1] - rbar[0]),  # dc/dr(r=0) = 0
                      cbar[-1] - 1]                            # cbar(R) = 1
 
+        plt.figure(1)
         CBAR = BVP_nl(F, RBAR, BCS, init)
+        plt.plot(RBAR, CBAR, RBAR, init, '--')
         eta2 = 1./9. * np.trapz(CBAR**order * RBAR**2, RBAR)
         ETA += [eta2]
 
+    plt.figure(2)
     plt.loglog(THIELE, ETA, label='n={0}'.format(order))
 
 plt.legend(loc='best')
 plt.xlabel(r'$\tilde{\Phi}$')
 plt.ylabel('$\eta$')
 plt.savefig('images/thiele-rxnorder-2.png')
+plt.show()
 #+END_SRC
 
 #+RESULTS:
