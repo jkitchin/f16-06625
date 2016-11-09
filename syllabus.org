@@ -697,8 +697,8 @@ C-u C-u C-c C-x C-l to make latex images in whole buffer
 solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
  
 
-** COLLECTED assignment:exam-2-1				 :assignment:
-   DEADLINE: <2016-11-02 Wed>
+** GRADED assignment:exam-2-1					 :assignment:
+   CLOSED: [2016-11-08 Tue 01:51] DEADLINE: <2016-11-02 Wed>
    :PROPERTIES:
    :CATEGORY: exam2
    :POINTS:   3
