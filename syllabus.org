@@ -705,8 +705,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** COLLECTED assignment:exam-2-2				 :assignment:
-   DEADLINE: <2016-11-02 Wed>
+** GRADED assignment:exam-2-2					 :assignment:
+   CLOSED: [2016-11-17 Thu 02:57] DEADLINE: <2016-11-02 Wed>
    :PROPERTIES:
    :CATEGORY: exam2
    :POINTS:   3
