@@ -242,11 +242,14 @@ The tentative course schedule is here. It may change.
 
 [[./debugging-python.org]]
 
-** [2016-10-31 Mon] [[./rxns-book/mass-transfer-1.org]]
+** DONE [2016-10-31 Mon] [[./rxns-book/mass-transfer-1.org]]
+   CLOSED: [2016-11-09 Wed 13:45]
 
-** [2016-11-02 Wed] EXAM 2 (cumulative through 10/28)
+** DONE [2016-11-02 Wed] EXAM 2 (cumulative through 10/28)
+   CLOSED: [2016-11-09 Wed 13:45]
 
-** [2016-11-07 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
+** DONE [2016-11-07 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
+   CLOSED: [2016-11-09 Wed 13:45]
 
 ** [2016-11-09 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
 

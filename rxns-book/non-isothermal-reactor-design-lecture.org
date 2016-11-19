@@ -121,6 +121,18 @@ plt.savefig('images/endo-exo-temp-effects.png')
 #+RESULTS:
 
 [[./images/endo-exo-temp-effects.png]]
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+print(list(reversed(np.array([1, 2, 3]))))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[3, 2, 1]
+:END:
+
+
 - It is important to remember the equilibrium constant changes with temperature /even/ if  $\Delta G$ is constant
 
 - A more common equation to use if the reaction enthalpy is approximately constant is:
