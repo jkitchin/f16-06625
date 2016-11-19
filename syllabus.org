@@ -243,19 +243,22 @@ The tentative course schedule is here. It may change.
 [[./debugging-python.org]]
 
 ** DONE [2016-10-31 Mon] [[./rxns-book/mass-transfer-1.org]]
-   CLOSED: [2016-11-09 Wed 13:45]
+   CLOSED: [2016-11-19 Sat 13:24]
 
 ** DONE [2016-11-02 Wed] EXAM 2 (cumulative through 10/28)
-   CLOSED: [2016-11-09 Wed 13:45]
+   CLOSED: [2016-11-19 Sat 13:24]
 
 ** DONE [2016-11-07 Mon] [[./rxns-book/generalized-effectiveness-factors.org]]
-   CLOSED: [2016-11-09 Wed 13:45]
+   CLOSED: [2016-11-19 Sat 13:24]
 
-** [2016-11-09 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+** DONE [2016-11-09 Wed] [[./rxns-book/non-isothermal-reactor-design.org]]
+   CLOSED: [2016-11-19 Sat 13:24]
 
-** [2016-11-14 Mon] *AICHE NO CLASS*
+** DONE [2016-11-14 Mon] *AICHE NO CLASS*
+   CLOSED: [2016-11-19 Sat 13:24]
 
-** [2016-11-16 Wed] *AICHE NO CLASS*
+** DONE [2016-11-16 Wed] *AICHE NO CLASS*
+   CLOSED: [2016-11-19 Sat 13:24]
 
 ** [2016-11-21 Mon] [[./rxns-book/non-isothermal-batch.org]]
 
@@ -685,8 +688,8 @@ C-u C-u C-c C-x C-l to make latex images in whole buffer
    :END:
 
 
-** COLLECTED assignment:quiz-3					 :assignment:
-   DEADLINE: <2016-10-26 Wed>
+** GRADED assignment:quiz-3                                      :assignment:
+   CLOSED: [2016-11-19 Sat 14:32] DEADLINE: <2016-10-26 Wed>
    :PROPERTIES:
    :CATEGORY: quiz
    :POINTS:   2
