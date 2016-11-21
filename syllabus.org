@@ -743,4 +743,17 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+<<<<<<< HEAD
 assignment:quiz-4
+=======
+
+** COLLECTED assignment:quiz-4                                   :assignment:
+   DEADLINE: <2016-11-21 Mon>
+   :PROPERTIES:
+   :CATEGORY: quiz
+   :POINTS:   2
+   :CUSTOM_ID: quiz-4
+   :RUBRIC:   multiple-choice
+   :END:
+
+>>>>>>> 082bc000b979ff7064d3fc76ebfcad4c2c403777
