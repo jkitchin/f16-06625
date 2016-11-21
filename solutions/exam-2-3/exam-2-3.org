@@ -1,0 +1,96 @@
+#+ASSIGNMENT: exam-2-3
+#+POINTS: 3
+#+CATEGORY: exam2
+#+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
+#+DUEDATE: <2016-11-02 Wed>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+Product V is produced by reacting A with reactant B where the following reactions take place:
+
+A + B \rightarrow V   
+V + B \rightarrow W
+
+\ce{A} is fed at a concentration of 16 mol/L, and \ce{B} is fed at a concentration of 20 mol/L. Each stream has the same volumetric flow (so the total volumetric flow is two times larger than each stream). You have a 200L PFR available. 
+
+| k1      | 0.01 L/mol/h |
+| k2      | 0.02 L/mol/h |
+| value_A | 1 $/mol      |
+| value_B | 2 $/mol      |
+| value_V | 30 $/mol     |
+| value_W | -3 $/mol     |
+
+The profit from this reactor is the difference the value of the products leaving the reactor and the cost of the starting materials fed to the reactor. Note in this case, the presence of W decreases the value of the products because it is undesired and must be separated out.
+
+1. Explain in a few sentences why you expect there to be a volumetric flow that maximizes the profit.
+
+2. Show graphically that there is a volumetric flow that maximizes the profit, and estimate it.
+
+
+
+* solution
+This problem requires you to parameterize an ode, and solve it for several values of the volumetric flow in. For each solution compute the profit, and then plot it. 
+
+At low volumetric flow rates, the residence time will be high, resulting in increased conversion of reactants to both products. As the volumetric flow rate increases, the amount of product which can be created will increase, but the residence time will decrease while the cost of reactants continues to rise. Therefore, a maximum is anticipated which balances reaction extent against quantity of chemical throughput. While production of undesirable chemical W will reduce the amount of V produced at all volumetric flow rates, it does not result in a maximum in profit.
+
+#+BEGIN_SRC python :results output org drawer
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.integrate import odeint
+
+V = 200  # PFR volume
+
+k1 = 0.01  # rate constant in reaction 1 (L / mol / hr)
+k2 = 0.02  # rate constant in reaction 2 (L / mol / hr)
+
+Ca0 = 16  # feed concentration (mol /L)
+Cb0 = 20  # feed concentration (mol /L)
+
+va = 1  # Cost of A ($/mol)
+vb = 2  # Cost of B ($/mol)
+vv = 30  # Value of V ($/mol)
+vw = -3  # Value of W ($/mol)
+
+
+def dFdV(F, V, vin):
+    Fa, Fb, Fv, Fw = F
+    Ca = Fa / vin
+    Cb = Fb / vin
+    Cv = Fv / vin
+
+    r1 = k1 * Ca * Cb
+    r2 = k2 * Cv * Cb
+
+    dFadv = -r1 
+    dFbdv = -r1 - r2
+    dFvdv = r1 - r2
+    dFwdv = r2
+    return [dFadv, dFbdv, dFvdv, dFwdv]
+
+v0span = np.linspace(0.01, 80)
+profit = np.empty(v0span.shape)
+
+for i, v in enumerate(v0span):
+    F = odeint(dFdV, [v/2 * Ca0, v/2 * Cb0, 0, 0], [0, V], (v,))
+    ae, be, ve, we = F[-1]
+    reactant_cost = (Ca0 * v / 2 * va + Cb0 * v / 2 * vb)
+    product = ve * vv + we * vw
+    profit[i] = product - reactant_cost
+
+plt.plot(v0span, profit)
+plt.xlabel('Total volumetric flow (L/h)')
+plt.ylabel('Profit')
+plt.savefig('soln.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+:END:
+
+[[./soln.png]]
+
+You can see that there is a maximum in profit at a total volumetric flow between 50 and 60 L/h.

@@ -1,0 +1,90 @@
+\#+ASSIGNMENT: exam-2-1
+#+POINTS: 3
+#+CATEGORY: exam2
+#+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
+#+DUEDATE: <2016-11-02 Wed>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+
+#+attr_org: :width 300
+[[./screenshots/date-27-10-2016-time-18-02-07.png]]
+https://www.vsni.co.uk/files/events/gsconf2011/hannahm.pdf
+
+
+In this paper (http://www.jbc.org/content/240/2/863.full.pdf), the authors present the Michaelis Menten equation as:
+
+\(v = V_{max}C_S /(K_m + C_S)\)
+
+where $v$ is the rate of substrate consumption, $V_{max}$ and $K_m$ are unknown parameters, and $C_S$ is the concentration of the substrate. They note that the equation is often transformed as:
+
+\(1/v = (1/V_{max}) + (K_m/V_{max}) (1/C_S)\) 
+
+so that linear regression can be used to estimate the unknown parameters $V_{max}$ and $K_m$. They note, however, that this transformation leads to the least reliable estimate of those parameters!
+
+Given this data, verify that linear regression leads to larger confidence intervals than nonlinear regression for the two unknown parameters.
+
+#+name: mm-data
+|  Cs |     v |
+|-----+-------|
+| 2.5 |  4.29 |
+|   5 |  7.50 |
+|  10 |    12 |
+|  20 | 17.14 |
+|  40 | 21.82 |
+
+* solution
+We have to perform a linear and nonlinear regression of this data with confidence intervals. For the linear regression, we have to compute the parameters from the fit. We have:
+
+\(Vmax = 1 / intercept\)
+\(Km = slope * Vmax\)
+
+#+BEGIN_SRC python :results output org drawer :var data=mm-data
+import numpy as np
+from pycse import nlinfit, regress
+
+Cs = np.array([row[0] for row in data])
+v = np.array([row[1] for row in data])
+
+# Linear regression
+iv = 1 / v
+iCs = 1 / Cs
+
+X = np.column_stack([iCs, iCs**0])
+
+p, pint, se = regress(X, iv, 0.05)
+
+Vmax_interval_linear = 1 / pint[1]
+Km_interval_linear = Vmax_interval_linear * pint[0]
+
+
+
+# Nonlinear regression
+
+def model(Cs, Vmax, Km):
+    return Vmax * Cs / (Km + Cs)
+
+p_nl, pint_nl, se_nl = nlinfit(model, Cs, v, [30, 2])
+
+Vmax_nl_int, Km_nl_int = pint
+
+print('The Vmax 95% confidence interval from linear regression is {} units wide'.format(np.abs(np.diff(Vmax_interval_linear))))
+print('The Vmax 95% confidence interval from nonlinear regression is {} units wide'.format(np.abs(np.diff(Vmax_nl_int))))
+
+print('The Km 95% confidence interval from linear regression is {} units wide'.format(np.abs(np.diff(Km_interval_linear))))
+print('The Km 95% confidence interval from nonlinear regression is {} units wide'.format(np.abs(np.diff(Km_nl_int))))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+The Vmax 95% confidence interval from linear regression is [ 0.276681] units wide
+The Vmax 95% confidence interval from nonlinear regression is [ 0.00149353] units wide
+The Km 95% confidence interval from linear regression is [ 0.09343018] units wide
+The Km 95% confidence interval from nonlinear regression is [ 0.00030835] units wide
+:END:
+
+It is clear from these comparisons that the confidence interval on the nonlinear regression is considerably smaller than the one from linear regression. 

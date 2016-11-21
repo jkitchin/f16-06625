@@ -710,6 +710,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+[[./solutions/exam-2-1/exam-2-1.org]]
 
 ** GRADED assignment:exam-2-2					 :assignment:
    CLOSED: [2016-11-17 Thu 02:57] DEADLINE: <2016-11-02 Wed>
@@ -720,6 +721,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+[[./solutions/exam-2-2/exam-2-2.org]]
 
 ** GRADED assignment:exam-2-3					 :assignment:
    CLOSED: [2016-11-06 Sun 17:03] DEADLINE: <2016-11-02 Wed>
@@ -730,6 +732,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+[[./solutions/exam-2-3/exam-2-3.org]]
 
 ** TODO assignment:eb-batch-1 :assignment:
    DEADLINE: <2016-11-22 Tue>

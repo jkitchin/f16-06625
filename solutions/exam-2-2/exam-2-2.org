@@ -1,0 +1,199 @@
+#+ASSIGNMENT: exam-2-2
+#+POINTS: 3
+#+CATEGORY: exam2
+#+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
+#+DUEDATE: <2016-11-02 Wed>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+The Michaelis-Menten equation defines the rate of substrate consumption in an enzyme reaction. The equation is given by:
+
+\(-r_S = \frac{V_{max} C_S}{K_m + C_S}\)
+
+For a batch reactor, an analytical solution for the concentration of substrate as a function of time has been found (https://en.wikipedia.org/wiki/Enzyme_kinetics) and it is:
+
+\(C_S(t) = K_m W\left(\frac{C_{S0}}{K_m} \exp\left(\frac{C_{S0}}{K_m} - \frac{V_{max}}{K_m}t\right)\right)\) 
+
+where $W$ is the Lambert-W function. The Lambert-W function is defined in scipy.special. It returns a complex number, and we only need the real part. So the syntax for using it is W(x).real. Here is an example of using the function to calculate the LambertW function for a value of 0.5.
+
+#+BEGIN_SRC python :results output org drawer
+from scipy.special import lambertw as W
+print(W(0.5).real)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0.351733711249
+:END:
+
+It is given that $V_{max} = 30 \pm 2$, and $K_m=15 \pm 3$. You have a one liter batch reactor, that is initially charged with 1M substrate. 
+
+1. Determine how long (on average) it would take to consume 80% of the substrate.
+
+2. Due to the uncertainty in the parameters, there is some uncertainty in how long it will take to get 80% conversion. Determine how long it will take to be 95% certain that at least 80% of the substrate has reacted. Explain your reasoning.
+
+* Solution
+
+There are two approaches to this problem. The best solution is to directly evaluate the analytical solution provided in an Monte Carlo solution. Second best is to integrate the mole balance instead, using an event to get to 80% conversion. 
+
+With the Monte Carlo we get a distribution of times required to reach 80% conversion. We need to find the longest time such that 95% of the times are shorter than that time, because if we run at least that long, then any pair of parameters below that time will also have at least 80% conversion too. We can achieve that by sorting the results, and finding the time near the index that is 95% of the total number of samples.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.special import lambertw
+from scipy.optimize import fsolve
+
+S0 = 1
+Vmax = 30
+Km = 15
+
+N = 10000
+Vmax = np.random.normal(30, 2, N)
+Km = np.random.normal(15, 3, N)
+
+def C_S(t, vmax, km):
+    F = S0 / km * np.exp(S0 / km - vmax / km * t)
+    return km * lambertw(F).real
+
+# 80% conversion means Cs = 0.2
+def objective(t, vmax, km):
+    return C_S(t, vmax, km) - 0.2
+
+T = sorted([fsolve(objective, 1, args=(vmax, km))[0]
+     for (vmax, km) in zip(Vmax, Km)])
+
+print('We should run for a time of at least {}'.format(T[int(0.95 * N)]))
+
+
+import matplotlib.pyplot as plt
+plt.hist(T, bins=20)
+plt.xlabel('Reaction time')
+plt.ylabel('frequency')
+plt.savefig('soln.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+We should run for a time of at least 1.1219333016186515
+:END:
+
+[[./soln.png]]
+
+Alternatively, you could pick a time, and make sure 95% of the conversions are greater than 80%. I found it easiest to iterate the value of the time manually.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+from scipy.special import lambertw
+from scipy.optimize import fsolve
+
+S0 = 1
+Vmax = 30
+Km = 15
+
+N = 10000
+Vmax = np.random.normal(30, 2, N)
+Km = np.random.normal(15, 3, N)
+
+def C_S(t, vmax, km):
+    F = S0 / km * np.exp(S0 / km - vmax / km * t)
+    return km * lambertw(F).real
+
+def objective(t, vmax, km):
+    return C_S(t, vmax, km) - 0.2
+
+t = 1.12
+
+C = np.array([C_S(t, vmax, km) for (vmax, km) in zip(Vmax, Km)])
+
+# Fraction of C less or equal to 0.2
+f = sum(C <=0.2) / N
+
+print('At t={} there are {:.0f}% less than 0.2'.format(t, f * 100))
+
+
+import matplotlib.pyplot as plt
+plt.hist(C, bins=20)
+plt.xlabel('Final concentration')
+plt.ylabel('frequency')
+plt.savefig('soln2.png')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+At t=1.12 there are 95% less than 0.2
+:END:
+
+[[./soln2.png]]
+
+** Using uncertainties 
+It is pretty tricky to use the uncertainties package. It would not be my first choice because it requires some sophisticated function wrapping.
+
+Here are two approaches to solve it. We pretty easily get the time to get 80% conversion with the uncertainty on it. Estimating the time to be 95% confident of at least 80% conversion is conceptually harder. Consider that 95% of the values fall approximately between ±2σ, and with this average solution, we are about 50% confident we will get at least 80% conversion. If we just add 2σ to the time, that will include most of the cases that were going to be less than 80% conversion.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+import uncertainties as u
+from scipy.special import lambertw
+from scipy.optimize import fsolve
+
+S0 = 1
+Vmax = u.ufloat(30, 2)
+Km = u.ufloat(15, 3)
+
+def C_S(t, vmax, km):
+    F = S0 / km * np.exp(S0 / km - vmax / km * t)
+    return km * lambertw(F).real
+
+def objective(t, vmax, km):
+    return C_S(t, vmax, km) - 0.2
+
+def solve(vmax, km):
+    return fsolve(objective, 1, args=(vmax, km))[0]
+
+
+t = u.wrap(solve)(Vmax, Km)
+print('The time to reach 80% conversion is {}'.format(t))
+
+print(t.nominal_value + 2 * t.s)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+The time to reach 80% conversion is 0.83+/-0.17
+1.1718260028789216
+:END:
+
+An alternative approach is to say you want the maximum concentration in the confidence interval to be 0.2 (because anything less automatically achieves 80% conversion). Here we explicitly solve for that with the approximation that plus or minus two standard deviations is about the 95% confidence interval.
+
+#+BEGIN_SRC python :results output org drawer
+import numpy as np
+import uncertainties as u
+from scipy.special import lambertw
+from scipy.optimize import fsolve
+
+S0 = 1
+Vmax = u.ufloat(30, 2)
+Km = u.ufloat(15, 3)
+
+
+def C_S(t, vmax, km):
+    F = S0 / km * np.exp(S0 / km - vmax / km * t)
+    return km * lambertw(F).real
+
+def objective(t):    
+    cf = u.wrap(C_S)(float(t), Vmax, Km)
+    return (cf.nominal_value + 2 * cf.s) - 0.2
+
+print(fsolve(objective, 1.2))
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+[ 1.17058844]
+:END:
+
+The answer is similar. Note both of these answers are larger than the Monte Carlo simulation. That is in part because this approach does not take into account the non-linear uncertainty propagation, and also does the interval in a symmetric way. In the Monte Carlo approach, we use only one tail, e.g. the 5% is all on one side, where here it is split on both sides of the distribution. There is probably a way to fix that by not using 2 std deviations here, but it is a little beyond our goals. The estimate is still reasonable in this case.
