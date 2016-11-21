@@ -730,3 +730,13 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:eb-batch-1 :assignment:
+   DEADLINE: <2016-11-22 Tue>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   3
+   :CUSTOM_ID: eb-batch-1
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
