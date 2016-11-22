@@ -744,8 +744,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** COLLECTED assignment:quiz-4                                   :assignment:
-   DEADLINE: <2016-11-21 Mon>
+** GRADED assignment:quiz-4                                      :assignment:
+   CLOSED: [2016-11-22 Tue 06:21] DEADLINE: <2016-11-21 Mon>
    :PROPERTIES:
    :CATEGORY: quiz
    :POINTS:   2
