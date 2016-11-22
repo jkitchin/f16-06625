@@ -41,7 +41,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 
 - The reactor volume is 1200 L
 
-- We will neglect the temperature dependence of the rate constant and reaction enthalpy
+- We will neglect the temperature dependence reaction enthalpy
 
 - We will assume the reaction is liquid phase and it is incompressible
 
@@ -72,7 +72,7 @@ cpc = 40.0        # cal/mol/K
 k0 = 0.01725      # L / mol / min at 27 degC
 E = 1500.0        # cal/mol
 R = 1.987         # cal/mol/K
-dH = -10000.0     # cal/mol
+dH = 10000.0     # cal/mol
 
 def adiabatic_batch(Y, t):
     na, T = Y
@@ -102,8 +102,9 @@ Y0 = [V * CA0, T0]
 tspan = np.linspace(0, 200)
 sol = odeint(adiabatic_batch, Y0, tspan)
 
+Na, T = sol.T
 import matplotlib.pyplot as plt
-plt.plot(tspan, sol[:,1])
+plt.plot(tspan, T)
 plt.xlabel('Time (min)')
 plt.ylabel('Temperature (K)')
 plt.savefig('images/adiabatic-batch-temp-profile.png')
@@ -149,8 +150,8 @@ plt.savefig('images/adiabatic-batch-temp-profile.png')
 import numpy as np
 from scipy.integrate import odeint
 
-V = 1200.0 # L
-T0 = 273.15 + 27
+V = 1200.0  # L
+T0 = 273.15
 CA0 = CB0 = 2.0
 CC0 = 0.0
 
@@ -162,12 +163,13 @@ E = 1500.0     # cal/mol
 R = 1.987       # cal/mol/K
 dH = -10000.0  # cal/mol
 
-Ua = 5000.0  # overall heat transfer coefficient
+Ua = 15000.0  # overall heat transfer coefficient
 Tcoolant = 77 + 273.15  # coolant temperature
+
 
 def batch(Y, t):
     na, T = Y
-    xi = (na - CA0*V) / -1.0
+    xi = (na - CA0 * V) / -1.0
     nb = CB0 * V - xi
     nc = CC0 * V + xi
 
@@ -177,10 +179,13 @@ def batch(Y, t):
     r = k * Ca * Cb
     ra = -r
 
-    Qdot = Ua*(Tcoolant - T)
+    Qdot = Ua * (Tcoolant - T)
 
-    dnadt = ra * V
-    dTdt = (-dH * r * V + Qdot)/(na * cpa + nb * cpb + nc * cpc)
+    dnadt = 0 # ra * V
+    r = 0
+    nd = V * CA0
+    cpd = 80
+    dTdt = (-dH * r * V + Qdot) / (na * cpa + nb * cpb + nc * cpc + nd * cpd)
     return [dnadt, dTdt]
 
 
@@ -189,7 +194,7 @@ Y0 = [V * CA0, T0]
 tspan = np.linspace(0, 200)
 sol = odeint(batch, Y0, tspan)
 import matplotlib.pyplot as plt
-plt.plot(tspan, sol[:,1])
+plt.plot(tspan, sol[:, 1])
 plt.xlabel('Time (min)')
 plt.ylabel('Temperature (K)')
 plt.savefig('images/heat-exchanger-batch-temp-profile.png')
