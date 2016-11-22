@@ -753,3 +753,4 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   multiple-choice
    :END:
 
+[[./solutions/quiz-4/quiz-4.org]]

@@ -1,0 +1,230 @@
+#+ASSIGNMENT: quiz-4
+#+POINTS: 2
+#+CATEGORY: quiz
+#+RUBRIC: multiple-choice
+#+DUEDATE: <2016-11-21 Mon>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+* ID:1525 Large Equilibrium Constants
+  :PROPERTIES:
+  :ID:       F2F5BCA86-1933-432F-9A8A-891339C05DF7
+  :ANSWER:   b
+  :END:
+
+If a reaction has an equilibrium constant that is significantly large (KC >>1), which of the following statements can be made about the reaction?
+
+[[mc:a]] The reaction will favor production of reactants.		
+
+[[mc:b]] The reaction will favor production of products.		
+
+[[mc:c]] The reaction will proceed quickly.		
+
+[[mc:d]] The reaction will proceed slowly.		
+
+[[mc:e]] Both the rate of reaction and extent of reaction can be determined from KC
+#+F2F5BCA86-1933-432F-9A8A-891339C05DF7: b
+
+
+* ID:1524 Comparison of Equilibrium Constants
+  :PROPERTIES:
+  :ID:       F784CF3B1-9158-410E-B97A-1E992221A4E6
+  :ANSWER:   d
+  :END:
+
+Compare the following two reactions:
+    I) N2O4(g) <--> 2 NO2(g)	         KC = 0.211
+    II) CO(g) + Cl2(g) <--> COCl2 (g)	 KC = 4.57 x 10^9
+Which of the following statements is correct?
+
+[[mc:a]] Reaction I will proceed faster because KC is larger.
+
+[[mc:b]] Reaction II will proceed faster because KC is larger.
+
+[[mc:c]] Reaction I favors the production of products.
+
+[[mc:d]] Reaction II favors the production of products.
+
+[[mc:e]]  None of these statements is correct.
+#+F784CF3B1-9158-410E-B97A-1E992221A4E6: d
+
+* ID:1528 Addition of Reactants in Exothermic Reaction
+  :PROPERTIES:
+  :ID:       F2301DBD3-BCDF-48AE-99EA-34F756CA1F27
+  :ANSWER:   d
+  :END:
+
+Consider the following reaction:
+2 NO(g)  + Cl2(g) <--> 2 NOCl(g) + heat
+
+A flask containing NO(g), Cl2(g), and NOCl(g) is at equilibrium.  If additional NO(g) is added to the container, what happens to the system as it approaches equilibrium?
+
+[[mc:a]] First, all of the NO  reacts and the forward reaction proceeds to completion. Then the reverse reaction occurs. 
+
+No. The reverse reaction begins as soon as there is any product formed.
+
+[[mc:b]] The concentrations of NO, Cl2, and NOCl fluctuate back and forth until a new equilibrium is established.
+
+No. The reaction would proceed monotonically, not by fluctuating.
+
+[[mc:c]] NO and Cl2 are used to make NOCl until one of the reactants runs out, limiting the production of more product.
+
+No.
+
+[[mc:d]] NO and Cl2 are used to make NOCl until equilibrium is established. The forward and reverse reactions continue to proceed, but the concentrations no longer vary.
+
+[[mc:e]] The rate of the forward reaction continuously speeds up as the reaction proceeds and the rate of the reverse reaction slows down until equilibrium is reached.
+#+F2301DBD3-BCDF-48AE-99EA-34F756CA1F27: d
+
+* ID:1530 Effect of Cooling on Equilibrium Constant
+  :PROPERTIES:
+  :ID:       E741F064-A1A1-4A00-A581-7EF066DAE9A0
+  :ANSWER:   b
+  :END:
+
+Consider the following reaction:
+Br2(g) + heat <--> 2 Br(g)	 KC = 1.04 x 10^{-3} at 1285C
+When the reaction is cooled down to room temperature, what happens to KC?
+
+[[mc:a]] Changing the temperature doesn’t change KC
+
+[[mc:b]] KC will decrease because of the lower temperature
+The reaction is endothermic.
+[[mc:c]] KC will decrease because the volume occupied by the gas becomes smaller
+
+[[mc:d]] KC will increase because of the lower temperature.
+
+[[mc:e]] KC will increase because the volume occupied by the gas becomes smaller
+
+ 
+#+E741F064-A1A1-4A00-A581-7EF066DAE9A0: b
+
+* ID:1532 Effect of Volume Change on Equilibrium
+  :PROPERTIES:
+  :ID:       F51E3786D-D4E4-4156-A5ED-8C56C94022E8
+  :ANSWER:   d
+  :END:
+
+Consider the following reaction:
+2 NO2Cl(g) --> 2NO2(g) + Cl2(g)	 KC = 0.558
+If the volume of this equilibrium system is cut in half, what will happen to the equilibrium constant?
+
+A decrease in volume increases the pressure. Since there is a mole change, the equilibrium shifts to the side with fewer moles. K will decrease.
+
+[[mc:a]] The new KC will be larger than the original because of a temperature increase.
+
+[[mc:b]] The new KC will be larger than the original because the reaction shifts to the left.
+
+[[mc:c]] The new KC will be smaller than the original because of a temperature increase.
+
+[[mc:d]] The new KC will be smaller than the original because the reaction shifts to the left.
+
+[[mc:e]] KC will stay the same.
+#+F51E3786D-D4E4-4156-A5ED-8C56C94022E8: d
+
+* ID:1526 System in Equilibrium
+  :PROPERTIES:
+  :ID:       D54A69A5-7E1C-41EE-9698-3159E49784F7
+  :ANSWER:   c
+  :END:
+
+Once a system reaches equilibrium:
+
+[[mc:a]] The forward and reverse reactions no longer occur.
+
+[[mc:b]] The forward and reverse reactions continue to occur and alter the concentrations of reactants and products.
+
+[[mc:c]] The forward and reverse reactions occur, but do not alter the concentrations of the reactants or products.
+
+[[mc:d]]  Only the forward reaction continues to occur.
+
+[[mc:e]]  Only the reverse reaction continues to occur.
+#+D54A69A5-7E1C-41EE-9698-3159E49784F7: c
+
+* ID:1527 Effect of Adding Reactants on Equilibrium
+  :PROPERTIES:
+  :ID:       F19C2134-04D1-432D-81CC-16C54FE26844
+  :ANSWER:   e
+  :END:
+Consider the following reaction:
+
+H2(g) + F2(g) <--> 2 HF(g)
+
+A flask containing these three chemical species is at equilibrium.  Additional H2 is added to the flask.  As the system returns to equilibrium, which of the following compounds will experience a change in concentration as the system approaches equilibrium?
+
+[[mc:a]] H2
+
+[[mc:b]] F2
+
+[[mc:c]] HF
+
+[[mc:d]] Two of the above
+
+[[mc:e]] All of the above
+#+F19C2134-04D1-432D-81CC-16C54FE26844: e
+
+* Effect of inerts on adiabatic exothermic reaction
+  :PROPERTIES:
+  :ID:       D2A37110-AA63-4691-B9AE-0E49756C798C
+  :ANSWER:   d
+  :END:
+
+The exothermic reaction A <--> B reaches an equilibrium conversion of 25% in an adiabatic steady state flow reactor. Which of the following will likely increase conversion?
+
+[[mc:a]]. Add a catalyst 
+
+[[mc:b]] Raise the inlet temperature 
+
+[[mc:c]] Use a bigger reactor 
+
+[[mc:d]] Add an inert to the feed 
+
+The inert will absorb heat, and keep the temperature from increasing as much. This will allow more products to form. 
+
+[[mc:e]] All of the above 
+#+D2A37110-AA63-4691-B9AE-0E49756C798C: d
+
+* Changing volumetric flow
+  :PROPERTIES:
+  :ID:       EBA077D5-1853-41F1-AB8D-CC9C7D535608
+  :ANSWER:   d
+  :END:
+
+The gas-phase reaction $\ce{2A -> B}$ shown below takes place in an isothermal, packed bed reactor with pressure drop. The volumetric flow rate at the reactor outlet will be ____________ at the reactor inlet.
+
+
+[[mc:a]] higher than 
+
+[[mc:b]]. lower than 
+
+[[mc:c]] the same as 
+
+[[mc:d]]. insufficient information 
+
+The changing molar flow will tend to decrease the volumetric flow, but the pressure drop will increase it. There is not enough information to determine which effect dominates.
+
+#+EBA077D5-1853-41F1-AB8D-CC9C7D535608: d
+
+* The conversion versus PFR volume was measured for feed temperatures of 500 K and 600 K. 
+  :PROPERTIES:
+  :ID:       C12C244C-E8DA-415F-81F4-EBD57E427F91
+  :ANSWER:   a
+  :END:
+
+#+attr_org: :width 300
+[[./pfr-conversion.png]]
+
+Which of these best describes the reaction:
+
+[[mc:a]] Exothermic, reversible  
+
+[[mc:b]] Exothermic, irreversible 
+
+[[mc:c]] Endothermic, irreversible 
+
+[[mc:d]] Endothermic, reversible 
+#+C12C244C-E8DA-415F-81F4-EBD57E427F91: a
