@@ -1,4 +1,4 @@
-\#+ASSIGNMENT: exam-2-1
+#+ASSIGNMENT: exam-2-1
 #+POINTS: 3
 #+CATEGORY: exam2
 #+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
