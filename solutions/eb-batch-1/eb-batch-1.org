@@ -1,0 +1,256 @@
+#+ASSIGNMENT: eb-batch-1
+#+POINTS: 3
+#+CATEGORY: homework
+#+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
+#+DUEDATE: <2016-11-22 Tue>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+The reaction $\ce{A + B <=> C}$ is carried out in an adiabatic, constant volume batch reactor. The rate law is
+
+r = k1 * C_A**0.5 * C_B**0.5 - k2 * C_C
+
+Initial temperature = 100 degC
+k1 (373K) = 2e-3 1/s           E1 = 100 kJ/mol
+k2 (373K) = 3e-5 1/s           E2 = 150 kJ/mol
+CA0 = 0.1 mol / L              CpA = 25 J/mol/K
+CB0 = 0.125 mol / L            CpB = 25 J/mol/K
+Hrx (298K) = -40 kJ /mol A     CpC = 40 J/mol/K
+
+
+a) Plot the concentrations and temperature as a function of time. 
+b) Plot the equilibrium conversion as a function of temperature
+
+** solution
+*** Part a
+
+We need to setup coupled mole and energy balances for the species, and then solve them.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+
+T0 = 100.0 + 273.15  # K
+k1_373 = 0.002
+E1 = 100.0       # kJ/mol
+k2_373 = 3.0e-5
+E2 = 150.0       # kJ/mol
+R = 8.314e-3
+
+# initial concentrations
+Ca0 = 0.1
+Cb0 = 0.125
+Cc0 = 0.0
+
+# thermal properties
+Hrx_298 = -40.0  # kJ/mol
+Cpa = 0.025      # kJ/mol/K
+Cpb = 0.025      # kJ/mol/K
+Cpc = 0.040      # kJ/mol/K
+
+dCp = Cpc - Cpa - Cpb
+
+
+def ode(Y, t):
+    Ca, Cb, Cc, T = Y  # constant volume, so we can use concentration
+
+    k1 = k1_373 * np.exp(-E1 / R * (1.0 / T - 1.0 / 373.0))
+    k2 = k2_373 * np.exp(-E2 / R * (1.0 / T - 1.0 / 373.0))
+
+    r = k1 * Ca**0.5 * Cb**0.5 - k2 * Cc
+    ra = rb = -r
+    rc = r
+    dCadt = ra
+    dCbdt = rb
+    dCcdt = rc
+
+    # energy balance
+    Hrx = Hrx_298 + dCp * (T - T0)
+
+    dTdt = (-Hrx * r) / (Ca * Cpa + Cb * Cpb + Cc * Cpc)
+    return (dCadt, dCbdt, dCcdt, dTdt)
+
+tspan = np.linspace(0, 10, 200)
+Y0 = [Ca0, Cb0, Cc0, T0]
+sol = odeint(ode, Y0, tspan)
+
+Ca = sol[:, 0]
+Cb = sol[:, 1]
+Cc = sol[:, 2]
+T = sol[:, 3]
+
+import matplotlib.pyplot as plt
+plt.plot(tspan, Ca, tspan, Cb, tspan, Cc)
+plt.xlabel('time (s)')
+plt.ylabel('Concentrations (mol/L)')
+plt.legend(['A', 'B', 'C'], loc='best')
+plt.savefig('part-a-conc.png')
+
+plt.figure()
+plt.plot(tspan, T)
+plt.xlabel('time (s)')
+plt.ylabel('Temperature (K)')
+plt.savefig('part-a.png')
+#+END_SRC
+
+#+RESULTS:
+
+ [[./part-a-conc.png]]
+
+[[./part-a.png]]
+
+Note that the temperature rises very quickly. The reaction appears to reach equilibrium very abruptly. It does actually reach equilibrium in a smooth and continuous way, but over a very short time scale. You have to use a very dense integration grid (e.g. 20000 points) and zoom into the microsecond time scale to see that it is smooth.
+
+*** part b
+One thing to note here is that the rate law is not consistent with the equilibrium constant based on the reaction stoichiometry. We have on one hand K = k1 / k2, and on another hand by stoichiometry, $K = Cc / (Ca Cb)$ or by r=0, $K = Cc / (Ca^{0.5} Cb^{0.5})$, both of which cannot be right. There is insufficient information to determine which is right. You need to say which one you use.
+
+By stoichiometry we have:
+
+K = Cc / (Ca * Cb)
+
+let X be the reaction extent.
+
+CA = Ca0 - X
+CB = Cbo - X
+Cc = X
+
+then:
+
+we solve:
+K = k1/k2 = X / ((Ca0 -X) * (Cb0 - X))
+
+for X as a function of temperature.
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+T0 = 100.0 + 273.15  # K
+k1_373 = 0.002
+E1 = 100.0       # kJ/mol
+k2_373 = 3.0e-5
+E2 = 150.0       # kJ/mol
+R = 8.314e-3
+
+Ca0 = 0.1
+Cb0 = 0.125
+Cc0 = 0.0
+Hrx_298 = -40.0  # kJ/mol
+Cpa = 0.025      # kJ/mol/K
+Cpb = 0.025      # kJ/mol/K
+Cpc = 0.040      # kJ/mol/K
+
+dCp = Cpc - Cpa - Cpb
+
+from scipy.optimize import fsolve
+
+Tspan = np.linspace(350, 600)
+
+
+def objective(X, T):
+    # X is a reaction extent, not a fractional conversion
+    k1 = k1_373 * np.exp(-E1 / R * (1.0 / T - 1.0 / 373.0))
+    k2 = k2_373 * np.exp(-E2 / R * (1.0 / T - 1.0 / 373.0))
+
+    K = k1 / k2
+    return K * ((Ca0 - X) * (Cb0 - X)) - X
+
+XEQ = np.empty(Tspan.shape)
+for i, T in enumerate(Tspan):
+    guess = 1e-6
+    XEQ[i], = fsolve(objective, guess, args=(T,))
+    guess = XEQ[i]
+
+plt.figure()
+plt.plot(Tspan, XEQ / Ca0)
+plt.xlabel('Temperature (K)')
+plt.ylabel('Equilibrium conversion')
+plt.savefig('part-b.png')
+#+END_SRC
+
+#+RESULTS:
+
+[[./part-b.png]]
+
+
+
+#+RESULTS:
+
+
+*** an alternative approach
+
+On the other hand, we might set r=0.
+
+#+BEGIN_SRC python
+import numpy as np
+import matplotlib.pyplot as plt
+
+T0 = 100.0 + 273.15  # K
+k1_373 = 0.002
+E1 = 100.0       # kJ/mol
+k2_373 = 3.0e-5
+E2 = 150.0       # kJ/mol
+R = 8.314e-3
+
+Ca0 = 0.1
+Cb0 = 0.125
+Cc0 = 0.0
+Hrx_298 = -40.0  # kJ/mol
+Cpa = 0.025      # kJ/mol/K
+Cpb = 0.025      # kJ/mol/K
+Cpc = 0.040      # kJ/mol/K
+
+dCp = Cpc - Cpa - Cpb
+
+from scipy.optimize import fsolve
+
+Tspan = np.linspace(350, 600)
+
+
+def objective(X, T):
+    # X is a reaction extent, not a fractional conversion
+    k1 = k1_373 * np.exp(-E1 / R * (1.0 / T - 1.0 / 373.0))
+    k2 = k2_373 * np.exp(-E2 / R * (1.0 / T - 1.0 / 373.0))
+    Ca = Ca0 - X
+    Cb = Cb0 - X
+    Cc = X
+
+#    return k1 * Ca**0.5 * Cb**0.5 - k2 * Cc
+# this version is a little better behaved numerically
+    return (k1 * Ca**0.5 * Cb**0.5)/(k2 * Cc) - 1
+
+XEQ = np.empty(Tspan.shape)
+guess = 0.00001
+for i, T in enumerate(Tspan):
+    #XEQ[i], =
+    s, d, iflag, message = fsolve(objective, guess, args=(T,), full_output=True)
+    if iflag == 1:
+        XEQ[i] = s[0]
+    else:
+        XEQ[i] = np.nan
+        print('no solution at T = {}'.format(T))
+
+plt.figure()
+plt.plot(Tspan, XEQ / Ca0)
+plt.xlabel('Temperature (K)')
+plt.ylabel('Equilibrium conversion')
+plt.savefig('part-b-alt.png')
+#+END_SRC
+
+#+RESULTS:
+: no solution at T = 350.0
+: no solution at T = 355.1020408163265
+: no solution at T = 365.3061224489796
+: no solution at T = 370.40816326530614
+: no solution at T = 375.51020408163265
+: no solution at T = 380.61224489795916
+: no solution at T = 385.7142857142857
+
+
+[[./part-b-alt.png]]
+
+There is some numerical problems with finding a solution below about 400 K.
