@@ -766,3 +766,13 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:eb-rev-pdrop :assignment:
+   DEADLINE: <2016-12-01 Thu>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: eb-rev-pdrop
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
