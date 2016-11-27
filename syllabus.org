@@ -736,7 +736,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/exam-2-3/exam-2-3.org]]
 
-** TODO assignment:eb-batch-1 :assignment:
+** COLLECTED assignment:eb-batch-1                               :assignment:
    DEADLINE: <2016-11-22 Tue>
    :PROPERTIES:
    :CATEGORY: homework
