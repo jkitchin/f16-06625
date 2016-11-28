@@ -14,7 +14,7 @@ elisp:org-toggle-latex-overlays  elisp:org-toggle-pretty-entities
 - The beginning energy balance becomes
 
 \begin{equation}
-\sum N_j C_{p,j} \frac{dT}{dt} = -\sum H_j (F_{j0} - F_j + \alpha_j r V) + \sum F_{j0} H_{j_in} - \sum F_j H_j + \dot{Q}
+\sum N_j C_{p,j} \frac{dT}{dt} = -\sum H_j (F_{j0} - F_j + \alpha_j r V) + \sum F_{j0} H_{j0} - \sum F_j H_j + \dot{Q}
 \end{equation}
 
 - With some rearrangement, and recognizing that
@@ -126,7 +126,7 @@ print('The exit temperature is {0:1.2f} K'.format(Texit))
 #+END_SRC
 
 #+RESULTS:
-: Volume = 16.43 m^3
+: Volume = -2.17 m^3
 : The exit temperature is 360.40 K
 
 - You can see that the exit stream is hotter than the feed temperature
