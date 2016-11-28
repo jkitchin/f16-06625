@@ -736,8 +736,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/exam-2-3/exam-2-3.org]]
 
-** COLLECTED assignment:eb-batch-1				 :assignment:
-   DEADLINE: <2016-11-22 Tue>
+** GRADED assignment:eb-batch-1					 :assignment:
+   CLOSED: [2016-11-28 Mon 17:18] DEADLINE: <2016-11-22 Tue>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   3
