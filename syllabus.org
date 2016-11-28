@@ -260,9 +260,11 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-11-16 Wed] *AICHE NO CLASS*
    CLOSED: [2016-11-19 Sat 13:24]
 
-** [2016-11-21 Mon] [[./rxns-book/non-isothermal-batch.org]]
+** DONE [2016-11-21 Mon] [[./rxns-book/non-isothermal-batch.org]]
+   CLOSED: [2016-11-26 Sat 18:50]
 
-** [2016-11-23 Wed] * THANKSGIVING NO CLASS *
+** DONE [2016-11-23 Wed] * THANKSGIVING NO CLASS *
+   CLOSED: [2016-11-26 Sat 18:50]
 
 ** [2016-11-28 Mon] [[./rxns-book/non-isothermal-cstr.org]] 
 
@@ -734,7 +736,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/exam-2-3/exam-2-3.org]]
 
-** TODO assignment:eb-batch-1 :assignment:
+** COLLECTED assignment:eb-batch-1                               :assignment:
    DEADLINE: <2016-11-22 Tue>
    :PROPERTIES:
    :CATEGORY: homework
@@ -743,6 +745,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+[[./solutions/eb-batch-1/eb-batch-1.org]]
 
 ** GRADED assignment:quiz-4                                      :assignment:
    CLOSED: [2016-11-22 Tue 06:21] DEADLINE: <2016-11-21 Mon>
@@ -754,3 +757,33 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 [[./solutions/quiz-4/quiz-4.org]]
+
+** TODO assignment:eb-cstr :assignment:
+   DEADLINE: <2016-11-30 Wed>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: eb-cstr
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+
+** TODO assignment:eb-rev-pdrop :assignment:
+   DEADLINE: <2016-12-01 Thu>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: eb-rev-pdrop
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
+
+** TODO assignment:eb-cyclohexene.org :assignment:
+   DEADLINE: <2016-12-05 Mon>
+   :PROPERTIES:
+   :CATEGORY: homework
+   :POINTS:   4
+   :CUSTOM_ID: eb-cyclohexene.org
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
