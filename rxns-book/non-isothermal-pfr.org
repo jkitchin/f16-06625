@@ -455,7 +455,6 @@ T_{shell}(V=L) &=& T_{shell,inlet}
 
 - We use a simple, iterative shooting method here
 
-# see [[C:\Users\jkitchin\Dropbox\CMU\classes\06-422-Chemical-Reaction-Engineering-F11\lectures\lecture-21\endothermic_counter_current_2.m]]
 
 #+BEGIN_SRC python
 import numpy as np
@@ -551,47 +550,3 @@ plt.savefig('images/adiabatic-pfr-countercurrent-heat.png')
 - But you need an initial guess for the solution otherwise
   - The solution does not have an intuitive form so it is hard to guess
 
-
-#+BEGIN_SRC python
-for i, el in enumerate(['a', 'b', 'c']):
-    print i, el
-#+END_SRC
-
-#+RESULTS:
-: 0 a
-: 1 b
-: 2 c
-
-#+BEGIN_SRC python
-i = 0
-L = ['a', 'b', 'c']
-while i < len(L):
-    print i, L[i]
-    i = i + 1
-#+END_SRC
-
-#+RESULTS:
-: 0 a
-: 1 b
-: 2 c
-
-#+BEGIN_SRC python
-for a, b in zip([1, 2, 3], ['a', 'b', 'c']):
-    print a,b
-#+END_SRC
-
-#+RESULTS:
-: 1 a
-: 2 b
-: 3 c
-
-
-#+BEGIN_SRC python
-def f(T):
-    return T**2
-
-print [f(t) for t in [1, 2, 3, 4, 6]]
-#+END_SRC
-
-#+RESULTS:
-: [1, 4, 9, 16, 36]
