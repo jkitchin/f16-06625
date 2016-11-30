@@ -266,7 +266,8 @@ The tentative course schedule is here. It may change.
 ** DONE [2016-11-23 Wed] * THANKSGIVING NO CLASS *
    CLOSED: [2016-11-26 Sat 18:50]
 
-** [2016-11-28 Mon] [[./rxns-book/non-isothermal-cstr.org]] 
+** DONE [2016-11-28 Mon] [[./rxns-book/non-isothermal-cstr.org]] 
+   CLOSED: [2016-11-30 Wed 15:14]
 
 ** [2016-11-30 Wed] [[./rxns-book/non-isothermal-pfr.org]]
 
