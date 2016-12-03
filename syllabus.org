@@ -768,6 +768,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+[[./solutions/eb-cstr/eb-cstr.org]]
 
 ** COLLECTED assignment:eb-rev-pdrop                             :assignment:
    DEADLINE: <2016-12-01 Thu>
@@ -778,6 +779,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+[[./solutions/eb-rev-pdrop/eb-rev-pdrop.org]]
 
 ** TODO assignment:eb-cyclohexene.org :assignment:
    DEADLINE: <2016-12-05 Mon>

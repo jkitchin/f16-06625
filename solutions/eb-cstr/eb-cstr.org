@@ -1,0 +1,188 @@
+#+ASSIGNMENT: eb-cstr
+#+POINTS: 4
+#+CATEGORY: homework
+#+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
+#+DUEDATE: <2016-11-30 Wed>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+The production of propylene glycol occurs in a CSTR with a heat exchanger.
+
+The reaction is A + B \rightarrow C
+A = propylene oxide
+B = water
+C = propylene glycol
+
+Initially the CSTR starts out with water in it at 75 degF in a 67 ft^3 reactor. The feed stream contains 80 lbmol/h of propylene oxide (A), 1000 lbmol of water (B) and 100 lbmol of methanol (M) which is inert.
+
+The molar densities of each component are:
+\rho_A 0.923 lbmol / ft^3
+\rho_B 3.45 lbmol/ft^3
+\rho_M 1.54 lbmol / ft^3
+You can assume these are independent of composition and temperature
+
+Heat exchanger data:
+UA = 16000 BTU/h/degF
+coolant flowrate (mc) = 1000 lbmol / hour
+coolant  heat capacity = 18 BTU/lbmol/degF
+coolant temperature (Ta) = 60 degF
+The rate of heat transfer is given by:
+#+BEGIN_SRC python
+Qdot = mc * Cpb * (Ta - T) * (1 - np.exp(-UA / (mc * Cpb)))
+#+END_SRC
+
+Heat capacity data
+Cpa = 35 BTU/lbmol/degF
+Cpb = 18 BTU/lbmol/degF
+Cpc = 46 BTU / lbmol/degF
+Cpm = 19.5 BTU / lbmol/degF
+
+The heat of reaction is -36000 BTU/lbmol A, and is assumed to be constant.
+
+The rate constant for the reaction is:
+#+BEGIN_SRC python
+k = 16.96e12 * np.exp(-32400.0 / 1.987 / (T + 460.0))
+#+END_SRC
+
+The reaction is pseudo-first order in A, so -rA = k(T) C_A.
+
+The reactants decompose if they get above 170 degF.
+
+1. Estimate the maximum feed temperature you can use to avoid decomposition. Show a plot of the temperature vs. time.
+
+2. *Explain qualitatively why the temperature profile looks the way it does.*
+
+3. Estimate the exit concentration of propylene glycol for the feed temperature you found in part 1.
+
+Here is a code block to get you started.
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+from matplotlib import pyplot as plt
+
+# molar flows
+Fa0 = 80.0
+Fb0 = 1000.0
+Fc0 = 0.0
+Fm0 = 100.0
+
+# molar densities
+rhoA = 0.923
+rhoB = 3.45
+rhoM = 1.54
+
+UA = 16000.
+Ta = 60.0  # coolant T
+mc = 1000.0
+
+# Heat capacities
+Cpa = 35
+Cpb = 18
+Cpc = 46
+Cpm = 19.5
+
+Hrx = -36000.0
+
+V = 67.0   # reactor volume
+Tfeed = ???
+#+END_SRC
+
+
+* solution
+
+To solve this, we have to setup transient mole and energy balances and integrate them to see what the maximum temperature we achieve is. I suggest you iterate on Tfeed manually to find a value where the maximum doesn't exceed the decomposition temperature. I found a feed temperature of below 90 degrees would avoid decomposition.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.integrate import odeint
+from matplotlib import pyplot as plt
+
+# molar flows
+Fa0 = 80.0
+Fb0 = 1000.0
+Fc0 = 0.0
+Fm0 = 100.0
+
+# molar densities
+rhoA = 0.923
+rhoB = 3.45
+rhoM = 1.54
+
+UA = 16000.
+Ta = 60.0  # coolant T
+mc = 1000.0
+
+# Heat capacities
+Cpa = 35
+Cpb = 18
+Cpc = 46
+Cpm = 19.5
+
+Hrx = -36000.0
+
+V = 67.0   # reactor volume
+
+v0 = Fa0 / rhoA + Fb0 / rhoB + Fm0 / rhoM
+
+Tfeed = 89.0
+
+def odes(Y, t):
+    Na, Nb, Nc, Nm, T = Y
+
+    Ca = Na / V
+    Fa, Fb, Fc, Fm = [n / V * v0 for n in [Na, Nb, Nc, Nm]]
+
+    k = 16.96e12 * np.exp(-32400.0 / 1.987 / (T + 460.0))
+    r = k * Ca
+    ra = -r
+    rb = -r
+    rc = +r
+
+    dNadt = Fa0 - Fa + ra * V
+    dNbdt = Fb0 - Fb + rb * V
+    dNcdt = Fc0 - Fc + rc * V
+    dNmdt = Fm0 - Fm
+    nCp = np.dot([Na, Nb, Nc, Nm], [Cpa, Cpb, Cpc, Cpm])
+
+    Qdot = mc * Cpb * (Ta - T) * (1 - np.exp(-UA / (mc * Cpb)))
+
+    dTdt = ((Fa0 * Cpa + Fb0 * Cpb + Fm0 * Cpm) * (Tfeed - T)
+            -Hrx * r * V + Qdot) / nCp
+    return [dNadt, dNbdt, dNcdt, dNmdt, dTdt]
+
+Y0 = [0, 3.45 * V, 0.0, 0.0, 75]
+
+tspan = np.linspace(0, 4)
+sol = odeint(odes, Y0, tspan)
+Na, Nb, Nc, Nm, T = sol.T
+
+plt.plot(tspan, T)
+plt.xlabel('Time')
+plt.ylabel('T')
+plt.savefig('soln-T.png')
+
+print('Tmax = {}'.format(max(T)))
+
+plt.figure()
+plt.plot(tspan, Na / V, tspan, Nc / V)
+plt.legend(['Na', 'Nc'])
+print('Exit concentration is {} lbmol / ft^3'.format((Nc / V)[-1]))
+plt.savefig('soln.png')
+#+END_SRC
+
+#+RESULTS:
+: Tmax = 168.08720182413668
+: Exit concentration is 0.16241637735536874 lbmol / ft^3
+
+[[./soln-T.png]]
+[[./soln.png]]
+
+*** 2. qualitative explanation
+
+The reaction is exothermic, so as it proceeds the reactor should get hotter. Evidently, the temperature rises quickly as the concentration of A rises, and then falls. At this point, the rate of heat generation is compensated by heat transfer out of the reactor. Once the CSTR reaches steady state, the rate of heat generation and removal becomes a constant.
+
+

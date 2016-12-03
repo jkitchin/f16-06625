@@ -1,0 +1,141 @@
+#+ASSIGNMENT: eb-rev-pdrop
+#+POINTS: 4
+#+CATEGORY: homework
+#+RUBRIC: (("technical" . 0.7) ("presentation" . 0.3))
+#+DUEDATE: <2016-12-01 Thu>
+#+STARTUP: showeverything
+#+AUTHOR: 
+#+EMAIL: 
+
+
+[[elisp:tq-turn-it-in][Turn it in]]
+
+The reaction 2A \leftrightharpoons C is carried out in a packed bed reactor with a constant ambient temperature heat exchanger. There is a pressure drop along the length of the reactor.
+
+The parameters for this problem are summarized here:
+
+Cpa = 40.0 J / mol / K
+Cpc = 80.0 J / mol / K
+Hrx = -40,000 J/mol
+Ea = 41,800 J / mol / K
+k = 0.5 L**2/kg/min/mol at 450 K
+Kc = 25,000 L/mol at 450 K
+Ca0 = 0.271 mol / L
+T0 = 450 K
+FA0 = 5 mol / min
+
+Ta = 500 K
+Ua = 0.015 J/kg/min/K
+\alpha = 0.015 1/kg  (pressure drop parameter)
+P0 = 10 atm
+
+pure A is fed to the reactor.
+
+a) plot the conversion, reduced pressure (y), and temperature in the reactor from W=0 kg to W = 20 kg
+
+b) Explain what happens around 16 kg of catalyst
+
+
+** solution
+There are several parts to this solution. First, you need the mole balance for each species, including the effects of the pressure drop on concentration through the changing volumetric and molar flows. The rate law must reflect the reversible reaction.
+
+You also need an energy balance to get the temperature, and its effect on the rate constants and volumetric flow.
+
+After that, it is just a regular problem.
+
+#+BEGIN_SRC python 
+import numpy as np
+from scipy.integrate import odeint
+import matplotlib.pyplot as plt
+
+Cpa = 40.0  # J / mol / K
+Cpc = 80.0
+dCp = Cpc - 2 * Cpa  # this is zero, so you could choose to not account for it.
+
+Hrx_450 = -40000.0 # J / mol
+
+R = 8.314 # J / mol / K
+Ea = 41800.0 # J / mol / K
+k_450 = 0.5  # L**2/kg/min/mol at 450 K
+
+Kc_450 = 25000.0  # L/mol at 450 K
+
+Ca0 = 0.271  # mol / L
+Fa0 = Ft0 = 5.0    # mol / min
+
+v0 = Fa0 / Ca0
+
+P0 = 10.0     # atm
+T0 = 450.0  # K
+
+Ta = 500
+Ua = 0.8    # J/kg/min/K
+alpha = 0.015  # 1/kg
+
+def pfr(Y, W):
+    Fa, y, T = Y
+
+    # get overall molar flow
+    xi = (Fa - Fa0) / (-2)
+    Fc = xi
+    Ft = Fa + Fc
+
+    # we need v.  y = P / P0
+    v = v0 * (Ft / Ft0) * (1.0 / y) * (T / T0)
+    Ca = Fa / v
+    Cc = Fc / v
+
+    k = k_450 * np.exp(-Ea / R * (1.0 / T - 1.0 / 450.0))
+
+    Hrx = Hrx_450 + dCp * (T - 450.0)
+    Kc = Kc_450 * np.exp(-Hrx / R * (1.0 / T - 1.0 / 450.0))
+
+    r = k * (Ca**2 - Cc / Kc)
+    ra = -2 * r
+
+    # mole balance
+    dFadW = ra
+
+    # pressure drop
+    dydW = -alpha / (2 * y) * Ft / Ft0 * T / T0
+
+    # energy balance
+    Qdot = Ua * (Ta - T)
+    dTdW = (-Hrx * r + Qdot) / (Fa * Cpa + Fc * Cpc)
+
+    return [dFadW, dydW, dTdW]
+
+Wspan = np.linspace(0, 20)
+Y0 = [Fa0, 1.0, T0]
+
+
+sol = odeint(pfr, Y0, Wspan)
+
+Fa = sol[:,0]
+y = sol[:, 1]
+T = sol[:,2] 
+
+X = (Fa0 - Fa) / Fa0
+
+plt.plot(Wspan, X, Wspan, y)
+plt.legend(['Conversion', 'reduced pressure'], loc='best')
+plt.xlabel('Catalyst Weight (kg)')
+plt.ylabel('X and y')
+plt.savefig('soln-1.png')
+
+plt.figure()
+plt.plot(Wspan, T)
+plt.xlabel('Catalyst Weight (kg)')
+plt.ylabel('Temperature (K)')
+plt.savefig('soln-2.png')
+#+END_SRC
+
+#+RESULTS:
+
+   
+[[./soln-1.png]]
+
+[[./soln-2.png]]
+
+
+Near 16 kg, the temperature levels off, because this is where the equilibrium is reached, and no more heat is being generated. If a larger reactor was used, you would see the temperature begin falling since Ta=500K which is less than the temperature here.
