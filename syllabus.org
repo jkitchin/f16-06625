@@ -770,8 +770,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/eb-cstr/eb-cstr.org]]
 
-** GRADED assignment:eb-rev-pdrop				 :assignment:
-   CLOSED: [2016-12-04 Sun 17:10] DEADLINE: <2016-12-01 Thu>
+** COLLECTED assignment:eb-rev-pdrop				 :assignment:
+   DEADLINE: <2016-12-01 Thu>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
