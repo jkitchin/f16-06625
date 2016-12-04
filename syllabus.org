@@ -759,7 +759,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/quiz-4/quiz-4.org]]
 
-** COLLECTED assignment:eb-cstr                                  :assignment:
+** COLLECTED assignment:eb-cstr					 :assignment:
    DEADLINE: <2016-11-30 Wed>
    :PROPERTIES:
    :CATEGORY: homework
@@ -770,7 +770,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/eb-cstr/eb-cstr.org]]
 
-** COLLECTED assignment:eb-rev-pdrop                             :assignment:
+** COLLECTED assignment:eb-rev-pdrop				 :assignment:
    DEADLINE: <2016-12-01 Thu>
    :PROPERTIES:
    :CATEGORY: homework
