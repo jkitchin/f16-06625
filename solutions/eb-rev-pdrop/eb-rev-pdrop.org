@@ -69,7 +69,7 @@ P0 = 10.0     # atm
 T0 = 450.0  # K
 
 Ta = 500
-Ua = 0.8    # J/kg/min/K
+Ua = 0.015    # J/kg/min/K
 alpha = 0.015  # 1/kg
 
 def pfr(Y, W):
