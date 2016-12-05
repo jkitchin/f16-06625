@@ -759,8 +759,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/quiz-4/quiz-4.org]]
 
-** COLLECTED assignment:eb-cstr					 :assignment:
-   DEADLINE: <2016-11-30 Wed>
+** GRADED assignment:eb-cstr					 :assignment:
+   CLOSED: [2016-12-05 Mon 00:45] DEADLINE: <2016-11-30 Wed>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
