@@ -793,7 +793,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** TODO assignment:exam-3-1 :assignment:
+** COLLECTED assignment:exam-3-1                                 :assignment:
    DEADLINE: <2016-12-07 Wed>
    :PROPERTIES:
    :CATEGORY: exam3
