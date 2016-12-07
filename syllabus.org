@@ -783,7 +783,7 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/eb-rev-pdrop/eb-rev-pdrop.org]]
 
-** TODO assignment:eb-cyclohexene.org :assignment:
+** COLLECTED assignment:eb-cyclohexene.org                       :assignment:
    DEADLINE: <2016-12-05 Mon>
    :PROPERTIES:
    :CATEGORY: homework
