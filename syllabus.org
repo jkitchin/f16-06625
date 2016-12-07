@@ -802,3 +802,13 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
    :END:
 
+
+** TODO assignment:exam-3-2 :assignment:
+   DEADLINE: <2016-12-07 Wed>
+   :PROPERTIES:
+   :CATEGORY: exam3
+   :POINTS:   5
+   :CUSTOM_ID: exam-3-2
+   :RUBRIC:   (("technical" . 0.7) ("presentation" . 0.3))
+   :END:
+
