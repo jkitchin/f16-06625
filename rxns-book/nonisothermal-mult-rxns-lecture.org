@@ -74,14 +74,14 @@ plt.savefig('images/exo-equil-T.png')
 
 - From the mole balance
 
-(\0 = F_{A0} - F_A + \alpha_A r V\)
+\(0 = F_{A0} - F_A + \alpha_A r V\)
 
   - We find that $r V = (F_A - F_{A0}) / \alpha_A = F_{A0} X$
 
 - So we have
 \(X = \frac{C_{pA}(Tfeed - T)}{\Delta H_{rx}}\)
 
-  - Not that if $\Delta H_{rx}$ and $C_{pA}$ do not depend strongly on $T$ this function is linear in $T$
+  - Note that if $\Delta H_{rx}$ and $C_{pA}$ do not depend strongly on $T$ this function is linear in $T$
 
 - Let us consider that function in conjunction with the equilibrium conversion
 
@@ -189,7 +189,10 @@ def objective(Y, Tfeed):
     # energy balance
     # Calculate reaction energy at reaction conditions
     Hrxn = Hrx + dCp * (T - Tfeed)
+    
     z2 = (Fao * CpA + Fbo * CpB) * (Tfeed - T) / (-Hrxn * r * V)  + 1
+    #z2 = (Fao * CpA + Fbo * CpB) * (Tfeed - T)  + (-Hrxn * r * V)
+#    print(z2)
     return [z1, z2]
 
 from scipy.optimize import fsolve
@@ -199,12 +202,12 @@ Xe, Te = np.empty(Tfeed.shape), np.empty(Tfeed.shape)
 
 guess = [0.1, 200]
 for i, tfeed in enumerate(Tfeed):
-    sol, infodict, ier, message = fsolve(objective, guess, args=(tfeed), xtol=1e-6, full_output=1)
+    sol, infodict, ier, message = fsolve(objective, guess, args=(tfeed,), xtol=1e-6, full_output=1)
     if ier == 1:
         Xe[i], Te[i] = sol
         guess = [Xe[i], Te[i]]
     else:
-        print message
+        print(message)
 import matplotlib.pyplot as plt
 plt.plot(Tfeed, Xe)
 
@@ -398,6 +401,7 @@ def objective(Y):
     z4 = Ua * (Ta - T) + Fa0 * Cpa * (Tfeed - T) + V * (r1 * -Hrx1 + r2 * -Hrx2)
     return [z1, z2, z3, z4]
 
+guesses = []
 solutions = []
 for Ca in [0.01, 0.1, 0.2, 0.3, 0.4]:
     for Cb in [0.01, 0.1, 0.2, 0.3, 0.4]:
@@ -407,16 +411,18 @@ for Ca in [0.01, 0.1, 0.2, 0.3, 0.4]:
                 sol = fsolve(objective, Yy0)
                 Texit = sol[-1]
                 solutions += [Texit]
+                guesses += [Yy0]
 
+print(solutions[0], guesses[0])		
 import matplotlib.pyplot as plt
 plt.hist(solutions, 200)
 plt.xlabel('$T_{exit}$')
 plt.ylabel('frequency')
 plt.savefig('images/cstr-mult-reactions-mult-steady-states.png')
-plt.show()
 #+END_SRC
 
 #+RESULTS:
+: 311.087817286 [10.0, 10.0, 10.0, 300]
 
 [[./images/cstr-mult-reactions-mult-steady-states.png]]
 
