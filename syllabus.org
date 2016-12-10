@@ -783,8 +783,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
 
 [[./solutions/eb-rev-pdrop/eb-rev-pdrop.org]]
 
-** COLLECTED assignment:eb-cyclohexene.org                       :assignment:
-   DEADLINE: <2016-12-05 Mon>
+** GRADED assignment:eb-cyclohexene.org				 :assignment:
+   CLOSED: [2016-12-09 Fri 17:22] DEADLINE: <2016-12-05 Mon>
    :PROPERTIES:
    :CATEGORY: homework
    :POINTS:   4
