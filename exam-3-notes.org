@@ -1,0 +1,35 @@
+* exam-3-1
+The reaction is not reversible. Use the equations given.
+
+At 4pm you should have turned in the first problem and started working on the second one!
+
+* exam-3-2
+#+BEGIN_SRC python :results output org drawer
+Cas = 3e-5 # mol/cm^3
+Ct = 4e-5 # mol/cm^3
+De = 0.01 # cm^2 / s
+ 
+k = 8e4 # cm^3/s/mol
+Kc = 6e5
+
+L = 0.2 # cm
+#+END_SRC
+
+By 4:30 you should have turned in the second problem and started the third problem
+
+By 5pm You should have turned in the third problem, and you have 20 minutes to check/finish anything left
+
+
+
+
+
+
+
+
+
+
+#  ov-highlight-data: ((70%20159%20(ov-highlight%20t%20face%20(:background%20"Pink")))%20(339%20413%20(ov-highlight%20t%20face%20(:background%20"Darkolivegreen1")))%20(412%20421%20(ov-highlight%20t%20face%20(:background%20"Darkolivegreen1")))%20(423%20528%20(ov-highlight%20t%20face%20(:background%20"Yellow"))))
+
+# Local Variables:
+# eval: (ov-highlight-load)
+# End:
