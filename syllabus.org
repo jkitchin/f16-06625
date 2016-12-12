@@ -813,8 +813,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** GRADED assignment:exam-3-3					 :assignment:
-   CLOSED: [2016-12-12 Mon 15:29] DEADLINE: <2016-12-07 Wed>
+** COLLECTED assignment:exam-3-3				 :assignment:
+   DEADLINE: <2016-12-07 Wed>
    :PROPERTIES:
    :CATEGORY: exam3
    :POINTS:   5
