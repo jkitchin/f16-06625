@@ -1,0 +1,426 @@
+#+STARTUP: showall
+
+* Course software setup
+
+- Your laptops have already been setup with the software you need for this course
+  + Emacs + scimax
+  + Python
+  + git
+  + ssh
+
+** Course setup
+
+This course is run by Techela (Technology Enhanced Learning and Assessment), developed by Prof. Kitchin. This software uses Emacs as a content generation and delivery system, with git, a distributed version control software, to securely share files between instructors and students.
+
+You will install the course like this:
+
+- Open Emacs
+- Type Alt-x techela
+- You will be prompted for a course, choose f16-06625
+- You will be prompted for some information including your name, and andrew email address.
+- You will be prompted for your andrew email password, which will send me some information I need to give you access to the course.
+- Emacs will then download the course for you. After I register your ssh key, you will have access to assignments.
+- Emacs will keep the course notes up to date, and tell you when assignments are due, etc...
+
+
+- Lecture notes are written in a format known as org-mode, which is a lightweight, text-based markup language
+- The notes are best viewed in Emacs, which knows how to render equations and figures, and allows you to run the code and capture the results.
+
+
+** Python setup
+
+- Anaconda Python 3.5 should already be installed
+
+- We will install new packages as needed
+
+*** Additional python packages to install
+
+Put your cursor in this code block and run it (C-c C-c). This will install some additional packages we will use in the course.
+
+#+BEGIN_SRC python :results output org drawer
+import pip
+
+for package in ['pycse==1.6.3', 'uncertainties', 'quantities', 'jedi', 'rope']:
+    pip.main(['install', '-U', package])
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+Collecting pycse==1.6.3
+  Downloading pycse-1.6.3.tar.gz
+Collecting quantities==0.10.1 (from pycse==1.6.3)
+  Downloading quantities-0.10.1.tar.gz (61kB)
+Building wheels for collected packages: pycse, quantities
+  Running setup.py bdist_wheel for pycse: started
+  Running setup.py bdist_wheel for pycse: finished with status 'done'
+  Stored in directory: /home/jacob/.cache/pip/wheels/5e/40/ff/05bee74dc41de68902582fe68c6c4b100fca353edeafec15f9
+  Running setup.py bdist_wheel for quantities: started
+  Running setup.py bdist_wheel for quantities: finished with status 'done'
+  Stored in directory: /home/jacob/.cache/pip/wheels/fc/e9/14/3d025a5882093ba31c3b9373fd1451c4a32f32a291b2e22899
+Successfully built pycse quantities
+Installing collected packages: quantities, pycse
+Successfully installed pycse-1.6.3 quantities-0.10.1
+Collecting uncertainties
+  Downloading uncertainties-3.0.1.tar.gz (225kB)
+Building wheels for collected packages: uncertainties
+  Running setup.py bdist_wheel for uncertainties: started
+  Running setup.py bdist_wheel for uncertainties: finished with status 'done'
+  Stored in directory: /home/jacob/.cache/pip/wheels/69/c2/78/202aa638cd4141e8f2a3a979fa2eeee4d595bdbe94f23803b3
+Successfully built uncertainties
+Installing collected packages: uncertainties
+Successfully installed uncertainties-3.0.1
+Collecting quantities
+  Downloading quantities-0.11.1.zip (105kB)
+Building wheels for collected packages: quantities
+  Running setup.py bdist_wheel for quantities: started
+  Running setup.py bdist_wheel for quantities: finished with status 'done'
+  Stored in directory: /home/jacob/.cache/pip/wheels/79/85/98/574e4549c9453289f1892756e1db968e4a8f2361842dfb7aba
+Successfully built quantities
+Installing collected packages: quantities
+  Found existing installation: quantities 0.10.1
+    Uninstalling quantities-0.10.1:
+      Successfully uninstalled quantities-0.10.1
+Successfully installed quantities-0+unknown
+Requirement already up-to-date: jedi in /mnt/Omega/python/anaconda3/lib/python3.5/site-packages
+Collecting rope
+  Downloading rope-0.10.3.tar.gz (226kB)
+Building wheels for collected packages: rope
+  Running setup.py bdist_wheel for rope: started
+  Running setup.py bdist_wheel for rope: finished with status 'done'
+  Stored in directory: /home/jacob/.cache/pip/wheels/f0/05/cf/4ab7b84d3306c96e0173a5dbce5a2887ecc76e5f4a02ba823f
+Successfully built rope
+Installing collected packages: rope
+Successfully installed rope-0.10.3
+:END:
+
+The ways to undo:
+
+C-x u  opens an "undo tree"
+C-/  undoes the last thing you did.
+
+After you install those, this code block will tell you about the installed versions of the most important libraries we will use in Python.
+
+#+BEGIN_SRC python
+import numpy
+print('numpy version {}'.format(numpy.__version__))
+
+import scipy
+print('scipy version {}'.format(scipy.__version__))
+
+import matplotlib
+print('matplotlib version {}'.format(matplotlib.__version__))
+
+import quantities
+print('quantities version {}'.format(quantities.__version__))
+
+import uncertainties
+print('uncertainties version {}'.format(uncertainties.__version__))
+
+import pycse
+print('pycse version {}'.format(pycse.__version__))
+#+END_SRC
+
+#+RESULTS:
+: numpy version 1.10.4
+: scipy version 0.17.0
+: matplotlib version 1.5.1
+: quantities version 0.10.1
+: uncertainties version 3.0.1
+: pycse version 1.6.3
+
+
+<p  then press TAB
+
+
+#+BEGIN_SRC python :results output org drawer
+a=5
+b = 50
+print(a)
+print('a = {}, b = {}'.format(a, b))
+print('a = ' + str(a))
+# print('a = ' + a) gives an error
+print('the ' + 'quick brown fox')
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+5
+a = 5, b = 50
+a = 5
+the quick brown fox
+:END:
+
+** Assignments and exercises
+   :PROPERTIES:
+   :ID:       597954a3-958b-4e4d-bbcd-ac2c33a527dd
+   :END:
+
+- Your ssh public key must be registered for you to participate in the course.
+  - This should be automatically sent to me when you open the course
+  - I will send a confirmation email when I get it and it is registered.
+
+- Most assignments will be listed as links in the syllabus
+  + When you click on the link, Emacs will download a copy of the assignment to your computer and open it
+
+  + You will complete the assignment in Emacs. This will typically mean typing in narrative text to describe what you are doing, the code that solves your problem, running the code to get the output, and discussing the results.
+
+  + You will complete your assignments using the same tool we use in class, Emacs + org-mode + Python.
+
+  + You will complete the assignment, and "turn it in" by selecting "Turn assignment in" from the techela menu, after you have completed the assignment.
+
+  + Turning an assignment in requires you to be connected to the internet
+
+  + Some information about your computer will be collected and turned in with your work.
+
+- Sometimes there will be "Exercises" that we do in class. These will not always be graded, but they will be used as part of a participation grade. Make sure you bring your computer to class.
+
+#+BEGIN_SRC python :results output org drawer
+for i in range(5):
+# C-c '
+    print(i)
+    # do something else
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0
+1
+2
+3
+4
+:END:
+
+* Introduction to the course
+
+** What is Chemical Reaction Engineering?
+
+- The design of processes that transform lower value feedstocks to higher value products through chemical reactions.
+
+We answer questions such as:
+1) Can we make a product at an economical rate?
+2) How big should a reactor be to make a product at some rate?
+3) How much heat should I remove from a reactor to maintain a safe temperature?
+4) What kind of reactor gives the highest yield?
+5) etc...
+
+** We are engineers
+
+We get paid to answer those questions
+- /quantitatively/
+  - It will rarely be sufficient to qualitatively answer questions
+- with uncertainty and risk analysis
+- even when the problems are very hard
+
+** Role of computational tools
+
+- Many problems are too hard to solve by hand and must be solved numerically.
+  - For these we use computational methods
+
+- We will extensively use Emacs in this class
+ + to read course notes
+ + to solve computational problems
+ + to document our work, analysis, and discussion
+ + to turn in our work
+
+- We will extensively use Python to numerically solve problems in this course.
+
+- Why?
+  + Python is /free/
+  + You can use this anywhere you go
+  + Python does everything we need and much more
+  + Python integrates into org-mode very well, enabling these notes to exist.
+
+- Almost every class will use and show examples of python
+- These notes will be available to you through the syllabus
+- You should make sure you can run the examples, /and that you get the same results/
+- *Ask questions when you do not understand*
+
+** Python examples
+
+*** A simple plot
+
+Here we import functionality from python modules to get array math functions and to make a plot.
+Put your cursor in this code block and press C-c C-c to run the block.
+
+Let us review some python documentation. Click on these links to learn more about these functions:
+pydoc:numpy.linspace
+pydoc:numpy.exp
+
+pydoc:matplotlib.pyplot.plot
+pydoc:matplotlib.pyplot.xlabel
+pydoc:matplotlib.pyplot.ylabel
+pydoc:matplotlib.pyplot.savefig
+
+#+BEGIN_SRC python
+import numpy as np               # standard import for array functions
+import matplotlib.pyplot as plt  # standard import for plotting
+
+# Define some constants
+R = 8.314   # A float
+T = 300     # an integer
+
+# an array of values linearly spaced
+deltaG = np.linspace(-8000, -12000, num=50)
+
+print(len(deltaG))
+
+# plotting commands
+plt.plot(deltaG, np.exp(-deltaG / R / T), 'bs-')
+plt.xlabel('$\Delta G$')  # Note the $ $
+plt.ylabel('K')
+plt.savefig('images/K.png')
+#+END_SRC
+
+#+RESULTS:
+: 50
+
+[[./images/K.png]]
+
+
+Note: to get the image to show inline, you must manually put a figure link in the place you want it, and then run the code block.
+
+*** Solve nonlinear equations
+elisp:org-toggle-latex-overlays
+
+Suppose we know K at some temperature, and we want to compute the corresponding $\Delta G$? Say we know K = 100 at 300K.  We need to solve $100 = e^{-\Delta G/RT}$ for $\Delta G$ at T = 300 K. Numerically,  we need to find the value of $\Delta G$ that solves this equivalent equation:
+
+\[0 = 100 - e^{-\Delta G/RT}\]
+
+We have to provide a guess for the solution because this is a nonlinear function we are solving. We could solve this problem analytically, but we are not going to. Instead, we will use the analytical solution to show our numerical solution is correct.
+
+pydoc:scipy.optimize.fsolve
+
+Put your cursor in this code block and press Ctrl-c Ctrl-c (C-c C-c) to run the block.
+
+#+BEGIN_SRC python
+import numpy as np                  # array based math functions
+from scipy.optimize import fsolve   # nonlinear algebra solver
+
+R = 8.314  # J/mol/K
+T = 300    # K
+
+# define a function that equals zero at the solution
+def objective(deltaG):
+    return 100 - np.exp(-deltaG / R / T)
+
+guess = -11000   # guess based on the graph we saw before
+ans, = fsolve(objective, guess)  # the , is an unpacking operator
+
+print(ans)
+print(type(ans))
+print(-np.log(100) * R * T)  # analytical solution
+#+END_SRC
+
+#+RESULTS:
+: -11486.2154779
+: <class 'numpy.float64'>
+: -11486.2154779
+
+
+You can see the two solutions are equivalent. Checkout pydoc:numpy.log
+
+
+*** Solving another nonlinear algebra problem
+elisp:org-toggle-latex-overlays
+
+Given \(C_A = C_{A0} e^{-k t}\) with $C_{A0} =1$ mol/L, and $k=0.23$ 1/s, how long will it take before $C_A$ = 0.2 M? We want to know at what time is this equation true: \(0.2 - C_{A0} e^{-k t} = 0\). We define two functions here, one for $C_A$, and one for the objective function ($f(x)=0$). That is so we can evaluate $C_A(t_{soln})$ conveniently later.
+
+#+BEGIN_SRC python
+import numpy as np
+from scipy.optimize import fsolve
+
+CA0 = 1.0 # mol / l
+k = 0.23  # 1/s
+
+def Ca(t):
+    return CA0 * np.exp(-k * t)
+
+def f(t):
+    z = 0.2 - Ca(t)
+    return z
+
+ans, d, flag, msg = fsolve(f, 2.0, full_output=1)
+print(ans)
+
+print('Ca = {1} at t = {0:1.2f} s ({1})'.format(ans[0], Ca(ans)))
+#+END_SRC
+
+#+RESULTS:
+: [ 6.99755614]
+: Ca = [ 0.2] at t = 7.00 s ([ 0.2])
+
+
+You should practice with these examples. Review these links:
+
+pydoc:scipy.optimize.fsolve
+
+pydoc:numpy.exp  pydoc:numpy.log
+
+* Getting help
+
+- I am expecting you will need help. Emacs and Python are probably new for you.
+
+You may find these resources helpful:
+- Class
+  + Come to class everyday.
+  + Watch me use Emacs and Python
+  + Ask questions about things you do not understand
+
+- Learning python
+  + http://learnpythonthehardway.org/book/
+  + http://interactivepython.org/courselib/static/thinkcspy/index.html
+
+- Python documentation
+  + Builtin modules - http://docs.python.org/3/library/index.html
+
+- Python and scientific computing
+  + http://kitchingroup.cheme.cmu.edu/pycse/ (there is also a pdf version)
+  + Numerical python - http://docs.scipy.org/doc/numpy/reference/
+  + Scientific python - http://docs.scipy.org/doc/scipy/reference/
+
+
+- Writing equations in LaTeX: http://www.codecogs.com/latex/eqneditor.php
+
+I occasionally blog about Python at http://kitchingroup.cheme.cmu.edu
+Follow me on Twitter to be notified of these posts: @johnkitchin
+
+* Final points
+
+
+1. You can only use techela from your computer.
+2. Do not delete ~/techela or the emacs shortcut on your desktop
+3. Avoid installing a new Python
+
+#+BEGIN_SRC python :results output org drawer
+def f(a, b):
+    return 2*a, 3*b
+
+g = f(1, 2)
+print(g)
+
+a, b = f(1, 2)
+print(a)
+print(b)
+
+h, j, k = [3, 4, 5]
+print(h)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+(2, 6)
+2
+6
+3
+:END:
+
+#+BEGIN_SRC python :results output org drawer
+print(1 / 3.0)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+0.3333333333333333
+:END:
+
+C-g to quit what is happening. or Esc Esc Esc

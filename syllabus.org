@@ -793,8 +793,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** COLLECTED assignment:exam-3-1                                 :assignment:
-   DEADLINE: <2016-12-07 Wed>
+** GRADED assignment:exam-3-1					 :assignment:
+   CLOSED: [2016-12-12 Mon 02:10] DEADLINE: <2016-12-07 Wed>
    :PROPERTIES:
    :CATEGORY: exam3
    :POINTS:   5
@@ -803,8 +803,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** COLLECTED assignment:exam-3-2                                 :assignment:
-   DEADLINE: <2016-12-07 Wed>
+** GRADED assignment:exam-3-2					 :assignment:
+   CLOSED: [2016-12-11 Sun 17:07] DEADLINE: <2016-12-07 Wed>
    :PROPERTIES:
    :CATEGORY: exam3
    :POINTS:   5
@@ -813,8 +813,8 @@ solution:quiz-3  or: [[./solutions/quiz-3/quiz-3.org]]
    :END:
 
 
-** COLLECTED assignment:exam-3-3                                 :assignment:
-   DEADLINE: <2016-12-07 Wed>
+** GRADED assignment:exam-3-3					 :assignment:
+   CLOSED: [2016-12-12 Mon 15:32] DEADLINE: <2016-12-07 Wed>
    :PROPERTIES:
    :CATEGORY: exam3
    :POINTS:   5
